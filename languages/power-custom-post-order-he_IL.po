@@ -1,0 +1,605 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Power Custom Post Order 1.0.0\n"
+"Report-Msgid-Bugs-To: eli@elishvarzman.com\n"
+"POT-Creation-Date: 2026-05-20 12:00+0000\n"
+"PO-Revision-Date: 2026-05-20 12:00+0000\n"
+"Last-Translator: Eli Shvarzman <eli@elishvarzman.com>\n"
+"Language-Team: Hebrew <eli@elishvarzman.com>\n"
+"Language: he_IL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# --- Plugin metadata ---
+msgid "Power Custom Post Order"
+msgstr "סידור פוסטים מתקדם"
+
+msgid "Post Order"
+msgstr "סידור פוסטים"
+
+msgid ""
+"Drag-and-drop ordering for any post type, with per-taxonomy ordering, sticky"
+" / hidden posts, templates, CSV import-export, and a REST API. Works with "
+"every theme — including Elementor."
+msgstr ""
+"סידור בגרירה ושחרור לכל סוג פוסט, כולל סידור לפי טקסונומיה, פוסטים "
+"מוצמדים/מוסתרים, תבניות, ייבוא וייצוא CSV, ו-REST API. עובד עם כל תבנית — "
+"כולל Elementor."
+
+# --- Common UI ---
+msgid "Settings"
+msgstr "הגדרות"
+
+msgid "Save"
+msgstr "שמירה"
+
+msgid "Saving…"
+msgstr "שומר…"
+
+msgid "Saved"
+msgstr "נשמר"
+
+msgid "Order saved"
+msgstr "הסדר נשמר"
+
+msgid "Saved successfully"
+msgstr "נשמר בהצלחה"
+
+msgid "Cancel"
+msgstr "ביטול"
+
+msgid "Apply"
+msgstr "החלה"
+
+msgid "Delete"
+msgstr "מחיקה"
+
+msgid "Edit"
+msgstr "עריכה"
+
+msgid "View"
+msgstr "צפייה"
+
+msgid "Loading…"
+msgstr "טוען…"
+
+msgid "Something went wrong. Check the browser console."
+msgstr "אירעה שגיאה. בדוק את ה-console בדפדפן."
+
+msgid "Insufficient permissions."
+msgstr "אין הרשאות מספיקות."
+
+msgid "Invalid security token."
+msgstr "אסימון אבטחה לא תקין."
+
+# --- Dashboard page ---
+msgid "Dashboard"
+msgstr "לוח בקרה"
+
+msgid "Ordered items"
+msgstr "פריטים מסודרים"
+
+msgid "Pinned items"
+msgstr "פריטים מוצמדים"
+
+msgid "Hidden items"
+msgstr "פריטים מוסתרים"
+
+msgid "Context rules"
+msgstr "כללי הקשר"
+
+msgid "Saved templates"
+msgstr "תבניות שמורות"
+
+msgid "Quick start"
+msgstr "התחלה מהירה"
+
+msgid "Choose which post types to enable"
+msgstr "בחר אילו סוגי פוסטים להפעיל"
+
+msgid "Open the Sort Posts page and drag items into place"
+msgstr "פתח את עמוד סידור הפוסטים וגרור את הפריטים למקומם"
+
+msgid "Use sticky / hidden flags per term as needed"
+msgstr "השתמש בהצמדה/הסתרה לפי קטגוריה כנדרש"
+
+msgid "Save the result as a Template to re-use across terms"
+msgstr "שמור את התוצאה כתבנית לשימוש חוזר בקטגוריות נוספות"
+
+msgid "Enabled post types"
+msgstr "סוגי פוסטים פעילים"
+
+msgid "Sort →"
+msgstr "סידור ←"
+
+msgid "Integrations detected"
+msgstr "אינטגרציות שזוהו"
+
+msgid "WooCommerce active — menu_order sync enabled"
+msgstr "WooCommerce פעיל — סנכרון menu_order מופעל"
+
+msgid "WooCommerce not detected"
+msgstr "WooCommerce לא זוהה"
+
+msgid "Elementor active — opt-in via Query ID \"pcpo_ordering\""
+msgstr "Elementor פעיל — הצטרפות באמצעות Query ID \"pcpo_ordering\""
+
+msgid "Elementor not detected"
+msgstr "Elementor לא זוהה"
+
+msgid "REST API enabled"
+msgstr "REST API פעיל"
+
+msgid "For developers"
+msgstr "למפתחים"
+
+msgid "Use these template tags in your theme:"
+msgstr "השתמש בפונקציות הבאות בתבנית שלך:"
+
+# --- Sort page ---
+msgid "Sort Posts"
+msgstr "סידור פוסטים"
+
+msgid "Post type"
+msgstr "סוג פוסט"
+
+msgid "Taxonomy"
+msgstr "טקסונומיה"
+
+msgid "Term"
+msgstr "קטגוריה/תגית"
+
+msgid "Search"
+msgstr "חיפוש"
+
+msgid "Search by title…"
+msgstr "חיפוש לפי כותרת…"
+
+msgid "Per page"
+msgstr "לעמוד"
+
+msgid "Order mode for this context"
+msgstr "מצב סידור עבור הקשר זה"
+
+msgid "Save mode"
+msgstr "שמירת מצב"
+
+msgid "Shuffle"
+msgstr "ערבוב"
+
+msgid "Reverse"
+msgstr "היפוך"
+
+msgid "Reset"
+msgstr "איפוס"
+
+msgid "Drag to reorder"
+msgstr "גרור לסידור"
+
+msgid "Pin to top"
+msgstr "הצמד למעלה"
+
+msgid "Hide in this context"
+msgstr "הסתר בהקשר זה"
+
+msgid "Move to position"
+msgstr "העברה למיקום"
+
+msgid "Pinned"
+msgstr "מוצמד"
+
+msgid "Hidden"
+msgstr "מוסתר"
+
+msgid "Moved to top"
+msgstr "הועבר למעלה"
+
+msgid "Moved to bottom"
+msgstr "הועבר לתחתית"
+
+msgid "No posts match your filters."
+msgstr "אין פוסטים שתואמים את הסינון."
+
+msgid "No posts match the current filter."
+msgstr "אין פוסטים שתואמים את הסינון."
+
+msgid "— Global (no taxonomy) —"
+msgstr "— גלובלי (ללא טקסונומיה) —"
+
+msgid "— All terms (use global order) —"
+msgstr "— כל הקטגוריות (השתמש בסדר הגלובלי) —"
+
+msgid "— Select —"
+msgstr "— בחר —"
+
+msgid "— All —"
+msgstr "— הכל —"
+
+msgid ""
+"Reset order for this context? This will remove your manual ordering and "
+"revert to default."
+msgstr ""
+"לאפס את הסדר עבור הקשר זה? פעולה זו תסיר את הסידור הידני ותחזיר לברירת "
+"המחדל."
+
+msgid "Shuffle ALL items in this context randomly?"
+msgstr "לערבב את כל הפריטים בהקשר זה באקראי?"
+
+msgid ""
+"Re-order alphabetically? Your current manual order will be overwritten."
+msgstr "לסדר לפי האלפבית? הסדר הידני הנוכחי יידרס."
+
+# --- Bulk page ---
+msgid "Bulk Actions"
+msgstr "פעולות מרובות"
+
+msgid ""
+"Apply an action across all posts in a given context. Useful for one-off "
+"reorganization or seasonal resets."
+msgstr ""
+"החל פעולה על כל הפוסטים בהקשר נתון. שימושי לסידור מחדש חד-פעמי או איפוס "
+"עונתי."
+
+msgid "Choose context"
+msgstr "בחירת הקשר"
+
+msgid ""
+"Randomly reorder all posts in the selected context. Saved as a manual order."
+msgstr "ערבב באקראי את כל הפוסטים בהקשר הנבחר. נשמר כסדר ידני."
+
+msgid "Shuffle now"
+msgstr "ערבב עכשיו"
+
+msgid "Alphabetize A → Z"
+msgstr "סידור אלפביתי א → ת"
+
+msgid "Sort by title in ascending order, then save as the manual order."
+msgstr "מיון לפי כותרת בסדר עולה, ושמירה כסדר ידני."
+
+msgid "Alphabetize Z → A"
+msgstr "סידור אלפביתי ת → א"
+
+msgid "Sort by title in descending order, then save as the manual order."
+msgstr "מיון לפי כותרת בסדר יורד, ושמירה כסדר ידני."
+
+msgid "Reverse order"
+msgstr "היפוך סדר"
+
+msgid "Flip the current manual order end-to-end."
+msgstr "היפוך הסדר הידני הנוכחי מקצה לקצה."
+
+msgid ""
+"Delete all stored ordering data for this context. Posts will fall back to "
+"the default WordPress ordering."
+msgstr ""
+"מחק את כל נתוני הסידור עבור הקשר זה. הפוסטים יחזרו לסדר ברירת המחדל של "
+"וורדפרס."
+
+msgid "Reset this context"
+msgstr "אפס הקשר זה"
+
+# --- Templates page ---
+msgid "Order Templates"
+msgstr "תבניות סידור"
+
+msgid "Templates"
+msgstr "תבניות"
+
+msgid ""
+"Save the current order in a context as a reusable template, then apply it to"
+" other terms with one click."
+msgstr ""
+"שמור את הסדר הנוכחי כתבנית לשימוש חוזר, ולאחר מכן החל אותו על קטגוריות אחרות"
+" בלחיצה אחת."
+
+msgid "Create new template"
+msgstr "יצירת תבנית חדשה"
+
+msgid "Template name"
+msgstr "שם תבנית"
+
+msgid "Description"
+msgstr "תיאור"
+
+msgid "Snapshot from taxonomy"
+msgstr "צילום מצב מטקסונומיה"
+
+msgid "Term ID"
+msgstr "מזהה קטגוריה"
+
+msgid "Empty = global"
+msgstr "ריק = גלובלי"
+
+msgid "0 = global / no term context."
+msgstr "0 = גלובלי / ללא הקשר קטגוריה."
+
+msgid "Create template"
+msgstr "צור תבנית"
+
+msgid "Template created."
+msgstr "התבנית נוצרה."
+
+msgid "Template deleted."
+msgstr "התבנית נמחקה."
+
+msgid "Template not found"
+msgstr "התבנית לא נמצאה"
+
+msgid "Delete this template?"
+msgstr "למחוק את התבנית הזו?"
+
+msgid "Apply…"
+msgstr "החלה…"
+
+msgid "Apply template to context"
+msgstr "החל תבנית על הקשר"
+
+msgid "No templates yet."
+msgstr "אין תבניות עדיין."
+
+msgid "Name"
+msgstr "שם"
+
+msgid "Items"
+msgstr "פריטים"
+
+msgid "Created"
+msgstr "נוצר"
+
+msgid "Actions"
+msgstr "פעולות"
+
+# --- Import / Export ---
+msgid "Import / Export"
+msgstr "ייבוא / ייצוא"
+
+msgid "Export to CSV"
+msgstr "ייצוא ל-CSV"
+
+msgid ""
+"Download a CSV snapshot of your current ordering data. Use this for backups,"
+" migrations, or to edit in Excel/Sheets."
+msgstr ""
+"הורד קובץ CSV של נתוני הסידור הנוכחיים. שימושי לגיבויים, מעברים, או עריכה "
+"ב-Excel/Sheets."
+
+msgid "Filter by post type"
+msgstr "סינון לפי סוג פוסט"
+
+msgid "Restrict to specific taxonomy"
+msgstr "הגבל לטקסונומיה ספציפית"
+
+msgid "e.g. product_cat (empty = global only)"
+msgstr "לדוגמה: product_cat (ריק = גלובלי בלבד)"
+
+msgid "Download CSV"
+msgstr "הורד CSV"
+
+msgid "Import from CSV"
+msgstr "ייבוא מ-CSV"
+
+msgid ""
+"Upload a CSV with columns: post_id, post_type, taxonomy, term_id, "
+"menu_order, is_sticky, is_hidden. Only post_id and menu_order are required."
+msgstr ""
+"העלה CSV עם העמודות: post_id, post_type, taxonomy, term_id, menu_order, "
+"is_sticky, is_hidden. רק post_id ו-menu_order חובה."
+
+msgid "Dry run (parse only, do not save)"
+msgstr "הרצה יבשה (פירוק בלבד, ללא שמירה)"
+
+msgid "Update only — skip new rows"
+msgstr "עדכון בלבד — דלג על שורות חדשות"
+
+msgid "Import CSV"
+msgstr "ייבוא CSV"
+
+msgid "Show CSV format example"
+msgstr "הצג דוגמת פורמט CSV"
+
+msgid "Empty file."
+msgstr "קובץ ריק."
+
+msgid "Missing required column: %s"
+msgstr "חסרה עמודת חובה: %s"
+
+msgid "Line %d: missing post_id"
+msgstr "שורה %d: חסר post_id"
+
+msgid "Line %1$d: post ID %2$d not found"
+msgstr "שורה %1$d: post ID %2$d לא נמצא"
+
+msgid "Line %d: DB error"
+msgstr "שורה %d: שגיאת DB"
+
+msgid "View errors"
+msgstr "הצגת שגיאות"
+
+# --- Settings page ---
+msgid "Power Custom Post Order — Settings"
+msgstr "סידור פוסטים מתקדם — הגדרות"
+
+msgid "Scope"
+msgstr "היקף"
+
+msgid "Behavior"
+msgstr "התנהגות"
+
+msgid "Permissions"
+msgstr "הרשאות"
+
+msgid "UI"
+msgstr "ממשק"
+
+msgid "Only enabled post types will be affected by PCPO ordering."
+msgstr "רק סוגי פוסטים מופעלים יושפעו מהסידור של PCPO."
+
+msgid "Override explicit orderby"
+msgstr "דרוס orderby מפורש"
+
+msgid "No — respect the widget / theme"
+msgstr "לא — כבד את הוויג'ט / תבנית"
+
+msgid "Yes — override and apply PCPO ordering"
+msgstr "כן — דרוס והחל את הסידור של PCPO"
+
+msgid ""
+"When an Elementor / theme query already sets orderby (e.g. \"by date\"), "
+"should PCPO still apply?"
+msgstr ""
+"כאשר שאילתת Elementor / תבנית כבר מגדירה orderby (לדוגמה \"לפי תאריך\"), האם"
+" PCPO צריך לחול בכל זאת?"
+
+msgid "Multi-term strategy"
+msgstr "אסטרטגיית ריבוי קטגוריות"
+
+msgid "Primary term (Yoast / RankMath / WC) with fallback to global"
+msgstr "קטגוריה ראשית (Yoast / RankMath / WC) עם נפילה לגלובלי"
+
+msgid "Always use the global order"
+msgstr "השתמש תמיד בסדר הגלובלי"
+
+msgid "Use the first term in the query"
+msgstr "השתמש בקטגוריה הראשונה בשאילתה"
+
+msgid "When a query targets multiple terms, which ordering wins?"
+msgstr "כאשר שאילתה כוללת מספר קטגוריות, איזה סדר ינצח?"
+
+msgid "Sync to WooCommerce menu_order"
+msgstr "סנכרון ל-WooCommerce menu_order"
+
+msgid ""
+"Yes (recommended) — keep wp_posts.menu_order in sync with global product "
+"order"
+msgstr ""
+"כן (מומלץ) — שמור על wp_posts.menu_order מסונכרן עם הסדר הגלובלי של מוצרים"
+
+msgid "No — only our own table"
+msgstr "לא — רק הטבלה שלנו"
+
+msgid ""
+"Recommended ON for WooCommerce so reports, exports and other plugins see "
+"your custom order."
+msgstr ""
+"מומלץ דלוק עבור WooCommerce כדי שדוחות, ייצוא ותוספים אחרים יראו את הסדר "
+"המותאם שלך."
+
+msgid "Random seed"
+msgstr "Random seed"
+
+msgid "Per day (cache-friendly)"
+msgstr "לפי יום (ידידותי למטמון)"
+
+msgid "Per user per day"
+msgstr "לפי משתמש ביום"
+
+msgid "Admin capability"
+msgstr "הרשאת מנהל"
+
+msgid "Required to access plugin settings, bulk actions, and templates."
+msgstr "נדרש לגישה להגדרות התוסף, פעולות מרובות ותבניות."
+
+msgid "Sort capability"
+msgstr "הרשאת סידור"
+
+msgid "Required to reorder posts via drag-and-drop."
+msgstr "נדרש לסידור פוסטים בגרירה ושחרור."
+
+msgid "Role-based ordering"
+msgstr "סידור לפי תפקיד"
+
+msgid "Enabled — different roles can see different orders"
+msgstr "פעיל — תפקידים שונים יכולים לראות סדרים שונים"
+
+msgid "Disabled"
+msgstr "כבוי"
+
+msgid ""
+"Configure per-context role overrides on the Sort page. Logged-out users "
+"always see the default order mode."
+msgstr ""
+"הגדר עקיפות לפי תפקיד עבור הקשר ספציפי בעמוד הסידור. משתמשים שאינם מחוברים "
+"תמיד יראו את מצב הסידור ברירת המחדל."
+
+msgid "Available roles"
+msgstr "תפקידים זמינים"
+
+msgid "Sort page — items per page"
+msgstr "עמוד סידור — פריטים בעמוד"
+
+# --- Order modes ---
+msgid "Manual (drag & drop)"
+msgstr "ידני (גרירה ושחרור)"
+
+msgid "Inherit from parent / global"
+msgstr "ירש מהורה / גלובלי"
+
+msgid "Default WordPress menu order"
+msgstr "סדר ברירת מחדל של וורדפרס"
+
+msgid "Title A → Z"
+msgstr "כותרת א → ת"
+
+msgid "Title Z → A"
+msgstr "כותרת ת → א"
+
+msgid "Date — newest first"
+msgstr "תאריך — חדש קודם"
+
+msgid "Date — oldest first"
+msgstr "תאריך — ישן קודם"
+
+msgid "Last modified — newest first"
+msgstr "עודכן לאחרונה — חדש קודם"
+
+msgid "Random (with daily seed)"
+msgstr "אקראי (עם seed יומי)"
+
+msgid "Price low → high"
+msgstr "מחיר נמוך → גבוה"
+
+msgid "Price high → low"
+msgstr "מחיר גבוה → נמוך"
+
+msgid "Popularity (total sales)"
+msgstr "פופולריות (סך מכירות)"
+
+msgid "Average rating"
+msgstr "דירוג ממוצע"
+
+msgid "Stock status (in stock first)"
+msgstr "סטטוס מלאי (זמין במלאי קודם)"
+
+# --- Shortcodes ---
+msgid "No posts found."
+msgstr "לא נמצאו פוסטים."
+
+msgid "post_id is required"
+msgstr "post_id הוא שדה חובה"
+
+msgid "No order provided."
+msgstr "לא סופק סדר."
+
+msgid "Order saved."
+msgstr "הסדר נשמר."
+
+msgid "Order reset."
+msgstr "הסדר אופס."
+
+msgid "Order reversed."
+msgstr "הסדר הפוך."
+
+msgid "Shuffled."
+msgstr "עורבב."
+
+msgid "Alphabetized."
+msgstr "סודר אלפביתית."
+
+msgid "Invalid post type."
+msgstr "סוג פוסט לא חוקי."
+
+msgid "Imported: %1$d, Skipped: %2$d, Errors: %3$d"
+msgstr "יובא: %1$d, דולג: %2$d, שגיאות: %3$d"

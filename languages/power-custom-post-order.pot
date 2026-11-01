@@ -1,0 +1,927 @@
+# Copyright (C) 2026 Eli Shvarzman
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Power Custom Post Order 1.0.16\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/post-order\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-31T11:30:43+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: power-custom-post-order\n"
+
+#. Plugin Name of the plugin
+#: power-custom-post-order.php
+#: admin/views/dashboard.php:25
+#: includes/class-pcpo-admin.php:70
+msgid "Power Custom Post Order"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: power-custom-post-order.php
+msgid "https://a-in.co.il/plugins/post-order/"
+msgstr ""
+
+#. Description of the plugin
+#: power-custom-post-order.php
+msgid "Drag-and-drop custom post ordering for any post type and WooCommerce products, with per-taxonomy ordering, order variations (manual, alphabetical, price, popularity, random, etc.), sticky posts, hidden posts, order templates, CSV import/export, per-role ordering, REST API, and shortcode/template tag for manual queries. Works with every theme and Elementor."
+msgstr ""
+
+#. Author of the plugin
+#: power-custom-post-order.php
+msgid "Eli Shvarzman"
+msgstr ""
+
+#. Author URI of the plugin
+#: power-custom-post-order.php
+msgid "https://a-in.co.il/"
+msgstr ""
+
+#: admin/views/bulk.php:18
+#: includes/class-pcpo-admin.php:99
+#: includes/class-pcpo-admin.php:100
+msgid "Bulk Actions"
+msgstr ""
+
+#: admin/views/bulk.php:22
+msgid "Apply an action across all posts in a given context. Useful for one-off reorganization or seasonal resets."
+msgstr ""
+
+#: admin/views/bulk.php:26
+msgid "Choose context"
+msgstr ""
+
+#: admin/views/bulk.php:29
+#: admin/views/sort.php:34
+#: admin/views/templates.php:84
+#: admin/views/templates.php:126
+msgid "Post type"
+msgstr ""
+
+#: admin/views/bulk.php:42
+#: admin/views/sort.php:50
+#: admin/views/templates.php:169
+msgid "Taxonomy"
+msgstr ""
+
+#: admin/views/bulk.php:44
+#: admin/views/sort.php:52
+msgid "— Global —"
+msgstr ""
+
+#: admin/views/bulk.php:48
+#: admin/views/sort.php:57
+msgid "Term"
+msgstr ""
+
+#: admin/views/bulk.php:50
+#: admin/views/importexport.php:90
+msgid "— All —"
+msgstr ""
+
+#: admin/views/bulk.php:58
+#: admin/views/sort.php:120
+#: admin/views/sort.php:122
+msgid "Shuffle"
+msgstr ""
+
+#: admin/views/bulk.php:59
+msgid "Randomly reorder all posts in the selected context. Saved as a manual order."
+msgstr ""
+
+#: admin/views/bulk.php:60
+msgid "Shuffle now"
+msgstr ""
+
+#: admin/views/bulk.php:63
+#: admin/views/bulk.php:65
+msgid "Alphabetize A → Z"
+msgstr ""
+
+#: admin/views/bulk.php:64
+msgid "Sort by title in ascending order, then save as the manual order."
+msgstr ""
+
+#: admin/views/bulk.php:68
+#: admin/views/bulk.php:70
+msgid "Alphabetize Z → A"
+msgstr ""
+
+#: admin/views/bulk.php:69
+msgid "Sort by title in descending order, then save as the manual order."
+msgstr ""
+
+#: admin/views/bulk.php:73
+msgid "Reverse order"
+msgstr ""
+
+#: admin/views/bulk.php:74
+msgid "Flip the current manual order end-to-end."
+msgstr ""
+
+#: admin/views/bulk.php:75
+#: admin/views/sort.php:132
+#: admin/views/sort.php:134
+msgid "Reverse"
+msgstr ""
+
+#: admin/views/bulk.php:78
+#: admin/views/sort.php:136
+#: admin/views/sort.php:138
+msgid "Reset"
+msgstr ""
+
+#: admin/views/bulk.php:79
+msgid "Delete all stored ordering data for this context. Posts will fall back to the default WordPress ordering."
+msgstr ""
+
+#: admin/views/bulk.php:80
+msgid "Reset this context"
+msgstr ""
+
+#: admin/views/dashboard.php:30
+msgid "Drag-and-drop ordering for any post type, with per-taxonomy ordering, sticky / hidden posts, templates, CSV import-export, and a REST API. Works with every theme — including Elementor."
+msgstr ""
+
+#: admin/views/dashboard.php:36
+msgid "Ordered items"
+msgstr ""
+
+#: admin/views/dashboard.php:40
+msgid "Pinned items"
+msgstr ""
+
+#: admin/views/dashboard.php:44
+msgid "Hidden items"
+msgstr ""
+
+#: admin/views/dashboard.php:48
+msgid "Context rules"
+msgstr ""
+
+#: admin/views/dashboard.php:52
+#: admin/views/templates.php:118
+msgid "Saved templates"
+msgstr ""
+
+#: admin/views/dashboard.php:58
+msgid "Quick start"
+msgstr ""
+
+#: admin/views/dashboard.php:60
+msgid "Choose which post types to enable"
+msgstr ""
+
+#: admin/views/dashboard.php:61
+msgid "Open the Sort Posts page and drag items into place"
+msgstr ""
+
+#: admin/views/dashboard.php:62
+msgid "Use sticky / hidden flags per term as needed"
+msgstr ""
+
+#: admin/views/dashboard.php:63
+msgid "Save the result as a Template to re-use across terms"
+msgstr ""
+
+#: admin/views/dashboard.php:68
+#: admin/views/settings.php:29
+msgid "Enabled post types"
+msgstr ""
+
+#: admin/views/dashboard.php:81
+msgid "Sort →"
+msgstr ""
+
+#: admin/views/dashboard.php:89
+msgid "Integrations detected"
+msgstr ""
+
+#: admin/views/dashboard.php:93
+msgid "WooCommerce active — menu_order sync enabled"
+msgstr ""
+
+#: admin/views/dashboard.php:95
+msgid "WooCommerce not detected"
+msgstr ""
+
+#: admin/views/dashboard.php:100
+msgid "Elementor active — opt-in via Query ID \"pcpo_ordering\""
+msgstr ""
+
+#: admin/views/dashboard.php:102
+msgid "Elementor not detected"
+msgstr ""
+
+#: admin/views/dashboard.php:106
+msgid "REST API enabled"
+msgstr ""
+
+#: admin/views/dashboard.php:114
+msgid "For developers"
+msgstr ""
+
+#: admin/views/dashboard.php:115
+msgid "Use these template tags in your theme:"
+msgstr ""
+
+#: admin/views/debug.php:16
+msgid "Cleared."
+msgstr ""
+
+#. translators: 1: URL, 2: HTTP status code
+#: admin/views/debug.php:65
+#, php-format
+msgid "Sent request to %1$s — HTTP %2$d."
+msgstr ""
+
+#: admin/views/debug.php:72
+msgid "PCPO debug output detected in the response. Capture below."
+msgstr ""
+
+#: admin/views/debug.php:74
+msgid "NO PCPO debug output in the response — the page may still be cached. Try the URL in a private window while logged in, or temporarily disable Breeze."
+msgstr ""
+
+#: admin/views/debug.php:87
+msgid "PCPO Debug"
+msgstr ""
+
+#: admin/views/debug.php:93
+msgid "Debug mode is OFF."
+msgstr ""
+
+#. translators: %s: link to settings
+#: admin/views/debug.php:97
+#, php-format
+msgid "Turn it on under %s, then use the \"Test URL\" form below or visit a page directly. Remember to turn it off again on production."
+msgstr ""
+
+#: admin/views/debug.php:98
+msgid "Settings → Debug mode"
+msgstr ""
+
+#: admin/views/debug.php:106
+msgid "Capture a URL right now"
+msgstr ""
+
+#: admin/views/debug.php:107
+msgid "Sends a fresh authenticated request to the URL with a cache-buster, which forces page caches (Breeze, WP Rocket) to pass through to PHP. The resulting PCPO debug capture appears below."
+msgstr ""
+
+#: admin/views/debug.php:120
+msgid "Capture now"
+msgstr ""
+
+#: admin/views/debug.php:127
+msgid "Refresh"
+msgstr ""
+
+#: admin/views/debug.php:132
+msgid "Clear all captures"
+msgstr ""
+
+#: admin/views/debug.php:139
+msgid "No captures yet. Use \"Capture a URL right now\" above, or visit a front-end page while debug is on."
+msgstr ""
+
+#: admin/views/debug.php:151
+msgid "events captured"
+msgstr ""
+
+#: admin/views/debug.php:155
+msgid "Summary"
+msgstr ""
+
+#: admin/views/debug.php:163
+msgid "Full event timeline (click to expand)"
+msgstr ""
+
+#: admin/views/importexport.php:51
+#: includes/class-pcpo-admin.php:117
+#: includes/class-pcpo-admin.php:118
+msgid "Import / Export"
+msgstr ""
+
+#. translators: 1: imported, 2: skipped, 3: errors
+#: admin/views/importexport.php:60
+#, php-format
+msgid "Imported: %1$d, Skipped: %2$d, Errors: %3$d"
+msgstr ""
+
+#: admin/views/importexport.php:69
+msgid "View errors"
+msgstr ""
+
+#: admin/views/importexport.php:82
+msgid "Export to CSV"
+msgstr ""
+
+#: admin/views/importexport.php:83
+msgid "Download a CSV snapshot of your current ordering data. Use this for backups, migrations, or to edit in Excel/Sheets."
+msgstr ""
+
+#: admin/views/importexport.php:88
+msgid "Filter by post type"
+msgstr ""
+
+#: admin/views/importexport.php:105
+msgid "Restrict to specific taxonomy"
+msgstr ""
+
+#: admin/views/importexport.php:107
+msgid "e.g. product_cat (empty = global only)"
+msgstr ""
+
+#: admin/views/importexport.php:110
+msgid "Download CSV"
+msgstr ""
+
+#: admin/views/importexport.php:115
+msgid "Import from CSV"
+msgstr ""
+
+#: admin/views/importexport.php:117
+msgid "Upload a CSV with columns: post_id, post_type, taxonomy, term_id, menu_order, is_sticky, is_hidden. Only post_id and menu_order are required."
+msgstr ""
+
+#: admin/views/importexport.php:128
+msgid "Dry run (parse only, do not save)"
+msgstr ""
+
+#: admin/views/importexport.php:134
+msgid "Update only — skip new rows"
+msgstr ""
+
+#: admin/views/importexport.php:137
+msgid "Import CSV"
+msgstr ""
+
+#: admin/views/importexport.php:141
+msgid "Show CSV format example"
+msgstr ""
+
+#: admin/views/settings.php:20
+msgid "Power Custom Post Order — Settings"
+msgstr ""
+
+#: admin/views/settings.php:26
+msgid "Scope"
+msgstr ""
+
+#: admin/views/settings.php:37
+msgid "Only enabled post types will be affected by PCPO ordering."
+msgstr ""
+
+#: admin/views/settings.php:42
+msgid "Behavior"
+msgstr ""
+
+#: admin/views/settings.php:45
+msgid "Override explicit orderby"
+msgstr ""
+
+#: admin/views/settings.php:48
+msgid "No — respect the widget / theme"
+msgstr ""
+
+#: admin/views/settings.php:49
+msgid "Yes — override and apply PCPO ordering"
+msgstr ""
+
+#: admin/views/settings.php:51
+msgid "When an Elementor / theme query already sets orderby (e.g. \"by date\"), should PCPO still apply?"
+msgstr ""
+
+#: admin/views/settings.php:55
+msgid "Multi-term strategy"
+msgstr ""
+
+#: admin/views/settings.php:58
+msgid "Primary term (Yoast / RankMath / WC) with fallback to global"
+msgstr ""
+
+#: admin/views/settings.php:59
+msgid "Always use the global order"
+msgstr ""
+
+#: admin/views/settings.php:60
+msgid "Use the first term in the query"
+msgstr ""
+
+#: admin/views/settings.php:62
+msgid "When a query targets multiple terms, which ordering wins?"
+msgstr ""
+
+#: admin/views/settings.php:66
+msgid "Sync to WooCommerce menu_order"
+msgstr ""
+
+#: admin/views/settings.php:69
+msgid "Yes (recommended) — keep wp_posts.menu_order in sync with global product order"
+msgstr ""
+
+#: admin/views/settings.php:70
+msgid "No — only our own table"
+msgstr ""
+
+#: admin/views/settings.php:72
+msgid "Recommended ON for WooCommerce so reports, exports and other plugins see your custom order."
+msgstr ""
+
+#: admin/views/settings.php:76
+msgid "Debug mode"
+msgstr ""
+
+#: admin/views/settings.php:79
+msgid "Off"
+msgstr ""
+
+#: admin/views/settings.php:80
+msgid "On — record every query decision and dump as HTML comment in the front-end footer"
+msgstr ""
+
+#: admin/views/settings.php:82
+msgid "When on, PCPO records every query it sees (marked or skipped, with reason), the ORDER BY before and after rewriting, and the final SQL of marked queries. View by visiting any front-end page as a logged-in editor and inspecting the page source (Ctrl-U) — search for \"PCPO DEBUG\". Same data is mirrored to error_log so it survives page caches. Turn OFF on production once diagnosis is done."
+msgstr ""
+
+#: admin/views/settings.php:87
+msgid "WPML — sync order across languages"
+msgstr ""
+
+#: admin/views/settings.php:90
+msgid "Yes (recommended) — mirror manual order, sticky and hidden flags onto translated posts / terms"
+msgstr ""
+
+#: admin/views/settings.php:91
+msgid "No — order is stored against the translated post ID only (front-end may diverge between languages)"
+msgstr ""
+
+#: admin/views/settings.php:93
+msgid "WPML stores translations as separate posts. Without sync, an order set on the Hebrew product will not apply when a visitor switches to English. With sync on, every write is mirrored onto each sibling translation in the matching language's term."
+msgstr ""
+
+#: admin/views/settings.php:98
+msgid "Random seed"
+msgstr ""
+
+#: admin/views/settings.php:101
+msgid "Per day (cache-friendly)"
+msgstr ""
+
+#: admin/views/settings.php:102
+msgid "Per user per day"
+msgstr ""
+
+#: admin/views/settings.php:108
+msgid "Permissions"
+msgstr ""
+
+#: admin/views/settings.php:111
+msgid "Admin capability"
+msgstr ""
+
+#: admin/views/settings.php:114
+msgid "Required to access plugin settings, bulk actions, and templates."
+msgstr ""
+
+#: admin/views/settings.php:118
+msgid "Sort capability"
+msgstr ""
+
+#: admin/views/settings.php:121
+msgid "Required to reorder posts via drag-and-drop."
+msgstr ""
+
+#: admin/views/settings.php:125
+msgid "Role-based ordering"
+msgstr ""
+
+#: admin/views/settings.php:128
+msgid "Enabled — different roles can see different orders"
+msgstr ""
+
+#: admin/views/settings.php:129
+msgid "Disabled"
+msgstr ""
+
+#: admin/views/settings.php:132
+msgid "Configure per-context role overrides on the Sort page. Logged-out users always see the default order mode."
+msgstr ""
+
+#: admin/views/settings.php:135
+msgid "Available roles"
+msgstr ""
+
+#: admin/views/settings.php:146
+msgid "UI"
+msgstr ""
+
+#: admin/views/settings.php:149
+msgid "Sort page — items per page"
+msgstr ""
+
+#: admin/views/sort.php:28
+#: includes/class-pcpo-admin.php:90
+#: includes/class-pcpo-admin.php:91
+msgid "Sort Posts"
+msgstr ""
+
+#: admin/views/sort.php:31
+msgid "Filters and actions"
+msgstr ""
+
+#: admin/views/sort.php:59
+msgid "— All terms —"
+msgstr ""
+
+#: admin/views/sort.php:64
+msgid "Search"
+msgstr ""
+
+#: admin/views/sort.php:65
+msgid "Search by title…"
+msgstr ""
+
+#: admin/views/sort.php:69
+msgid "Per page"
+msgstr ""
+
+#: admin/views/sort.php:78
+msgid "Quick filters"
+msgstr ""
+
+#: admin/views/sort.php:81
+msgid "Sticky"
+msgstr ""
+
+#: admin/views/sort.php:85
+#: includes/class-pcpo-admin.php:199
+msgid "Hidden"
+msgstr ""
+
+#: admin/views/sort.php:89
+msgid "Modified this week"
+msgstr ""
+
+#: admin/views/sort.php:94
+msgid "In stock"
+msgstr ""
+
+#: admin/views/sort.php:98
+msgid "Clear"
+msgstr ""
+
+#: admin/views/sort.php:105
+msgid "Order mode"
+msgstr ""
+
+#: admin/views/sort.php:116
+msgid "Save"
+msgstr ""
+
+#: admin/views/sort.php:119
+msgid "Bulk actions"
+msgstr ""
+
+#: admin/views/sort.php:147
+#: includes/class-pcpo-admin.php:203
+msgid "Loading…"
+msgstr ""
+
+#: admin/views/sort.php:151
+msgid "No posts match the current filter."
+msgstr ""
+
+#: admin/views/sort.php:159
+msgid "Drag to reorder"
+msgstr ""
+
+#: admin/views/sort.php:164
+#: includes/class-pcpo-admin.php:204
+msgid "Move to position"
+msgstr ""
+
+#: admin/views/sort.php:164
+msgid "Click to move to position"
+msgstr ""
+
+#: admin/views/sort.php:170
+msgid "Edit"
+msgstr ""
+
+#: admin/views/sort.php:180
+msgid "Pin to top"
+msgstr ""
+
+#: admin/views/sort.php:183
+msgid "Hide in this context"
+msgstr ""
+
+#: admin/views/templates.php:44
+msgid "Template created."
+msgstr ""
+
+#: admin/views/templates.php:53
+msgid "Template deleted."
+msgstr ""
+
+#: admin/views/templates.php:61
+#: includes/class-pcpo-admin.php:108
+msgid "Order Templates"
+msgstr ""
+
+#: admin/views/templates.php:65
+msgid "Save the current order in a context as a reusable template, then apply it to other terms with one click."
+msgstr ""
+
+#: admin/views/templates.php:70
+msgid "Create new template"
+msgstr ""
+
+#: admin/views/templates.php:76
+msgid "Template name"
+msgstr ""
+
+#: admin/views/templates.php:80
+msgid "Description"
+msgstr ""
+
+#: admin/views/templates.php:87
+msgid "— Select —"
+msgstr ""
+
+#: admin/views/templates.php:100
+msgid "Snapshot from taxonomy"
+msgstr ""
+
+#: admin/views/templates.php:102
+msgid "Empty = global"
+msgstr ""
+
+#: admin/views/templates.php:106
+#: admin/views/templates.php:174
+msgid "Term ID"
+msgstr ""
+
+#: admin/views/templates.php:109
+msgid "0 = global / no term context."
+msgstr ""
+
+#: admin/views/templates.php:113
+msgid "Create template"
+msgstr ""
+
+#: admin/views/templates.php:120
+msgid "No templates yet."
+msgstr ""
+
+#: admin/views/templates.php:125
+msgid "Name"
+msgstr ""
+
+#: admin/views/templates.php:127
+msgid "Items"
+msgstr ""
+
+#: admin/views/templates.php:128
+msgid "Created"
+msgstr ""
+
+#: admin/views/templates.php:129
+msgid "Actions"
+msgstr ""
+
+#: admin/views/templates.php:148
+msgid "Apply…"
+msgstr ""
+
+#: admin/views/templates.php:150
+msgid "Delete this template?"
+msgstr ""
+
+#: admin/views/templates.php:154
+msgid "Delete"
+msgstr ""
+
+#: admin/views/templates.php:167
+msgid "Apply template to context"
+msgstr ""
+
+#: admin/views/templates.php:179
+msgid "Cancel"
+msgstr ""
+
+#: admin/views/templates.php:180
+msgid "Apply"
+msgstr ""
+
+#: includes/class-pcpo-admin.php:71
+msgid "Post Order"
+msgstr ""
+
+#: includes/class-pcpo-admin.php:81
+#: includes/class-pcpo-admin.php:82
+msgid "Dashboard"
+msgstr ""
+
+#: includes/class-pcpo-admin.php:109
+msgid "Templates"
+msgstr ""
+
+#: includes/class-pcpo-admin.php:126
+#: includes/class-pcpo-admin.php:127
+#: includes/class-pcpo-admin.php:267
+msgid "Settings"
+msgstr ""
+
+#: includes/class-pcpo-admin.php:135
+#: includes/class-pcpo-admin.php:136
+msgid "Debug"
+msgstr ""
+
+#: includes/class-pcpo-admin.php:192
+msgid "Saving…"
+msgstr ""
+
+#: includes/class-pcpo-admin.php:193
+msgid "Order saved"
+msgstr ""
+
+#: includes/class-pcpo-admin.php:194
+msgid "Something went wrong. Check the browser console."
+msgstr ""
+
+#: includes/class-pcpo-admin.php:195
+msgid "Reset order for this context? This will remove your manual ordering and revert to default."
+msgstr ""
+
+#: includes/class-pcpo-admin.php:196
+msgid "Shuffle ALL items in this context randomly?"
+msgstr ""
+
+#: includes/class-pcpo-admin.php:197
+msgid "Re-order alphabetically? Your current manual order will be overwritten."
+msgstr ""
+
+#: includes/class-pcpo-admin.php:198
+msgid "Pinned"
+msgstr ""
+
+#: includes/class-pcpo-admin.php:200
+msgid "Moved to top"
+msgstr ""
+
+#: includes/class-pcpo-admin.php:201
+msgid "Moved to bottom"
+msgstr ""
+
+#: includes/class-pcpo-admin.php:202
+msgid "No posts match your filters."
+msgstr ""
+
+#: includes/class-pcpo-ajax.php:78
+msgid "Invalid security token."
+msgstr ""
+
+#: includes/class-pcpo-ajax.php:82
+msgid "Insufficient permissions."
+msgstr ""
+
+#: includes/class-pcpo-ajax.php:104
+msgid "Invalid post type."
+msgstr ""
+
+#: includes/class-pcpo-ajax.php:222
+msgid "No order provided."
+msgstr ""
+
+#: includes/class-pcpo-ajax.php:242
+msgid "Order saved."
+msgstr ""
+
+#: includes/class-pcpo-ajax.php:370
+msgid "Shuffled."
+msgstr ""
+
+#: includes/class-pcpo-ajax.php:403
+msgid "Alphabetized."
+msgstr ""
+
+#: includes/class-pcpo-ajax.php:421
+msgid "Order reset."
+msgstr ""
+
+#: includes/class-pcpo-ajax.php:441
+msgid "Order reversed."
+msgstr ""
+
+#: includes/class-pcpo-csv-handler.php:116
+msgid "Empty file."
+msgstr ""
+
+#. translators: %s: CSV column name
+#: includes/class-pcpo-csv-handler.php:132
+#, php-format
+msgid "Missing required column: %s"
+msgstr ""
+
+#. translators: %d: CSV line number
+#: includes/class-pcpo-csv-handler.php:158
+#, php-format
+msgid "Line %d: missing post_id"
+msgstr ""
+
+#. translators: 1: CSV line number, 2: post ID
+#: includes/class-pcpo-csv-handler.php:164
+#, php-format
+msgid "Line %1$d: post ID %2$d not found"
+msgstr ""
+
+#. translators: %d: CSV line number
+#: includes/class-pcpo-csv-handler.php:196
+#, php-format
+msgid "Line %d: DB error"
+msgstr ""
+
+#. translators: %s: category / term name
+#: includes/class-pcpo-plugin.php:339
+#, php-format
+msgid "Sort \"%s\""
+msgstr ""
+
+#: includes/class-pcpo-plugin.php:344
+msgid "Open this category in Power Custom Post Order"
+msgstr ""
+
+#: includes/class-pcpo-rest-api.php:271
+msgid "post_id is required"
+msgstr ""
+
+#: includes/class-pcpo-rest-api.php:408
+msgid "Template not found"
+msgstr ""
+
+#: includes/class-pcpo-settings.php:30
+msgid "Manual (drag & drop)"
+msgstr ""
+
+#: includes/class-pcpo-settings.php:34
+msgid "Inherit from parent / global"
+msgstr ""
+
+#: includes/class-pcpo-settings.php:38
+msgid "Default WordPress menu order"
+msgstr ""
+
+#: includes/class-pcpo-settings.php:42
+msgid "Title A → Z"
+msgstr ""
+
+#: includes/class-pcpo-settings.php:47
+msgid "Title Z → A"
+msgstr ""
+
+#: includes/class-pcpo-settings.php:52
+msgid "Date — newest first"
+msgstr ""
+
+#: includes/class-pcpo-settings.php:57
+msgid "Date — oldest first"
+msgstr ""
+
+#: includes/class-pcpo-settings.php:62
+msgid "Last modified — newest first"
+msgstr ""
+
+#: includes/class-pcpo-settings.php:67
+msgid "Random (with daily seed)"
+msgstr ""
+
+#: includes/class-pcpo-settings.php:72
+msgid "Price low → high"
+msgstr ""
+
+#: includes/class-pcpo-settings.php:78
+msgid "Price high → low"
+msgstr ""
+
+#: includes/class-pcpo-settings.php:84
+msgid "Popularity (total sales)"
+msgstr ""
+
+#: includes/class-pcpo-settings.php:90
+msgid "Average rating"
+msgstr ""
+
+#: includes/class-pcpo-settings.php:96
+msgid "Stock status (in stock first)"
+msgstr ""
+
+#: includes/class-pcpo-shortcode.php:99
+msgid "No posts found."
+msgstr ""

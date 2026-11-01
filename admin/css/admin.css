@@ -1,0 +1,928 @@
+/* =====================================================
+ * Power Custom Post Order — Admin styles
+ * Eli Shvarzman
+ * =====================================================
+ *
+ * Layout strategy:
+ *  - The sortable list is a real <table>, not a flex/grid.
+ *    Themes don't override table layout because <table>/<tr>/<td>
+ *    have their own well-defined layout algorithm. This is the
+ *    same approach WordPress core uses for wp-list-table.
+ *  - The toolbar uses CSS Grid for the filter strip (rigid columns
+ *    that themes rarely target) and flex for chips/actions, with
+ *    !important to defeat WoodMart / YITH admin CSS.
+ * ===================================================== */
+
+/* ---------- Page wrap ---------- */
+.pcpo-wrap {
+	max-width: 1400px;
+	width: auto;
+	margin-right: 20px;
+	box-sizing: border-box;
+}
+
+.pcpo-page-title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 0 0 16px;
+	font-size: 23px;
+	font-weight: 400;
+}
+
+.pcpo-page-title .dashicons {
+	font-size: 28px;
+	width: 28px;
+	height: 28px;
+	color: #6c41dc;
+}
+
+.pcpo-lead {
+	font-size: 14px;
+	color: #4b5563;
+	margin-bottom: 24px;
+}
+
+/* ---------- Stat grid (dashboard) ---------- */
+.pcpo-stat-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+	gap: 12px;
+	margin: 24px 0;
+}
+
+.pcpo-stat {
+	background: #fff;
+	border: 1px solid #e5e7eb;
+	border-radius: 8px;
+	padding: 16px 18px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.pcpo-stat__value {
+	font-size: 28px;
+	font-weight: 700;
+	line-height: 1.1;
+	color: #111827;
+}
+
+.pcpo-stat__label {
+	margin-top: 4px;
+	font-size: 12px;
+	color: #6b7280;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+/* ---------- Card blocks ---------- */
+.pcpo-card-row {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+	gap: 18px;
+	margin: 20px 0;
+}
+
+.pcpo-card-block {
+	background: #fff;
+	border: 1px solid #e5e7eb;
+	border-radius: 8px;
+	padding: 20px 22px;
+}
+
+.pcpo-card-block h2 {
+	margin: 0 0 10px;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.pcpo-card-block h3 {
+	margin: 0 0 8px;
+	font-size: 14px;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.pcpo-card-action {
+	display: flex;
+	flex-direction: column;
+}
+
+.pcpo-card-action p {
+	flex: 1 1 auto;
+	margin: 0 0 14px;
+	color: #4b5563;
+	font-size: 13px;
+}
+
+.pcpo-section-h {
+	font-size: 18px;
+	margin-top: 30px;
+	padding-bottom: 6px;
+	border-bottom: 1px solid #e5e7eb;
+}
+
+/* ---------- Status / loading ---------- */
+.pcpo-status {
+	min-height: 22px;
+	margin: 8px 0;
+	padding: 0;
+	font-size: 13px;
+	border-radius: 6px;
+}
+
+.pcpo-status:empty {
+	display: none;
+}
+
+.pcpo-status.is-success,
+.pcpo-status.is-error,
+.pcpo-status.is-info {
+	padding: 8px 12px;
+}
+
+.pcpo-status.is-success {
+	background: #ecfdf5;
+	color: #065f46;
+	border: 1px solid #a7f3d0;
+}
+
+.pcpo-status.is-error {
+	background: #fef2f2;
+	color: #991b1b;
+	border: 1px solid #fecaca;
+}
+
+.pcpo-status.is-info {
+	background: #eff6ff;
+	color: #1e3a8a;
+	border: 1px solid #bfdbfe;
+}
+
+.pcpo-loading {
+	padding: 28px;
+	color: #6b7280;
+	text-align: center;
+	font-size: 14px;
+}
+
+.pcpo-empty {
+	padding: 40px 20px;
+	text-align: center;
+	color: #6b7280;
+	font-style: italic;
+}
+
+/* ---------- Misc helpers ---------- */
+.pcpo-ol,
+.pcpo-ul {
+	margin: 0;
+	padding-left: 18px;
+}
+
+.pcpo-ol li,
+.pcpo-ul li {
+	margin: 6px 0;
+}
+
+.pcpo-checkbox-line {
+	display: inline-block;
+	margin-right: 16px;
+}
+
+.pcpo-checkbox-line code,
+.pcpo-card-block code {
+	background: #f3f4f6;
+	padding: 1px 5px;
+	border-radius: 3px;
+	font-size: 12px;
+}
+
+.pcpo-code {
+	background: #0f172a;
+	color: #e2e8f0;
+	padding: 14px 16px;
+	border-radius: 6px;
+	overflow-x: auto;
+	font-size: 12px;
+	line-height: 1.5;
+	font-family: SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* Core styles <code> as an inline chip with a light background, which painted a
+   pale bar behind every line of the dark code block. */
+.pcpo-code code {
+	display: block;
+	background: transparent;
+	color: inherit;
+	padding: 0;
+	margin: 0;
+	font-size: inherit;
+	font-family: inherit;
+	white-space: pre;
+}
+
+.pcpo-ok { color: #16a34a; }
+.pcpo-muted { color: #9ca3af; }
+
+.pcpo-dialog {
+	border: 1px solid #d1d5db;
+	border-radius: 8px;
+	padding: 24px;
+	max-width: 420px;
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.pcpo-dialog menu {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	margin-top: 14px;
+	padding: 0;
+}
+
+/* =====================================================
+ * TOOLBAR
+ *
+ * Body-scoped + !important so themes can't collapse it
+ * into a vertical stack. The filter strip uses CSS Grid
+ * with explicit columns (more rigid than flex), the
+ * chip / action strips use flex.
+ * ===================================================== */
+body .pcpo-wrap .pcpo-toolbar {
+	background: #fff !important;
+	border: 1px solid #d1d5db !important;
+	border-radius: 10px !important;
+	margin: 12px 0 16px !important;
+	box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06) !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+}
+
+body .pcpo-wrap .pcpo-toolbar__row {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	flex-direction: row !important;
+	gap: 10px 12px !important;
+	align-items: flex-end !important;
+	padding: 12px 16px !important;
+	box-sizing: border-box !important;
+	width: 100% !important;
+	margin: 0 !important;
+	background: transparent !important;
+}
+
+body .pcpo-wrap .pcpo-toolbar__row + .pcpo-toolbar__row {
+	border-top: 1px solid #f1f5f9 !important;
+}
+
+body .pcpo-wrap .pcpo-toolbar__chips,
+body .pcpo-wrap .pcpo-toolbar__actions {
+	align-items: center !important;
+	background: #fafbfc !important;
+}
+
+body .pcpo-wrap .pcpo-toolbar__actions {
+	justify-content: space-between !important;
+}
+
+body .pcpo-wrap .pcpo-field {
+	display: flex !important;
+	flex-direction: column !important;
+	gap: 4px !important;
+	min-width: 140px !important;
+	flex: 0 1 auto !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+body .pcpo-wrap .pcpo-field--grow {
+	flex: 1 1 200px !important;
+	min-width: 160px !important;
+}
+
+body .pcpo-wrap .pcpo-field--narrow {
+	min-width: 90px !important;
+	flex: 0 0 auto !important;
+}
+
+body .pcpo-wrap .pcpo-field__label {
+	font-size: 11px !important;
+	font-weight: 600 !important;
+	color: #6b7280 !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.04em !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+body .pcpo-wrap .pcpo-select,
+body .pcpo-wrap .pcpo-input {
+	width: 100% !important;
+	height: 34px !important;
+	padding: 0 10px !important;
+	border: 1px solid #d1d5db !important;
+	border-radius: 6px !important;
+	background: #fff !important;
+	font-size: 13px !important;
+	line-height: 32px !important;
+	box-sizing: border-box !important;
+	color: #111827 !important;
+	box-shadow: none !important;
+	margin: 0 !important;
+}
+
+body .pcpo-wrap .pcpo-select:focus,
+body .pcpo-wrap .pcpo-input:focus {
+	outline: none !important;
+	border-color: #6c41dc !important;
+	box-shadow: 0 0 0 3px rgba(108, 65, 220, 0.18) !important;
+}
+
+body .pcpo-wrap .pcpo-mode-block {
+	display: flex !important;
+	gap: 8px !important;
+	align-items: flex-end !important;
+	flex: 1 1 320px !important;
+	min-width: 260px !important;
+}
+
+body .pcpo-wrap .pcpo-mode-block .pcpo-field {
+	flex: 1 1 auto !important;
+}
+
+body .pcpo-wrap .pcpo-save-mode-btn {
+	height: 34px !important;
+	line-height: 32px !important;
+}
+
+/* ---------- Bulk action buttons ---------- */
+body .pcpo-wrap .pcpo-quick-actions {
+	display: flex !important;
+	gap: 6px !important;
+	flex-wrap: wrap !important;
+	align-items: center !important;
+}
+
+body .pcpo-wrap .pcpo-qa-btn {
+	display: inline-flex !important;
+	align-items: center !important;
+	gap: 5px !important;
+	height: 34px !important;
+	padding: 0 12px !important;
+	line-height: 1 !important;
+	border-radius: 6px !important;
+	font-size: 13px !important;
+	font-weight: 500 !important;
+	background: #fff !important;
+	color: #374151 !important;
+	border: 1px solid #d1d5db !important;
+	cursor: pointer !important;
+	box-sizing: border-box !important;
+	text-decoration: none !important;
+	margin: 0 !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+}
+
+body .pcpo-wrap .pcpo-qa-btn:hover {
+	background: #f3f4f6 !important;
+	border-color: #9ca3af !important;
+	color: #111827 !important;
+}
+
+body .pcpo-wrap .pcpo-qa-btn .dashicons {
+	font-size: 16px !important;
+	width: 16px !important;
+	height: 16px !important;
+	line-height: 1 !important;
+}
+
+body .pcpo-wrap .pcpo-qa-btn--danger {
+	color: #b91c1c !important;
+	border-color: #fecaca !important;
+	background: #fef2f2 !important;
+}
+
+body .pcpo-wrap .pcpo-qa-btn--danger:hover {
+	background: #fee2e2 !important;
+	border-color: #f87171 !important;
+	color: #991b1b !important;
+}
+
+/* ---------- Filter chips ---------- */
+body .pcpo-wrap .pcpo-chip {
+	display: inline-flex !important;
+	align-items: center !important;
+	gap: 5px !important;
+	height: 30px !important;
+	padding: 0 12px !important;
+	border: 1px solid #d1d5db !important;
+	border-radius: 999px !important;
+	background: #fff !important;
+	color: #4b5563 !important;
+	font-size: 12px !important;
+	font-weight: 500 !important;
+	cursor: pointer !important;
+	white-space: nowrap !important;
+	box-sizing: border-box !important;
+	line-height: 1 !important;
+	text-decoration: none !important;
+	margin: 0 !important;
+	box-shadow: none !important;
+}
+
+body .pcpo-wrap .pcpo-chip .dashicons {
+	font-size: 14px !important;
+	width: 14px !important;
+	height: 14px !important;
+	line-height: 1 !important;
+}
+
+body .pcpo-wrap .pcpo-chip:hover {
+	background: #f3f4f6 !important;
+	border-color: #9ca3af !important;
+	color: #111827 !important;
+}
+
+body .pcpo-wrap .pcpo-chip.is-active {
+	background: #6c41dc !important;
+	border-color: #6c41dc !important;
+	color: #fff !important;
+}
+
+body .pcpo-wrap .pcpo-chip.is-active:hover {
+	background: #5b35bf !important;
+	border-color: #5b35bf !important;
+}
+
+body .pcpo-wrap .pcpo-chip--clear {
+	margin-left: auto !important;
+	color: #b91c1c !important;
+	border-color: #fecaca !important;
+	background: #fef2f2 !important;
+}
+
+body .pcpo-wrap .pcpo-chip--clear:hover {
+	background: #fee2e2 !important;
+	border-color: #f87171 !important;
+	color: #991b1b !important;
+}
+
+/* =====================================================
+ * SORTABLE LIST = REAL <table>
+ *
+ * Themes don't override <table> layout because <table>/
+ * <tr>/<td> have a dedicated layout algorithm (CSS 2.1
+ * Section 17). This is the same pattern WordPress core
+ * uses for wp-list-table.
+ * ===================================================== */
+body .pcpo-wrap .pcpo-sort-area {
+	width: 100%;
+	margin-top: 8px;
+	box-sizing: border-box;
+}
+
+body .pcpo-wrap table.pcpo-sortable {
+	width: 100% !important;
+	border-collapse: separate !important;
+	border-spacing: 0 !important;
+	background: #fff !important;
+	border: 1px solid #d1d5db !important;
+	border-radius: 10px !important;
+	box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05) !important;
+	overflow: hidden !important;
+	table-layout: fixed !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+}
+
+body .pcpo-wrap table.pcpo-sortable tbody {
+	display: table-row-group !important;
+	background: transparent !important;
+}
+
+body .pcpo-wrap table.pcpo-sortable tr.pcpo-row {
+	display: table-row !important;
+	background: #fff !important;
+	transition: background 0.12s ease;
+}
+
+body .pcpo-wrap table.pcpo-sortable tr.pcpo-row:nth-child(even) {
+	background: #fafbfc !important;
+}
+
+body .pcpo-wrap table.pcpo-sortable tr.pcpo-row:hover {
+	background: #f3f4f6 !important;
+}
+
+body .pcpo-wrap table.pcpo-sortable tr.pcpo-row.is-sticky,
+body .pcpo-wrap table.pcpo-sortable tr.pcpo-row.is-sticky:nth-child(even) {
+	background: #fffbeb !important;
+}
+
+body .pcpo-wrap table.pcpo-sortable tr.pcpo-row.is-sticky td:first-child {
+	box-shadow: inset 4px 0 0 #f59e0b !important;
+}
+
+body .pcpo-wrap table.pcpo-sortable tr.pcpo-row.is-hidden {
+	opacity: 0.6 !important;
+}
+
+body .pcpo-wrap table.pcpo-sortable tr.pcpo-row.ui-sortable-helper {
+	display: table !important;
+	background: #fff !important;
+	box-shadow: 0 16px 32px rgba(15, 23, 42, 0.18) !important;
+	border: 1px solid #a5b4fc !important;
+	border-radius: 8px !important;
+	z-index: 100 !important;
+}
+
+body .pcpo-wrap table.pcpo-sortable tr.pcpo-row--placeholder {
+	display: table-row !important;
+	background: #eef2ff !important;
+	visibility: visible !important;
+}
+
+body .pcpo-wrap table.pcpo-sortable tr.pcpo-row--placeholder td {
+	border-top: 2px dashed #a5b4fc !important;
+	border-bottom: 2px dashed #a5b4fc !important;
+}
+
+/* ---------- Cells ---------- */
+body .pcpo-wrap table.pcpo-sortable td.pcpo-cell {
+	display: table-cell !important;
+	vertical-align: middle !important;
+	padding: 12px 8px !important;
+	border-bottom: 1px solid #e5e7eb !important;
+	background: transparent !important;
+	font-size: 13px !important;
+	color: #111827 !important;
+	box-sizing: border-box !important;
+	text-align: initial !important;
+	line-height: normal !important;
+}
+
+body .pcpo-wrap table.pcpo-sortable tr:last-child td.pcpo-cell {
+	border-bottom: 0 !important;
+}
+
+body .pcpo-wrap table.pcpo-sortable td.pcpo-cell--handle {
+	width: 44px !important;
+	padding-left: 12px !important;
+	padding-right: 4px !important;
+}
+
+body .pcpo-wrap table.pcpo-sortable td.pcpo-cell--pos {
+	width: 64px !important;
+	padding-left: 4px !important;
+	padding-right: 4px !important;
+}
+
+body .pcpo-wrap table.pcpo-sortable td.pcpo-cell--thumb {
+	width: 72px !important;
+	padding-left: 4px !important;
+	padding-right: 8px !important;
+}
+
+body .pcpo-wrap table.pcpo-sortable td.pcpo-cell--main {
+	width: auto !important;
+	min-width: 0 !important;
+	padding-left: 8px !important;
+	padding-right: 8px !important;
+	max-width: 0 !important; /* table-layout: fixed trick — lets td shrink and ellipsize content */
+}
+
+body .pcpo-wrap table.pcpo-sortable td.pcpo-cell--actions {
+	/* Fixed width: with table-layout: fixed a 1% width collapsed this cell to ~12px and hid the sticky/hide buttons. */
+	width: 104px !important;
+	white-space: nowrap !important;
+	padding-left: 8px !important;
+	padding-right: 12px !important;
+	text-align: right !important;
+}
+
+/* ---------- Cell contents: handle ---------- */
+body .pcpo-wrap .pcpo-row__handle {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	width: 32px !important;
+	height: 32px !important;
+	cursor: grab !important;
+	color: #9ca3af !important;
+	border-radius: 6px !important;
+	background: transparent !important;
+	border: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	user-select: none !important;
+}
+
+body .pcpo-wrap .pcpo-row__handle:hover {
+	color: #4b5563 !important;
+	background: rgba(15, 23, 42, 0.06) !important;
+}
+
+body .pcpo-wrap .pcpo-row__handle:active {
+	cursor: grabbing !important;
+}
+
+body .pcpo-wrap .pcpo-row__handle .dashicons {
+	font-size: 20px !important;
+	width: 20px !important;
+	height: 20px !important;
+	line-height: 1 !important;
+	color: inherit !important;
+}
+
+/* ---------- Cell contents: position badge ---------- */
+body .pcpo-wrap .pcpo-row__order {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	width: 100% !important;
+	height: 34px !important;
+	padding: 0 10px !important;
+	background: #fff !important;
+	border: 1px solid #d1d5db !important;
+	border-radius: 6px !important;
+	color: #374151 !important;
+	font-weight: 700 !important;
+	font-size: 13px !important;
+	font-variant-numeric: tabular-nums !important;
+	cursor: pointer !important;
+	text-decoration: none !important;
+	margin: 0 !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+	line-height: 1 !important;
+	box-sizing: border-box !important;
+}
+
+body .pcpo-wrap .pcpo-row__order:hover {
+	background: #6c41dc !important;
+	color: #fff !important;
+	border-color: #6c41dc !important;
+}
+
+body .pcpo-wrap .pcpo-row__order:focus {
+	outline: none !important;
+	border-color: #6c41dc !important;
+	box-shadow: 0 0 0 3px rgba(108, 65, 220, 0.25) !important;
+}
+
+body .pcpo-wrap .pcpo-position-input {
+	display: inline-flex !important;
+	width: 100% !important;
+	height: 34px !important;
+	padding: 0 8px !important;
+	border: 1px solid #6c41dc !important;
+	border-radius: 6px !important;
+	text-align: center !important;
+	font-size: 13px !important;
+	font-weight: 700 !important;
+	color: #6c41dc !important;
+	background: #fff !important;
+	box-shadow: 0 0 0 3px rgba(108, 65, 220, 0.18) !important;
+	box-sizing: border-box !important;
+	line-height: 1 !important;
+}
+
+/* ---------- Cell contents: thumbnail ---------- */
+body .pcpo-wrap .pcpo-row__thumb {
+	display: block !important;
+	width: 64px !important;
+	height: 64px !important;
+	background-color: #e5e7eb !important;
+	background-image: linear-gradient(135deg, #f3f4f6 25%, transparent 25%, transparent 50%, #f3f4f6 50%, #f3f4f6 75%, transparent 75%) !important;
+	background-size: 12px 12px !important;
+	border: 1px solid #e5e7eb !important;
+	border-radius: 6px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+body .pcpo-wrap .pcpo-row__thumb img,
+body .pcpo-wrap .pcpo-row__thumb img.wp-post-image,
+body .pcpo-wrap .pcpo-row__thumb img.attachment-thumbnail {
+	width: 64px !important;
+	height: 64px !important;
+	max-width: 64px !important;
+	max-height: 64px !important;
+	min-width: 64px !important;
+	min-height: 64px !important;
+	object-fit: cover !important;
+	display: block !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: none !important;
+	box-shadow: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+/* Kill any theme overlay pseudo-elements on thumbnails. */
+body .pcpo-wrap .pcpo-row__thumb::before,
+body .pcpo-wrap .pcpo-row__thumb::after,
+body .pcpo-wrap .pcpo-row__thumb img::before,
+body .pcpo-wrap .pcpo-row__thumb img::after {
+	display: none !important;
+	content: none !important;
+}
+
+/* ---------- Cell contents: main (title + meta) ---------- */
+body .pcpo-wrap .pcpo-row__title {
+	display: block !important;
+	font-weight: 600 !important;
+	font-size: 14px !important;
+	line-height: 1.3 !important;
+	color: #111827 !important;
+	text-decoration: none !important;
+	white-space: nowrap !important;
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
+	max-width: 100% !important;
+	margin: 0 0 4px !important;
+	padding: 0 !important;
+	background: none !important;
+	border: 0 !important;
+	box-shadow: none !important;
+}
+
+body .pcpo-wrap .pcpo-row__title:hover {
+	color: #6c41dc !important;
+	text-decoration: underline !important;
+}
+
+body .pcpo-wrap .pcpo-row__meta {
+	display: block !important;
+	font-size: 11px !important;
+	line-height: 1.4 !important;
+	color: #6b7280 !important;
+	white-space: nowrap !important;
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
+	max-width: 100% !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+body .pcpo-wrap .pcpo-row__meta code {
+	display: inline-block !important;
+	background: #f3f4f6 !important;
+	color: #4b5563 !important;
+	padding: 1px 6px !important;
+	border-radius: 4px !important;
+	font-size: 11px !important;
+	font-weight: 500 !important;
+	line-height: 1.4 !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	margin: 0 2px !important;
+	vertical-align: baseline !important;
+}
+
+body .pcpo-wrap .pcpo-row__meta code.pcpo-row__type {
+	background: #eef2ff !important;
+	color: #4338ca !important;
+}
+
+body .pcpo-wrap .pcpo-row__sep {
+	color: #d1d5db !important;
+	margin: 0 4px !important;
+}
+
+/* ---------- Cell contents: actions ---------- */
+body .pcpo-wrap .pcpo-icon-btn {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	width: 34px !important;
+	height: 34px !important;
+	border: 1px solid #d1d5db !important;
+	border-radius: 6px !important;
+	background: #fff !important;
+	color: #6b7280 !important;
+	cursor: pointer !important;
+	text-decoration: none !important;
+	padding: 0 !important;
+	margin: 0 0 0 4px !important;
+	box-sizing: border-box !important;
+	vertical-align: middle !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+}
+
+body .pcpo-wrap .pcpo-icon-btn:first-child {
+	margin-left: 0 !important;
+}
+
+body .pcpo-wrap .pcpo-icon-btn .dashicons {
+	font-size: 18px !important;
+	width: 18px !important;
+	height: 18px !important;
+	line-height: 1 !important;
+	color: inherit !important;
+}
+
+body .pcpo-wrap .pcpo-icon-btn:hover {
+	background: #f3f4f6 !important;
+	color: #111827 !important;
+	border-color: #9ca3af !important;
+}
+
+body .pcpo-wrap .pcpo-icon-btn.is-active {
+	background: #6c41dc !important;
+	color: #fff !important;
+	border-color: #6c41dc !important;
+}
+
+body .pcpo-wrap .pcpo-btn-sticky.is-active {
+	background: #f59e0b !important;
+	border-color: #f59e0b !important;
+	color: #fff !important;
+}
+
+/* Hidden row label suffix. */
+body .pcpo-wrap tr.pcpo-row.is-hidden .pcpo-row__title::after {
+	content: " · hidden" !important;
+	display: inline !important;
+	font-size: 11px !important;
+	color: #ef4444 !important;
+	font-weight: 600 !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.04em !important;
+	margin-left: 6px !important;
+}
+
+/* ---------- Pagination ---------- */
+.pcpo-pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 4px;
+	margin-top: 16px;
+	flex-wrap: wrap;
+}
+
+.pcpo-pagination button {
+	min-width: 32px;
+	height: 32px;
+	padding: 0 8px;
+	background: #fff;
+	border: 1px solid #d1d5db;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 13px;
+	color: #4b5563;
+}
+
+.pcpo-pagination button:hover:not([disabled]) {
+	background: #f3f4f6;
+	border-color: #9ca3af;
+}
+
+.pcpo-pagination button[disabled] {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.pcpo-pagination .is-current {
+	background: #6c41dc;
+	color: #fff;
+	border-color: #6c41dc;
+}
+
+/* ---------- Responsive (narrow content area) ---------- */
+@media (max-width: 900px) {
+	body .pcpo-wrap table.pcpo-sortable td.pcpo-cell {
+		padding: 10px 6px !important;
+	}
+
+	body .pcpo-wrap table.pcpo-sortable td.pcpo-cell--thumb {
+		width: 56px !important;
+	}
+
+	body .pcpo-wrap .pcpo-row__thumb,
+	body .pcpo-wrap .pcpo-row__thumb img {
+		width: 48px !important;
+		height: 48px !important;
+		max-width: 48px !important;
+		max-height: 48px !important;
+		min-width: 48px !important;
+		min-height: 48px !important;
+	}
+
+	.pcpo-qa-btn__label {
+		display: none !important;
+	}
+
+	body .pcpo-wrap .pcpo-qa-btn {
+		padding: 0 10px !important;
+	}
+}

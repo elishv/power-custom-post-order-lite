@@ -1,0 +1,92 @@
+/* =====================================================
+ * Power Custom Post Order — Admin RTL overrides
+ * Eli Shvarzman
+ * ===================================================== */
+
+.pcpo-wrap {
+	direction: rtl;
+	margin-left: 20px;
+	margin-right: 0;
+}
+
+.pcpo-page-title,
+.pcpo-card-block h2,
+.pcpo-card-block h3 {
+	text-align: right;
+}
+
+.pcpo-stat__value,
+.pcpo-stat__label {
+	text-align: right;
+}
+
+.pcpo-toolbar__row {
+	direction: rtl;
+}
+
+.pcpo-field,
+.pcpo-field__label {
+	text-align: right;
+}
+
+.pcpo-chip--clear {
+	margin-left: 0 !important;
+	margin-right: auto !important;
+}
+
+.pcpo-ol,
+.pcpo-ul {
+	padding-right: 18px;
+	padding-left: 0;
+}
+
+.form-table th,
+.form-table td {
+	text-align: right;
+}
+
+.pcpo-code {
+	direction: ltr;
+	text-align: left;
+}
+
+/* =====================================================
+ * Table RTL: cells flip automatically with direction:rtl
+ * but we need to flip the sticky-indicator bar from left
+ * to right, and re-anchor padding / action button margins.
+ * ===================================================== */
+body .pcpo-wrap table.pcpo-sortable {
+	direction: rtl !important;
+}
+
+body .pcpo-wrap table.pcpo-sortable tr.pcpo-row.is-sticky td:first-child {
+	box-shadow: none !important;
+}
+
+body .pcpo-wrap table.pcpo-sortable tr.pcpo-row.is-sticky td:last-child {
+	box-shadow: inset -4px 0 0 #f59e0b !important;
+}
+
+body .pcpo-wrap .pcpo-row__main,
+body .pcpo-wrap .pcpo-row__title,
+body .pcpo-wrap .pcpo-row__meta {
+	text-align: right !important;
+}
+
+body .pcpo-wrap tr.pcpo-row.is-hidden .pcpo-row__title::after {
+	margin-left: 0 !important;
+	margin-right: 6px !important;
+}
+
+body .pcpo-wrap table.pcpo-sortable td.pcpo-cell--actions {
+	text-align: left !important;
+}
+
+body .pcpo-wrap .pcpo-icon-btn {
+	margin-left: 0 !important;
+	margin-right: 4px !important;
+}
+
+body .pcpo-wrap .pcpo-icon-btn:first-child {
+	margin-right: 0 !important;
+}
