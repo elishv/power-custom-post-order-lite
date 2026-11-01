@@ -10,7 +10,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$enabled_post_types = $settings->get_enabled_post_types();
+$pcpo_enabled_post_types = $pcpo_settings->get_enabled_post_types();
 ?>
 <div class="wrap pcpo-wrap">
 	<h1 class="pcpo-page-title">
@@ -28,13 +28,13 @@ $enabled_post_types = $settings->get_enabled_post_types();
 			<label class="pcpo-field">
 				<span class="pcpo-field__label"><?php esc_html_e( 'Post type', 'power-custom-post-order' ); ?></span>
 				<select id="pcpo-bulk-pt" class="pcpo-select">
-					<?php foreach ( $enabled_post_types as $pt ) :
-						$pt_obj = get_post_type_object( $pt );
-						if ( ! $pt_obj ) {
+					<?php foreach ( $pcpo_enabled_post_types as $pcpo_pt ) :
+						$pcpo_pt_obj = get_post_type_object( $pcpo_pt );
+						if ( ! $pcpo_pt_obj ) {
 							continue;
 						}
 						?>
-						<option value="<?php echo esc_attr( $pt ); ?>"><?php echo esc_html( $pt_obj->labels->name ); ?></option>
+						<option value="<?php echo esc_attr( $pcpo_pt ); ?>"><?php echo esc_html( $pcpo_pt_obj->labels->name ); ?></option>
 					<?php endforeach; ?>
 				</select>
 			</label>

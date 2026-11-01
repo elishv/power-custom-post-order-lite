@@ -10,9 +10,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$post_types = PCPO_Admin::get_manageable_post_types();
-$enabled    = $settings->get_enabled_post_types();
-$roles      = wp_roles()->roles;
+$pcpo_post_types = PCPO_Admin::get_manageable_post_types();
+$pcpo_enabled    = $pcpo_settings->get_enabled_post_types();
+$pcpo_roles      = wp_roles()->roles;
 ?>
 <div class="wrap pcpo-wrap">
 	<h1 class="pcpo-page-title">
@@ -28,10 +28,10 @@ $roles      = wp_roles()->roles;
 			<tr>
 				<th scope="row"><label><?php esc_html_e( 'Enabled post types', 'power-custom-post-order' ); ?></label></th>
 				<td>
-					<?php foreach ( $post_types as $slug => $obj ) : ?>
+					<?php foreach ( $pcpo_post_types as $pcpo_slug => $pcpo_obj ) : ?>
 						<label class="pcpo-checkbox-line">
-							<input type="checkbox" name="pcpo_enabled_post_types[]" value="<?php echo esc_attr( $slug ); ?>" <?php checked( in_array( $slug, $enabled, true ) ); ?> />
-							<?php echo esc_html( $obj->labels->name ); ?> <code><?php echo esc_html( $slug ); ?></code>
+							<input type="checkbox" name="pcpo_enabled_post_types[]" value="<?php echo esc_attr( $pcpo_slug ); ?>" <?php checked( in_array( $pcpo_slug, $pcpo_enabled, true ) ); ?> />
+							<?php echo esc_html( $pcpo_obj->labels->name ); ?> <code><?php echo esc_html( $pcpo_slug ); ?></code>
 						</label><br />
 					<?php endforeach; ?>
 					<p class="description"><?php esc_html_e( 'Only enabled post types will be affected by PCPO ordering.', 'power-custom-post-order' ); ?></p>
@@ -79,7 +79,7 @@ $roles      = wp_roles()->roles;
 					<option value="no" <?php selected( 'no', get_option( 'pcpo_debug', 'no' ) ); ?>><?php esc_html_e( 'Off', 'power-custom-post-order' ); ?></option>
 					<option value="yes" <?php selected( 'yes', get_option( 'pcpo_debug', 'no' ) ); ?>><?php esc_html_e( 'On — record every query decision and dump as HTML comment in the front-end footer', 'power-custom-post-order' ); ?></option>
 				</select>
-				<p class="description"><?php esc_html_e( 'When on, PCPO records every query it sees (marked or skipped, with reason), the ORDER BY before and after rewriting, and the final SQL of marked queries. View by visiting any front-end page as a logged-in editor and inspecting the page source (Ctrl-U) — search for "PCPO DEBUG". Same data is mirrored to error_log so it survives page caches. Turn OFF on production once diagnosis is done.', 'power-custom-post-order' ); ?></p>
+				<p class="description"><?php esc_html_e( 'When on, PCPO records every query it sees (marked or skipped, with reason), the ORDER BY before and after rewriting, and the final SQL of marked queries. View by visiting any front-end page as a logged-in editor and inspecting the page source (Ctrl-U) — search for "PCPO DEBUG". When WP_DEBUG and PCPO_DEBUG are both on in wp-config.php, the same data is also written to the PHP error log so it survives page caches. Turn OFF on production once diagnosis is done.', 'power-custom-post-order' ); ?></p>
 			</td>
 		</tr>
 		<?php if ( PCPO_WPML::is_active() ) : ?>
@@ -134,8 +134,8 @@ $roles      = wp_roles()->roles;
 					<details>
 						<summary><?php esc_html_e( 'Available roles', 'power-custom-post-order' ); ?></summary>
 						<ul>
-							<?php foreach ( $roles as $role_slug => $role ) : ?>
-								<li><code><?php echo esc_html( $role_slug ); ?></code> — <?php echo esc_html( translate_user_role( $role['name'] ) ); ?></li>
+							<?php foreach ( $pcpo_roles as $pcpo_role_slug => $pcpo_role ) : ?>
+								<li><code><?php echo esc_html( $pcpo_role_slug ); ?></code> — <?php echo esc_html( translate_user_role( $pcpo_role['name'] ) ); ?></li>
 							<?php endforeach; ?>
 						</ul>
 					</details>

@@ -151,7 +151,7 @@ class PCPO_Query_Handler {
 						'override_explicit'   => $this->settings->should_override_explicit(),
 					)
 				);
-				error_log( '[PCPO][QH] skipping query — explicit orderby=' . wp_json_encode( $raw_orderby ) . ' and override disabled' );
+				PCPO_Debug::log( '[PCPO][QH] skipping query — explicit orderby=' . wp_json_encode( $raw_orderby ) . ' and override disabled' );
 				return;
 			}
 		}
@@ -274,16 +274,28 @@ class PCPO_Query_Handler {
 		// If no context, we match the global rows (taxonomy='' AND term_id=0).
 		$join_alias = 'pcpo';
 		$join_sql   = $wpdb->prepare(
-			" LEFT JOIN {$orders_tbl} {$join_alias} ON {$join_alias}.post_id = {$wpdb->posts}.ID AND {$join_alias}.taxonomy = %s AND {$join_alias}.term_id = %d ",
+			' LEFT JOIN %i AS %i ON %i.post_id = %i.ID AND %i.taxonomy = %s AND %i.term_id = %d ',
+			$orders_tbl,
+			$join_alias,
+			$join_alias,
+			$wpdb->posts,
+			$join_alias,
 			$tax,
+			$join_alias,
 			$term_id
 		);
 		// Also LEFT JOIN the global row so we can fall back to it for sticky/hidden if context join is null.
 		$global_alias = 'pcpo_global';
 		if ( $has_context ) {
 			$join_sql .= $wpdb->prepare(
-				" LEFT JOIN {$orders_tbl} {$global_alias} ON {$global_alias}.post_id = {$wpdb->posts}.ID AND {$global_alias}.taxonomy = %s AND {$global_alias}.term_id = %d ",
+				' LEFT JOIN %i AS %i ON %i.post_id = %i.ID AND %i.taxonomy = %s AND %i.term_id = %d ',
+				$orders_tbl,
+				$global_alias,
+				$global_alias,
+				$wpdb->posts,
+				$global_alias,
 				'',
+				$global_alias,
 				0
 			);
 		}
@@ -386,7 +398,12 @@ class PCPO_Query_Handler {
 
 		$alias            = 'pcpo_meta';
 		$clauses['join'] .= $wpdb->prepare(
-			" LEFT JOIN {$wpdb->postmeta} {$alias} ON {$alias}.post_id = {$wpdb->posts}.ID AND {$alias}.meta_key = %s ",
+			' LEFT JOIN %i AS %i ON %i.post_id = %i.ID AND %i.meta_key = %s ',
+			$wpdb->postmeta,
+			$alias,
+			$alias,
+			$wpdb->posts,
+			$alias,
 			$meta_key
 		);
 
@@ -406,7 +423,7 @@ class PCPO_Query_Handler {
 	public function cleanup_post_orders( $post_id ) {
 		$deleted = $this->db->delete_orders_for_post( $post_id );
 		if ( $deleted ) {
-			error_log( '[PCPO][QH] cleanup_post_orders post_id=' . $post_id . ' deleted=' . $deleted );
+			PCPO_Debug::log( '[PCPO][QH] cleanup_post_orders post_id=' . $post_id . ' deleted=' . $deleted );
 		}
 	}
 }

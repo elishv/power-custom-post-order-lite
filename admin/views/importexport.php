@@ -10,33 +10,33 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$enabled_post_types = $settings->get_enabled_post_types();
+$pcpo_enabled_post_types = $pcpo_settings->get_enabled_post_types();
 
 // Handle download.
 if ( ! empty( $_POST['pcpo_export'] ) && check_admin_referer( 'pcpo_export' ) ) {
-	$filter_pt  = sanitize_key( wp_unslash( $_POST['filter_post_type'] ?? '' ) );
-	$filter_tax = isset( $_POST['filter_taxonomy_raw'] ) && '' === $_POST['filter_taxonomy_raw'] ? null : sanitize_key( wp_unslash( $_POST['filter_taxonomy'] ?? '' ) );
+	$pcpo_filter_pt  = sanitize_key( wp_unslash( $_POST['filter_post_type'] ?? '' ) );
+	$pcpo_filter_tax = isset( $_POST['filter_taxonomy_raw'] ) && '' === $_POST['filter_taxonomy_raw'] ? null : sanitize_key( wp_unslash( $_POST['filter_taxonomy'] ?? '' ) );
 
-	$csv     = new PCPO_CSV_Handler();
-	$filters = array(
-		'post_type' => $filter_pt,
+	$pcpo_csv     = new PCPO_CSV_Handler();
+	$pcpo_filters = array(
+		'post_type' => $pcpo_filter_pt,
 	);
 	if ( ! empty( $_POST['filter_taxonomy_active'] ) ) {
-		$filters['taxonomy'] = $filter_tax;
+		$pcpo_filters['taxonomy'] = $pcpo_filter_tax;
 	}
-	$csv->stream_download( $filters );
+	$pcpo_csv->stream_download( $pcpo_filters );
 	exit;
 }
 
 // Handle import.
-$import_result = null;
+$pcpo_import_result = null;
 if ( ! empty( $_POST['pcpo_import'] ) && check_admin_referer( 'pcpo_import' ) && ! empty( $_FILES['pcpo_csv']['tmp_name'] ) ) {
-	$tmp = $_FILES['pcpo_csv']['tmp_name'];
-	if ( is_uploaded_file( $tmp ) ) {
-		$csv_content = file_get_contents( $tmp ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-		$handler     = new PCPO_CSV_Handler();
-		$import_result = $handler->import(
-			$csv_content,
+	$pcpo_tmp = $_FILES['pcpo_csv']['tmp_name']; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- PHP's upload temp path; checked with is_uploaded_file() below.
+	if ( is_uploaded_file( $pcpo_tmp ) ) {
+		$pcpo_csv_content = file_get_contents( $pcpo_tmp ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+		$pcpo_handler     = new PCPO_CSV_Handler();
+		$pcpo_import_result = $pcpo_handler->import(
+			$pcpo_csv_content,
 			array(
 				'dry_run'     => ! empty( $_POST['dry_run'] ),
 				'update_only' => ! empty( $_POST['update_only'] ),
@@ -51,25 +51,25 @@ if ( ! empty( $_POST['pcpo_import'] ) && check_admin_referer( 'pcpo_import' ) &&
 		<?php esc_html_e( 'Import / Export', 'power-custom-post-order' ); ?>
 	</h1>
 
-	<?php if ( $import_result ) : ?>
+	<?php if ( $pcpo_import_result ) : ?>
 		<div class="notice notice-info">
 			<p>
 				<?php
 				printf(
 					/* translators: 1: imported, 2: skipped, 3: errors */
 					esc_html__( 'Imported: %1$d, Skipped: %2$d, Errors: %3$d', 'power-custom-post-order' ),
-					(int) $import_result['imported'],
-					(int) $import_result['skipped'],
-					(int) count( $import_result['errors'] )
+					(int) $pcpo_import_result['imported'],
+					(int) $pcpo_import_result['skipped'],
+					(int) count( $pcpo_import_result['errors'] )
 				);
 				?>
 			</p>
-			<?php if ( $import_result['errors'] ) : ?>
+			<?php if ( $pcpo_import_result['errors'] ) : ?>
 				<details>
 					<summary><?php esc_html_e( 'View errors', 'power-custom-post-order' ); ?></summary>
 					<ul>
-						<?php foreach ( array_slice( $import_result['errors'], 0, 50 ) as $err ) : ?>
-							<li><?php echo esc_html( $err ); ?></li>
+						<?php foreach ( array_slice( $pcpo_import_result['errors'], 0, 50 ) as $pcpo_err ) : ?>
+							<li><?php echo esc_html( $pcpo_err ); ?></li>
 						<?php endforeach; ?>
 					</ul>
 				</details>
@@ -88,13 +88,13 @@ if ( ! empty( $_POST['pcpo_import'] ) && check_admin_referer( 'pcpo_import' ) &&
 					<label><?php esc_html_e( 'Filter by post type', 'power-custom-post-order' ); ?>
 						<select name="filter_post_type">
 							<option value=""><?php esc_html_e( '— All —', 'power-custom-post-order' ); ?></option>
-							<?php foreach ( $enabled_post_types as $pt ) :
-								$pt_obj = get_post_type_object( $pt );
-								if ( ! $pt_obj ) {
+							<?php foreach ( $pcpo_enabled_post_types as $pcpo_pt ) :
+								$pcpo_pt_obj = get_post_type_object( $pcpo_pt );
+								if ( ! $pcpo_pt_obj ) {
 									continue;
 								}
 								?>
-								<option value="<?php echo esc_attr( $pt ); ?>"><?php echo esc_html( $pt_obj->labels->name ); ?></option>
+								<option value="<?php echo esc_attr( $pcpo_pt ); ?>"><?php echo esc_html( $pcpo_pt_obj->labels->name ); ?></option>
 							<?php endforeach; ?>
 						</select>
 					</label>

@@ -2,7 +2,7 @@
 Contributors: elishvarzman
 Donate link: https://a-in.co.il/plugins/post-order/
 Tags: post order, sort posts, drag and drop, woocommerce sort, custom order
-Requires at least: 6.0
+Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 1.0.16
@@ -75,6 +75,8 @@ Yes — ships with Hebrew translation (he_IL) and a dedicated RTL stylesheet.
 == Changelog ==
 
 = 1.0.16 — 2026-10-31 =
+* **Changed:** requires WordPress 6.2. Database queries now pass table and column names through `$wpdb->prepare()` with `%i` identifiers.
+* **Changed:** diagnostic lines go to the PHP error log only when `WP_DEBUG` and `PCPO_DEBUG` are both true in wp-config.php.
 * **Fixed:** debug loopback request no longer disables SSL verification.
 * **Fixed:** escaping in the debug banner, translator comments and ordered placeholders in CSV import messages.
 * **Fixed:** the "For developers" code sample on the dashboard showed pale bars behind each line.

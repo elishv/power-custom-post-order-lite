@@ -97,7 +97,7 @@ class PCPO_Database {
 		// Try INSERT ... ON DUPLICATE KEY UPDATE behavior via WP's wpdb.
 		// We use a manual prepared query because $wpdb->replace can't do partial updates.
 		$sql = $wpdb->prepare(
-			"INSERT INTO {$this->orders_table}
+			"INSERT INTO %i
 				(post_id, post_type, taxonomy, term_id, menu_order, is_sticky, is_hidden, created_at, updated_at)
 			 VALUES (%d, %s, %s, %d, %d, %d, %d, %s, %s)
 			 ON DUPLICATE KEY UPDATE
@@ -106,6 +106,7 @@ class PCPO_Database {
 				is_sticky  = VALUES(is_sticky),
 				is_hidden  = VALUES(is_hidden),
 				updated_at = VALUES(updated_at)",
+			$this->orders_table,
 			$data['post_id'],
 			$data['post_type'],
 			$data['taxonomy'],
@@ -119,7 +120,7 @@ class PCPO_Database {
 
 		$result = $wpdb->query( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		if ( false === $result ) {
-			error_log( '[PCPO][DB] upsert_order failed: ' . $wpdb->last_error . ' :: data=' . wp_json_encode( $data ) );
+			PCPO_Debug::log( '[PCPO][DB] upsert_order failed: ' . $wpdb->last_error . ' :: data=' . wp_json_encode( $data ) );
 			return false;
 		}
 		$this->invalidate_term_cache( $data['taxonomy'], $data['term_id'] );
@@ -166,7 +167,7 @@ class PCPO_Database {
 				++$count;
 			}
 		}
-		error_log( '[PCPO][DB] bulk_set_order touched=' . $count . ' taxonomy=' . $taxonomy . ' term_id=' . $term_id );
+		PCPO_Debug::log( '[PCPO][DB] bulk_set_order touched=' . $count . ' taxonomy=' . $taxonomy . ' term_id=' . $term_id );
 		return $count;
 	}
 
@@ -182,7 +183,8 @@ class PCPO_Database {
 		global $wpdb;
 		return $wpdb->get_row(
 			$wpdb->prepare(
-				"SELECT * FROM {$this->orders_table} WHERE post_id = %d AND taxonomy = %s AND term_id = %d LIMIT 1",
+				"SELECT * FROM %i WHERE post_id = %d AND taxonomy = %s AND term_id = %d LIMIT 1",
+				$this->orders_table,
 				absint( $post_id ),
 				sanitize_key( $taxonomy ),
 				absint( $term_id )
@@ -224,14 +226,16 @@ class PCPO_Database {
 			$where[] = 'is_hidden = 0';
 		}
 
-		$sql = 'SELECT * FROM ' . $this->orders_table . ' WHERE ' . implode( ' AND ', $where ) . ' ORDER BY is_sticky DESC, menu_order ASC, id ASC';
+		// Table name goes through %i; the WHERE list only holds fixed column = placeholder pairs.
+		array_unshift( $params, $this->orders_table );
+		$sql = 'SELECT * FROM %i WHERE ' . implode( ' AND ', $where ) . ' ORDER BY is_sticky DESC, menu_order ASC, id ASC';
 		if ( $args['limit'] > 0 ) {
 			$sql     .= ' LIMIT %d OFFSET %d';
 			$params[] = absint( $args['limit'] );
 			$params[] = absint( $args['offset'] );
 		}
-		$prepared = $params ? $wpdb->prepare( $sql, $params ) : $sql; // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-		return $wpdb->get_results( $prepared ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		$prepared = $wpdb->prepare( $sql, $params ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Built from fixed SQL fragments above; every value is a placeholder.
+		return $wpdb->get_results( $prepared ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Prepared above.
 	}
 
 	/**
@@ -357,7 +361,8 @@ class PCPO_Database {
 		global $wpdb;
 		return $wpdb->get_row(
 			$wpdb->prepare(
-				"SELECT * FROM {$this->settings_table} WHERE context_type = %s AND context_value = %s LIMIT 1",
+				"SELECT * FROM %i WHERE context_type = %s AND context_value = %s LIMIT 1",
+				$this->settings_table,
 				sanitize_key( $context_type ),
 				sanitize_text_field( $context_value )
 			)
@@ -389,7 +394,7 @@ class PCPO_Database {
 		}
 
 		$sql = $wpdb->prepare(
-			"INSERT INTO {$this->settings_table}
+			"INSERT INTO %i
 				(context_type, context_value, order_mode, order_direction, role_overrides, updated_at)
 			 VALUES (%s, %s, %s, %s, %s, %s)
 			 ON DUPLICATE KEY UPDATE
@@ -397,6 +402,7 @@ class PCPO_Database {
 				order_direction = VALUES(order_direction),
 				role_overrides  = VALUES(role_overrides),
 				updated_at      = VALUES(updated_at)",
+			$this->settings_table,
 			sanitize_key( $args['context_type'] ),
 			sanitize_text_field( $args['context_value'] ),
 			sanitize_key( $args['order_mode'] ),
@@ -470,7 +476,7 @@ class PCPO_Database {
 	public function get_template( $template_id ) {
 		global $wpdb;
 		return $wpdb->get_row(
-			$wpdb->prepare( "SELECT * FROM {$this->templates_table} WHERE id = %d", absint( $template_id ) )
+			$wpdb->prepare( "SELECT * FROM %i WHERE id = %d", $this->templates_table, absint( $template_id ) )
 		);
 	}
 
@@ -485,12 +491,13 @@ class PCPO_Database {
 		if ( $post_type ) {
 			return $wpdb->get_results(
 				$wpdb->prepare(
-					"SELECT * FROM {$this->templates_table} WHERE post_type = %s ORDER BY name ASC",
+					"SELECT * FROM %i WHERE post_type = %s ORDER BY name ASC",
+					$this->templates_table,
 					sanitize_key( $post_type )
 				)
 			);
 		}
-		return $wpdb->get_results( "SELECT * FROM {$this->templates_table} ORDER BY name ASC" );
+		return $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %i ORDER BY name ASC', $this->templates_table ) );
 	}
 
 	/**

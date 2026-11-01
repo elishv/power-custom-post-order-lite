@@ -80,7 +80,7 @@ class PCPO_WooCommerce {
 			array( '%d' )
 		);
 		clean_post_cache( $post_id );
-		error_log( '[PCPO][WC] synced wp_posts.menu_order post_id=' . $post_id . ' value=' . (int) $menu_order );
+		PCPO_Debug::log( '[PCPO][WC] synced wp_posts.menu_order post_id=' . $post_id . ' value=' . (int) $menu_order );
 	}
 
 	/**

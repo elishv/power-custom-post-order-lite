@@ -66,9 +66,11 @@ class PCPO_CSV_Handler {
 			$params[] = absint( $filters['term_id'] );
 		}
 
-		$sql = 'SELECT post_id, post_type, taxonomy, term_id, menu_order, is_sticky, is_hidden FROM ' . $this->db->orders_table . ' WHERE ' . implode( ' AND ', $where ) . ' ORDER BY post_type, taxonomy, term_id, menu_order';
-		$prepared = $params ? $wpdb->prepare( $sql, $params ) : $sql; // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-		$rows     = $wpdb->get_results( $prepared, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		// Table name goes through %i; the WHERE list only holds fixed column = placeholder pairs.
+		array_unshift( $params, $this->db->orders_table );
+		$sql = 'SELECT post_id, post_type, taxonomy, term_id, menu_order, is_sticky, is_hidden FROM %i WHERE ' . implode( ' AND ', $where ) . ' ORDER BY post_type, taxonomy, term_id, menu_order';
+		$prepared = $wpdb->prepare( $sql, $params ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Built from fixed SQL fragments above; every value is a placeholder.
+		$rows     = $wpdb->get_results( $prepared, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Prepared above.
 
 		$out  = "post_id,post_type,taxonomy,term_id,menu_order,is_sticky,is_hidden,post_title\r\n";
 		foreach ( $rows as $r ) {
@@ -197,7 +199,7 @@ class PCPO_CSV_Handler {
 			}
 		}
 
-		error_log( '[PCPO][CSV] import imported=' . $imported . ' skipped=' . $skipped . ' errors=' . count( $errors ) );
+		PCPO_Debug::log( '[PCPO][CSV] import imported=' . $imported . ' skipped=' . $skipped . ' errors=' . count( $errors ) );
 
 		return array(
 			'imported' => $imported,

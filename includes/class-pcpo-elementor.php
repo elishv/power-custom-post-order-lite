@@ -89,7 +89,7 @@ class PCPO_Elementor {
 				'post_type' => is_array( $query->get( 'post_type' ) ) ? reset( $query->get( 'post_type' ) ) : ( $query->get( 'post_type' ) ?: 'post' ),
 			)
 		);
-		error_log( '[PCPO][Elementor] force_pcpo_ordering applied — query_id forced' );
+		PCPO_Debug::log( '[PCPO][Elementor] force_pcpo_ordering applied — query_id forced' );
 	}
 
 	/**

@@ -11,13 +11,13 @@
 defined( 'ABSPATH' ) || exit;
 
 global $wpdb;
-$orders_count    = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$db->orders_table}" );
-$settings_count  = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$db->settings_table}" );
-$templates_count = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$db->templates_table}" );
-$sticky_count    = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$db->orders_table} WHERE is_sticky = 1" );
-$hidden_count    = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$db->orders_table} WHERE is_hidden = 1" );
+$pcpo_orders_count    = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM %i", $pcpo_db->orders_table ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Live counts for the admin dashboard; the plugin's own table.
+$pcpo_settings_count  = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM %i", $pcpo_db->settings_table ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Live counts for the admin dashboard; the plugin's own table.
+$pcpo_templates_count = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM %i", $pcpo_db->templates_table ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Live counts for the admin dashboard; the plugin's own table.
+$pcpo_sticky_count    = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM %i WHERE is_sticky = 1", $pcpo_db->orders_table ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Live counts for the admin dashboard; the plugin's own table.
+$pcpo_hidden_count    = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM %i WHERE is_hidden = 1", $pcpo_db->orders_table ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Live counts for the admin dashboard; the plugin's own table.
 
-$enabled_pts = $settings->get_enabled_post_types();
+$pcpo_enabled_pts = $pcpo_settings->get_enabled_post_types();
 ?>
 <div class="wrap pcpo-wrap">
 	<h1 class="pcpo-page-title">
@@ -32,23 +32,23 @@ $enabled_pts = $settings->get_enabled_post_types();
 
 	<div class="pcpo-stat-grid">
 		<div class="pcpo-stat">
-			<div class="pcpo-stat__value"><?php echo esc_html( number_format_i18n( $orders_count ) ); ?></div>
+			<div class="pcpo-stat__value"><?php echo esc_html( number_format_i18n( $pcpo_orders_count ) ); ?></div>
 			<div class="pcpo-stat__label"><?php esc_html_e( 'Ordered items', 'power-custom-post-order' ); ?></div>
 		</div>
 		<div class="pcpo-stat">
-			<div class="pcpo-stat__value"><?php echo esc_html( number_format_i18n( $sticky_count ) ); ?></div>
+			<div class="pcpo-stat__value"><?php echo esc_html( number_format_i18n( $pcpo_sticky_count ) ); ?></div>
 			<div class="pcpo-stat__label"><?php esc_html_e( 'Pinned items', 'power-custom-post-order' ); ?></div>
 		</div>
 		<div class="pcpo-stat">
-			<div class="pcpo-stat__value"><?php echo esc_html( number_format_i18n( $hidden_count ) ); ?></div>
+			<div class="pcpo-stat__value"><?php echo esc_html( number_format_i18n( $pcpo_hidden_count ) ); ?></div>
 			<div class="pcpo-stat__label"><?php esc_html_e( 'Hidden items', 'power-custom-post-order' ); ?></div>
 		</div>
 		<div class="pcpo-stat">
-			<div class="pcpo-stat__value"><?php echo esc_html( number_format_i18n( $settings_count ) ); ?></div>
+			<div class="pcpo-stat__value"><?php echo esc_html( number_format_i18n( $pcpo_settings_count ) ); ?></div>
 			<div class="pcpo-stat__label"><?php esc_html_e( 'Context rules', 'power-custom-post-order' ); ?></div>
 		</div>
 		<div class="pcpo-stat">
-			<div class="pcpo-stat__value"><?php echo esc_html( number_format_i18n( $templates_count ) ); ?></div>
+			<div class="pcpo-stat__value"><?php echo esc_html( number_format_i18n( $pcpo_templates_count ) ); ?></div>
 			<div class="pcpo-stat__label"><?php esc_html_e( 'Saved templates', 'power-custom-post-order' ); ?></div>
 		</div>
 	</div>
@@ -68,16 +68,16 @@ $enabled_pts = $settings->get_enabled_post_types();
 			<h2><?php esc_html_e( 'Enabled post types', 'power-custom-post-order' ); ?></h2>
 			<ul class="pcpo-ul">
 				<?php
-				foreach ( $enabled_pts as $pt_slug ) :
-					$pt_obj = get_post_type_object( $pt_slug );
-					if ( ! $pt_obj ) {
+				foreach ( $pcpo_enabled_pts as $pcpo_pt_slug ) :
+					$pcpo_pt_obj = get_post_type_object( $pcpo_pt_slug );
+					if ( ! $pcpo_pt_obj ) {
 						continue;
 					}
 					?>
 					<li>
-						<strong><?php echo esc_html( $pt_obj->labels->name ); ?></strong>
-						<code><?php echo esc_html( $pt_slug ); ?></code>
-						<a href="<?php echo esc_url( add_query_arg( 'post_type', $pt_slug, admin_url( 'admin.php?page=pcpo-sort' ) ) ); ?>">
+						<strong><?php echo esc_html( $pcpo_pt_obj->labels->name ); ?></strong>
+						<code><?php echo esc_html( $pcpo_pt_slug ); ?></code>
+						<a href="<?php echo esc_url( add_query_arg( 'post_type', $pcpo_pt_slug, admin_url( 'admin.php?page=pcpo-sort' ) ) ); ?>">
 							<?php esc_html_e( 'Sort →', 'power-custom-post-order' ); ?>
 						</a>
 					</li>

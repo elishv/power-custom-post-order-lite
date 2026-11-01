@@ -10,17 +10,20 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$enabled_post_types = $settings->get_enabled_post_types();
+$pcpo_enabled_post_types = $pcpo_settings->get_enabled_post_types();
 // Accept both the new (pcpo_*) arg names and the legacy ones, so admin-bar
 // links and direct URLs both work. The pcpo_* names are required because
 // post_type and taxonomy are reserved WordPress query vars — using them in
 // admin.php?page=... causes "Cannot load pcpo-sort" on some setups.
-$current_pt       = isset( $_GET['pcpo_pt'] ) ? sanitize_key( wp_unslash( $_GET['pcpo_pt'] ) ) : ( isset( $_GET['post_type'] ) ? sanitize_key( wp_unslash( $_GET['post_type'] ) ) : ( $enabled_post_types ? reset( $enabled_post_types ) : 'post' ) );
-$current_taxonomy = isset( $_GET['pcpo_tax'] ) ? sanitize_key( wp_unslash( $_GET['pcpo_tax'] ) ) : ( isset( $_GET['taxonomy'] ) ? sanitize_key( wp_unslash( $_GET['taxonomy'] ) ) : apply_filters( 'pcpo_default_taxonomy_for_post_type', '', $current_pt ) );
-$current_term     = isset( $_GET['pcpo_term'] ) ? absint( wp_unslash( $_GET['pcpo_term'] ) ) : ( isset( $_GET['term_id'] ) ? absint( wp_unslash( $_GET['term_id'] ) ) : 0 );
-$per_page         = (int) get_option( 'pcpo_default_per_page', 50 );
+// Read-only view parameters (which list to show); every change is saved through nonce-checked AJAX.
+// phpcs:disable WordPress.Security.NonceVerification.Recommended
+$pcpo_current_pt       = isset( $_GET['pcpo_pt'] ) ? sanitize_key( wp_unslash( $_GET['pcpo_pt'] ) ) : ( isset( $_GET['post_type'] ) ? sanitize_key( wp_unslash( $_GET['post_type'] ) ) : ( $pcpo_enabled_post_types ? reset( $pcpo_enabled_post_types ) : 'post' ) );
+$pcpo_current_taxonomy = isset( $_GET['pcpo_tax'] ) ? sanitize_key( wp_unslash( $_GET['pcpo_tax'] ) ) : ( isset( $_GET['taxonomy'] ) ? sanitize_key( wp_unslash( $_GET['taxonomy'] ) ) : apply_filters( 'pcpo_default_taxonomy_for_post_type', '', $pcpo_current_pt ) );
+$pcpo_current_term     = isset( $_GET['pcpo_term'] ) ? absint( wp_unslash( $_GET['pcpo_term'] ) ) : ( isset( $_GET['term_id'] ) ? absint( wp_unslash( $_GET['term_id'] ) ) : 0 );
+// phpcs:enable WordPress.Security.NonceVerification.Recommended
+$pcpo_per_page         = (int) get_option( 'pcpo_default_per_page', 50 );
 
-$context_modes = $settings->get_order_modes();
+$pcpo_context_modes = $pcpo_settings->get_order_modes();
 ?>
 <div class="wrap pcpo-wrap pcpo-sort-wrap">
 	<h1 class="pcpo-page-title">
@@ -33,14 +36,14 @@ $context_modes = $settings->get_order_modes();
 			<div class="pcpo-field">
 				<span class="pcpo-field__label"><?php esc_html_e( 'Post type', 'power-custom-post-order' ); ?></span>
 				<select id="pcpo-post-type" class="pcpo-select">
-					<?php foreach ( $enabled_post_types as $pt ) :
-						$pt_obj = get_post_type_object( $pt );
-						if ( ! $pt_obj ) {
+					<?php foreach ( $pcpo_enabled_post_types as $pcpo_pt ) :
+						$pcpo_pt_obj = get_post_type_object( $pcpo_pt );
+						if ( ! $pcpo_pt_obj ) {
 							continue;
 						}
 						?>
-						<option value="<?php echo esc_attr( $pt ); ?>" <?php selected( $pt, $current_pt ); ?>>
-							<?php echo esc_html( $pt_obj->labels->name ); ?>
+						<option value="<?php echo esc_attr( $pcpo_pt ); ?>" <?php selected( $pcpo_pt, $pcpo_current_pt ); ?>>
+							<?php echo esc_html( $pcpo_pt_obj->labels->name ); ?>
 						</option>
 					<?php endforeach; ?>
 				</select>
@@ -48,14 +51,14 @@ $context_modes = $settings->get_order_modes();
 
 			<div class="pcpo-field">
 				<span class="pcpo-field__label"><?php esc_html_e( 'Taxonomy', 'power-custom-post-order' ); ?></span>
-				<select id="pcpo-taxonomy" class="pcpo-select" data-current="<?php echo esc_attr( $current_taxonomy ); ?>">
+				<select id="pcpo-taxonomy" class="pcpo-select" data-current="<?php echo esc_attr( $pcpo_current_taxonomy ); ?>">
 					<option value=""><?php esc_html_e( '— Global —', 'power-custom-post-order' ); ?></option>
 				</select>
 			</div>
 
 			<div class="pcpo-field">
 				<span class="pcpo-field__label"><?php esc_html_e( 'Term', 'power-custom-post-order' ); ?></span>
-				<select id="pcpo-term" class="pcpo-select" data-current="<?php echo esc_attr( $current_term ); ?>">
+				<select id="pcpo-term" class="pcpo-select" data-current="<?php echo esc_attr( $pcpo_current_term ); ?>">
 					<option value="0"><?php esc_html_e( '— All terms —', 'power-custom-post-order' ); ?></option>
 				</select>
 			</div>
@@ -68,8 +71,8 @@ $context_modes = $settings->get_order_modes();
 			<div class="pcpo-field pcpo-field--narrow">
 				<span class="pcpo-field__label"><?php esc_html_e( 'Per page', 'power-custom-post-order' ); ?></span>
 				<select id="pcpo-per-page" class="pcpo-select">
-					<?php foreach ( array( 20, 50, 100, 200 ) as $opt ) : ?>
-						<option value="<?php echo esc_attr( (string) $opt ); ?>" <?php selected( $opt, $per_page ); ?>><?php echo esc_html( (string) $opt ); ?></option>
+					<?php foreach ( array( 20, 50, 100, 200 ) as $pcpo_opt ) : ?>
+						<option value="<?php echo esc_attr( (string) $pcpo_opt ); ?>" <?php selected( $pcpo_opt, $pcpo_per_page ); ?>><?php echo esc_html( (string) $pcpo_opt ); ?></option>
 					<?php endforeach; ?>
 				</select>
 			</div>
@@ -104,12 +107,12 @@ $context_modes = $settings->get_order_modes();
 				<div class="pcpo-field pcpo-field--grow">
 					<span class="pcpo-field__label"><?php esc_html_e( 'Order mode', 'power-custom-post-order' ); ?></span>
 					<select id="pcpo-order-mode" class="pcpo-select">
-						<?php foreach ( $context_modes as $slug => $def ) :
-							if ( ! empty( $def['requires_woocommerce'] ) && ! class_exists( 'WooCommerce' ) ) {
+						<?php foreach ( $pcpo_context_modes as $pcpo_slug => $pcpo_def ) :
+							if ( ! empty( $pcpo_def['requires_woocommerce'] ) && ! class_exists( 'WooCommerce' ) ) {
 								continue;
 							}
 							?>
-							<option value="<?php echo esc_attr( $slug ); ?>"><?php echo esc_html( $def['label'] ); ?></option>
+							<option value="<?php echo esc_attr( $pcpo_slug ); ?>"><?php echo esc_html( $pcpo_def['label'] ); ?></option>
 						<?php endforeach; ?>
 					</select>
 				</div>
@@ -145,7 +148,7 @@ $context_modes = $settings->get_order_modes();
 
 	<div class="pcpo-sort-area">
 		<div class="pcpo-loading" id="pcpo-loading"><?php esc_html_e( 'Loading…', 'power-custom-post-order' ); ?></div>
-		<table class="pcpo-sortable" id="pcpo-sortable-wrap" data-context-pt="<?php echo esc_attr( $current_pt ); ?>">
+		<table class="pcpo-sortable" id="pcpo-sortable-wrap" data-context-pt="<?php echo esc_attr( $pcpo_current_pt ); ?>">
 			<tbody id="pcpo-sortable"></tbody>
 		</table>
 		<div class="pcpo-empty" id="pcpo-empty" hidden><?php esc_html_e( 'No posts match the current filter.', 'power-custom-post-order' ); ?></div>

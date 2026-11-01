@@ -72,13 +72,36 @@ class PCPO_Debug {
 			return;
 		}
 		self::$records[] = array(
-			't'       => round( ( microtime( true ) - ( defined( 'WP_START_TIMESTAMP' ) ? WP_START_TIMESTAMP : $_SERVER['REQUEST_TIME_FLOAT'] ?? microtime( true ) ) ) * 1000, 2 ),
+			't'       => round( ( microtime( true ) - ( defined( 'WP_START_TIMESTAMP' ) ? WP_START_TIMESTAMP : ( isset( $_SERVER['REQUEST_TIME_FLOAT'] ) ? (float) $_SERVER['REQUEST_TIME_FLOAT'] : microtime( true ) ) ) ) * 1000, 2 ),
 			'section' => $section,
 			'data'    => $data,
 		);
-		// Mirror to error_log so it survives even if the page is cached and
-		// the HTML comment never reaches the browser.
-		error_log( '[PCPO][DEBUG] ' . $section . ' :: ' . wp_json_encode( $data, JSON_UNESCAPED_UNICODE ) );
+		// Mirror to the PHP error log (only with WP_DEBUG and PCPO_DEBUG on) so it
+		// survives even if the page is cached and the HTML comment never reaches the browser.
+		self::log( '[PCPO][DEBUG] ' . $section . ' :: ' . wp_json_encode( $data, JSON_UNESCAPED_UNICODE ) );
+	}
+
+	/**
+	 * Whether lines may be written to the PHP error log: only when the site sets
+	 * both WP_DEBUG and PCPO_DEBUG to true in wp-config.php.
+	 *
+	 * @return bool
+	 */
+	public static function log_enabled() {
+		return defined( 'WP_DEBUG' ) && WP_DEBUG && defined( 'PCPO_DEBUG' ) && PCPO_DEBUG;
+	}
+
+	/**
+	 * Write one line to the PHP error log, only when log_enabled().
+	 *
+	 * @param string $message Message.
+	 * @return void
+	 */
+	public static function log( $message ) {
+		if ( ! self::log_enabled() ) {
+			return;
+		}
+		error_log( $message ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Only with WP_DEBUG and PCPO_DEBUG on.
 	}
 
 	/**

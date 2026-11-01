@@ -13,18 +13,18 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 global $wpdb;
 
 // Drop our tables.
-$tables = array(
+$pcpo_tables = array(
 	$wpdb->prefix . 'pcpo_orders',
 	$wpdb->prefix . 'pcpo_settings',
 	$wpdb->prefix . 'pcpo_templates',
 );
 
-foreach ( $tables as $table ) {
-	$wpdb->query( "DROP TABLE IF EXISTS {$table}" ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+foreach ( $pcpo_tables as $pcpo_table ) {
+	$wpdb->query( $wpdb->prepare( 'DROP TABLE IF EXISTS %i', $pcpo_table ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange -- Removes the plugin's own tables on uninstall.
 }
 
 // Remove our options.
-$options = array(
+$pcpo_options = array(
 	'pcpo_db_version',
 	'pcpo_enabled_post_types',
 	'pcpo_override_explicit',
@@ -38,9 +38,9 @@ $options = array(
 	'pcpo_cache_version',
 );
 
-foreach ( $options as $option_name ) {
-	delete_option( $option_name );
-	delete_site_option( $option_name );
+foreach ( $pcpo_options as $pcpo_option_name ) {
+	delete_option( $pcpo_option_name );
+	delete_site_option( $pcpo_option_name );
 }
 
 // Clear any scheduled events.

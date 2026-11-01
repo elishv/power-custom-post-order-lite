@@ -10,49 +10,49 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$templates          = $db->list_templates();
-$enabled_post_types = $settings->get_enabled_post_types();
+$pcpo_templates          = $pcpo_db->list_templates();
+$pcpo_enabled_post_types = $pcpo_settings->get_enabled_post_types();
 
 if ( ! empty( $_POST['pcpo_create_template'] ) && check_admin_referer( 'pcpo_create_template' ) ) {
-	$name        = sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) );
-	$description = wp_kses_post( wp_unslash( $_POST['description'] ?? '' ) );
+	$pcpo_name        = sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) );
+	$pcpo_description = wp_kses_post( wp_unslash( $_POST['description'] ?? '' ) );
 	// The field is not named "post_type": WordPress reads that request key in admin.php and then fails with "Cannot load pcpo-templates".
-	$post_type   = sanitize_key( wp_unslash( $_POST['pcpo_post_type'] ?? '' ) );
-	$src_tax     = sanitize_key( wp_unslash( $_POST['source_taxonomy'] ?? '' ) );
-	$src_term    = absint( wp_unslash( $_POST['source_term_id'] ?? 0 ) );
+	$pcpo_post_type   = sanitize_key( wp_unslash( $_POST['pcpo_post_type'] ?? '' ) );
+	$pcpo_src_tax     = sanitize_key( wp_unslash( $_POST['source_taxonomy'] ?? '' ) );
+	$pcpo_src_term    = absint( wp_unslash( $_POST['source_term_id'] ?? 0 ) );
 
-	if ( $name && $post_type ) {
-		$rows       = $db->get_ordered_rows(
+	if ( $pcpo_name && $pcpo_post_type ) {
+		$pcpo_rows       = $pcpo_db->get_ordered_rows(
 			array(
-				'post_type' => $post_type,
-				'taxonomy'  => $src_tax,
-				'term_id'   => $src_term,
+				'post_type' => $pcpo_post_type,
+				'taxonomy'  => $pcpo_src_tax,
+				'term_id'   => $pcpo_src_term,
 				'limit'     => 0,
 			)
 		);
-		$order_data = array();
-		foreach ( $rows as $row ) {
-			$order_data[] = (int) $row->post_id;
+		$pcpo_order_data = array();
+		foreach ( $pcpo_rows as $pcpo_row ) {
+			$pcpo_order_data[] = (int) $pcpo_row->post_id;
 		}
-		$db->create_template(
+		$pcpo_db->create_template(
 			array(
-				'name'        => $name,
-				'description' => $description,
-				'post_type'   => $post_type,
-				'order_data'  => $order_data,
+				'name'        => $pcpo_name,
+				'description' => $pcpo_description,
+				'post_type'   => $pcpo_post_type,
+				'order_data'  => $pcpo_order_data,
 			)
 		);
 		echo '<div class="notice notice-success"><p>' . esc_html__( 'Template created.', 'power-custom-post-order' ) . '</p></div>';
-		$templates = $db->list_templates();
+		$pcpo_templates = $pcpo_db->list_templates();
 	}
 }
 
 if ( ! empty( $_POST['pcpo_delete_template'] ) && check_admin_referer( 'pcpo_delete_template' ) ) {
-	$template_id = absint( wp_unslash( $_POST['template_id'] ?? 0 ) );
-	if ( $template_id ) {
-		$db->delete_template( $template_id );
+	$pcpo_template_id = absint( wp_unslash( $_POST['template_id'] ?? 0 ) );
+	if ( $pcpo_template_id ) {
+		$pcpo_db->delete_template( $pcpo_template_id );
 		echo '<div class="notice notice-success"><p>' . esc_html__( 'Template deleted.', 'power-custom-post-order' ) . '</p></div>';
-		$templates = $db->list_templates();
+		$pcpo_templates = $pcpo_db->list_templates();
 	}
 }
 ?>
@@ -86,13 +86,13 @@ if ( ! empty( $_POST['pcpo_delete_template'] ) && check_admin_referer( 'pcpo_del
 						<td>
 							<select name="pcpo_post_type" id="pcpo-tmpl-pt" required>
 								<option value=""><?php esc_html_e( '— Select —', 'power-custom-post-order' ); ?></option>
-								<?php foreach ( $enabled_post_types as $pt ) :
-									$pt_obj = get_post_type_object( $pt );
-									if ( ! $pt_obj ) {
+								<?php foreach ( $pcpo_enabled_post_types as $pcpo_pt ) :
+									$pcpo_pt_obj = get_post_type_object( $pcpo_pt );
+									if ( ! $pcpo_pt_obj ) {
 										continue;
 									}
 									?>
-									<option value="<?php echo esc_attr( $pt ); ?>"><?php echo esc_html( $pt_obj->labels->name ); ?></option>
+									<option value="<?php echo esc_attr( $pcpo_pt ); ?>"><?php echo esc_html( $pcpo_pt_obj->labels->name ); ?></option>
 								<?php endforeach; ?>
 							</select>
 						</td>
@@ -117,7 +117,7 @@ if ( ! empty( $_POST['pcpo_delete_template'] ) && check_admin_referer( 'pcpo_del
 
 		<div class="pcpo-card-block">
 			<h2><?php esc_html_e( 'Saved templates', 'power-custom-post-order' ); ?></h2>
-			<?php if ( ! $templates ) : ?>
+			<?php if ( ! $pcpo_templates ) : ?>
 				<p class="pcpo-empty"><?php esc_html_e( 'No templates yet.', 'power-custom-post-order' ); ?></p>
 			<?php else : ?>
 				<table class="widefat striped">
@@ -131,27 +131,27 @@ if ( ! empty( $_POST['pcpo_delete_template'] ) && check_admin_referer( 'pcpo_del
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ( $templates as $t ) :
-							$item_count = is_array( json_decode( $t->order_data, true ) ) ? count( json_decode( $t->order_data, true ) ) : 0;
+						<?php foreach ( $pcpo_templates as $pcpo_t ) :
+							$pcpo_item_count = is_array( json_decode( $pcpo_t->order_data, true ) ) ? count( json_decode( $pcpo_t->order_data, true ) ) : 0;
 							?>
 							<tr>
 								<td>
-									<strong><?php echo esc_html( $t->name ); ?></strong>
-									<?php if ( $t->description ) : ?>
-										<br /><small><?php echo esc_html( $t->description ); ?></small>
+									<strong><?php echo esc_html( $pcpo_t->name ); ?></strong>
+									<?php if ( $pcpo_t->description ) : ?>
+										<br /><small><?php echo esc_html( $pcpo_t->description ); ?></small>
 									<?php endif; ?>
 								</td>
-								<td><code><?php echo esc_html( $t->post_type ); ?></code></td>
-								<td><?php echo esc_html( (string) $item_count ); ?></td>
-								<td><?php echo esc_html( mysql2date( get_option( 'date_format' ), $t->created_at ) ); ?></td>
+								<td><code><?php echo esc_html( $pcpo_t->post_type ); ?></code></td>
+								<td><?php echo esc_html( (string) $pcpo_item_count ); ?></td>
+								<td><?php echo esc_html( mysql2date( get_option( 'date_format' ), $pcpo_t->created_at ) ); ?></td>
 								<td>
-									<button type="button" class="button pcpo-apply-template" data-id="<?php echo esc_attr( (string) $t->id ); ?>">
+									<button type="button" class="button pcpo-apply-template" data-id="<?php echo esc_attr( (string) $pcpo_t->id ); ?>">
 										<?php esc_html_e( 'Apply…', 'power-custom-post-order' ); ?>
 									</button>
 									<form method="post" style="display:inline" onsubmit="return confirm('<?php echo esc_js( __( 'Delete this template?', 'power-custom-post-order' ) ); ?>');">
 										<?php wp_nonce_field( 'pcpo_delete_template' ); ?>
 										<input type="hidden" name="pcpo_delete_template" value="1" />
-										<input type="hidden" name="template_id" value="<?php echo esc_attr( (string) $t->id ); ?>" />
+										<input type="hidden" name="template_id" value="<?php echo esc_attr( (string) $pcpo_t->id ); ?>" />
 										<button class="button button-link-delete"><?php esc_html_e( 'Delete', 'power-custom-post-order' ); ?></button>
 									</form>
 								</td>

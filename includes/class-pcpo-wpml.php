@@ -268,7 +268,8 @@ class PCPO_WPML {
 		if ( 0 === strpos( $element_type, 'post_' ) ) {
 			$trid = $wpdb->get_var(
 				$wpdb->prepare(
-					"SELECT trid FROM {$table} WHERE element_type = %s AND element_id = %d LIMIT 1",
+					"SELECT trid FROM %i WHERE element_type = %s AND element_id = %d LIMIT 1",
+					$table,
 					$element_type,
 					$element_id
 				)
@@ -286,7 +287,8 @@ class PCPO_WPML {
 			}
 			$trid = $wpdb->get_var(
 				$wpdb->prepare(
-					"SELECT trid FROM {$table} WHERE element_type = %s AND element_id = %d LIMIT 1",
+					"SELECT trid FROM %i WHERE element_type = %s AND element_id = %d LIMIT 1",
+					$table,
 					$element_type,
 					$ttid
 				)
@@ -301,7 +303,8 @@ class PCPO_WPML {
 
 		$rows = $wpdb->get_results(
 			$wpdb->prepare(
-				"SELECT language_code, element_id FROM {$table} WHERE trid = %d AND element_type = %s",
+				"SELECT language_code, element_id FROM %i WHERE trid = %d AND element_type = %s",
+				$table,
 				(int) $trid,
 				$element_type
 			)
@@ -351,7 +354,8 @@ class PCPO_WPML {
 
 		return (string) $wpdb->get_var(
 			$wpdb->prepare(
-				"SELECT language_code FROM {$table} WHERE element_type = %s AND element_id = %d LIMIT 1",
+				"SELECT language_code FROM %i WHERE element_type = %s AND element_id = %d LIMIT 1",
+				$table,
 				$element_type,
 				$element_id
 			)

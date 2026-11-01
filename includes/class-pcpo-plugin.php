@@ -172,19 +172,19 @@ class PCPO_Plugin {
 
 		// Breeze (Cloudways). The action also triggers the Cloudways Varnish purge.
 		if ( has_action( 'breeze_clear_all_cache' ) ) {
-			do_action( 'breeze_clear_all_cache' );
+			do_action( 'breeze_clear_all_cache' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Another plugin's cache-purge hook.
 		}
 		if ( class_exists( 'Breeze_PurgeCache' ) && method_exists( 'Breeze_PurgeCache', 'breeze_cache_flush' ) ) {
 			Breeze_PurgeCache::breeze_cache_flush();
 		}
 		// Cloudways / generic Varnish purge hook.
 		if ( has_action( 'breeze_clear_varnish' ) ) {
-			do_action( 'breeze_clear_varnish' );
+			do_action( 'breeze_clear_varnish' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Another plugin's cache-purge hook.
 		}
 
 		// LiteSpeed Cache.
 		if ( has_action( 'litespeed_purge_all' ) ) {
-			do_action( 'litespeed_purge_all' );
+			do_action( 'litespeed_purge_all' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Another plugin's cache-purge hook.
 		}
 
 		// W3 Total Cache.

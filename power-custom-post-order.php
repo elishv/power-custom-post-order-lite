@@ -10,7 +10,7 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       power-custom-post-order
  * Domain Path:       /languages
- * Requires at least: 6.0
+ * Requires at least: 6.2
  * Requires PHP:      7.4
  * WC requires at least: 7.0
  * WC tested up to:   9.0
@@ -72,9 +72,9 @@ spl_autoload_register(
 			require_once $file_path;
 			return;
 		}
-		// Hard fail loudly in WP_DEBUG so this can't happen silently again.
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( '[PCPO][Autoloader] Class ' . $class_name . ' not found at expected path: ' . $file_path );
+		// Report it in the PHP error log when WP_DEBUG and PCPO_DEBUG are on.
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG && defined( 'PCPO_DEBUG' ) && PCPO_DEBUG ) {
+			error_log( '[PCPO][Autoloader] Class ' . $class_name . ' not found at expected path: ' . $file_path ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Only with WP_DEBUG and PCPO_DEBUG on.
 		}
 	}
 );

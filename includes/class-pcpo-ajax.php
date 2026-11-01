@@ -148,7 +148,9 @@ class PCPO_Ajax {
 			if ( ! empty( $filters['sticky'] ) || ! empty( $filters['hidden'] ) ) {
 				$flag       = ! empty( $filters['sticky'] ) ? 'is_sticky' : 'is_hidden';
 				$ids_sql    = $wpdb->prepare(
-					"SELECT post_id FROM {$this->db->orders_table} WHERE {$flag} = 1 AND taxonomy = %s AND term_id = %d",
+					"SELECT post_id FROM %i WHERE %i = 1 AND taxonomy = %s AND term_id = %d",
+					$this->db->orders_table,
+					$flag,
 					$taxonomy,
 					$term_id
 				);
@@ -235,7 +237,7 @@ class PCPO_Ajax {
 			}
 		}
 
-		error_log( '[PCPO][AJAX] save_order ok updated=' . $count . ' taxonomy=' . $taxonomy . ' term_id=' . $term_id );
+		PCPO_Debug::log( '[PCPO][AJAX] save_order ok updated=' . $count . ' taxonomy=' . $taxonomy . ' term_id=' . $term_id );
 
 		do_action( 'pcpo_order_changed', array( 'taxonomy' => $taxonomy, 'term_id' => $term_id, 'ids' => $order ) );
 
@@ -255,7 +257,7 @@ class PCPO_Ajax {
 		$post_id  = isset( $_POST['post_id'] ) ? absint( wp_unslash( $_POST['post_id'] ) ) : 0;
 		$taxonomy = isset( $_POST['taxonomy'] ) ? sanitize_key( wp_unslash( $_POST['taxonomy'] ) ) : '';
 		$term_id  = isset( $_POST['term_id'] ) ? absint( wp_unslash( $_POST['term_id'] ) ) : 0;
-		$sticky   = isset( $_POST['sticky'] ) ? (bool) wp_unslash( $_POST['sticky'] ) : false;
+		$sticky   = ! empty( $_POST['sticky'] ); // Same result as the earlier (bool) cast.
 
 		if ( ! $post_id ) {
 			wp_send_json_error( array( 'message' => 'No post id' ), 400 );
@@ -280,7 +282,7 @@ class PCPO_Ajax {
 		$post_id  = isset( $_POST['post_id'] ) ? absint( wp_unslash( $_POST['post_id'] ) ) : 0;
 		$taxonomy = isset( $_POST['taxonomy'] ) ? sanitize_key( wp_unslash( $_POST['taxonomy'] ) ) : '';
 		$term_id  = isset( $_POST['term_id'] ) ? absint( wp_unslash( $_POST['term_id'] ) ) : 0;
-		$hidden   = isset( $_POST['hidden'] ) ? (bool) wp_unslash( $_POST['hidden'] ) : false;
+		$hidden   = ! empty( $_POST['hidden'] ); // Same result as the earlier (bool) cast.
 
 		if ( ! $post_id ) {
 			wp_send_json_error( array( 'message' => 'No post id' ), 400 );
@@ -381,7 +383,7 @@ class PCPO_Ajax {
 	public function ajax_bulk_alphabetize() {
 		$this->verify( $this->settings->get_admin_capability() );
 		list( $post_type, $taxonomy, $term_id ) = $this->read_context();
-		$direction = isset( $_POST['direction'] ) && 'desc' === strtolower( wp_unslash( $_POST['direction'] ) ) ? 'DESC' : 'ASC';
+		$direction = isset( $_POST['direction'] ) && 'desc' === strtolower( sanitize_text_field( wp_unslash( $_POST['direction'] ) ) ) ? 'DESC' : 'ASC';
 
 		$ids = $this->get_all_ids_in_context( $post_type, $taxonomy, $term_id );
 
@@ -456,7 +458,7 @@ class PCPO_Ajax {
 		$context_value = isset( $_POST['context_value'] ) ? sanitize_text_field( wp_unslash( $_POST['context_value'] ) ) : '';
 		$mode          = isset( $_POST['order_mode'] ) ? sanitize_key( wp_unslash( $_POST['order_mode'] ) ) : 'manual';
 		$direction     = isset( $_POST['order_direction'] ) ? sanitize_key( wp_unslash( $_POST['order_direction'] ) ) : 'ASC';
-		$role_raw      = isset( $_POST['role_overrides'] ) ? (array) wp_unslash( $_POST['role_overrides'] ) : array();
+		$role_raw      = isset( $_POST['role_overrides'] ) ? (array) wp_unslash( $_POST['role_overrides'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Keys go through sanitize_key() and values through sanitize_text_field() in the loop below.
 
 		$role_overrides = array();
 		foreach ( $role_raw as $role => $val ) {

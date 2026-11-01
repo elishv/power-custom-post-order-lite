@@ -277,8 +277,8 @@ class PCPO_Admin {
 	 * Render dashboard page.
 	 */
 	public function render_dashboard() {
-		$db       = $this->db;
-		$settings = $this->settings;
+		$pcpo_db       = $this->db;
+		$pcpo_settings = $this->settings;
 		require PCPO_PATH . 'admin/views/dashboard.php';
 	}
 
@@ -286,8 +286,8 @@ class PCPO_Admin {
 	 * Render sort page.
 	 */
 	public function render_sort_page() {
-		$db       = $this->db;
-		$settings = $this->settings;
+		$pcpo_db       = $this->db;
+		$pcpo_settings = $this->settings;
 		require PCPO_PATH . 'admin/views/sort.php';
 	}
 
@@ -295,8 +295,8 @@ class PCPO_Admin {
 	 * Render bulk actions page.
 	 */
 	public function render_bulk_page() {
-		$db       = $this->db;
-		$settings = $this->settings;
+		$pcpo_db       = $this->db;
+		$pcpo_settings = $this->settings;
 		require PCPO_PATH . 'admin/views/bulk.php';
 	}
 
@@ -304,8 +304,8 @@ class PCPO_Admin {
 	 * Render templates page.
 	 */
 	public function render_templates_page() {
-		$db       = $this->db;
-		$settings = $this->settings;
+		$pcpo_db       = $this->db;
+		$pcpo_settings = $this->settings;
 		require PCPO_PATH . 'admin/views/templates.php';
 	}
 
@@ -313,8 +313,8 @@ class PCPO_Admin {
 	 * Render import/export page.
 	 */
 	public function render_importexport_page() {
-		$db       = $this->db;
-		$settings = $this->settings;
+		$pcpo_db       = $this->db;
+		$pcpo_settings = $this->settings;
 		require PCPO_PATH . 'admin/views/importexport.php';
 	}
 
@@ -322,8 +322,8 @@ class PCPO_Admin {
 	 * Render settings page.
 	 */
 	public function render_settings_page() {
-		$db       = $this->db;
-		$settings = $this->settings;
+		$pcpo_db       = $this->db;
+		$pcpo_settings = $this->settings;
 		require PCPO_PATH . 'admin/views/settings.php';
 	}
 
@@ -331,8 +331,8 @@ class PCPO_Admin {
 	 * Render debug page.
 	 */
 	public function render_debug_page() {
-		$db       = $this->db;
-		$settings = $this->settings;
+		$pcpo_db       = $this->db;
+		$pcpo_settings = $this->settings;
 		require PCPO_PATH . 'admin/views/debug.php';
 	}
 

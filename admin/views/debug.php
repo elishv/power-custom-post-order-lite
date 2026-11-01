@@ -20,55 +20,55 @@ if ( isset( $_POST['pcpo_clear_debug'] ) && check_admin_referer( 'pcpo_clear_deb
 // URL with a cache-buster, which forces PHP to run (bypassing Breeze / WP
 // Rocket page cache) and triggers PCPO_Debug to capture + save.
 if ( isset( $_POST['pcpo_test_url'] ) && check_admin_referer( 'pcpo_test_url' ) ) {
-	$test_url = isset( $_POST['pcpo_test_url_value'] ) ? esc_url_raw( wp_unslash( $_POST['pcpo_test_url_value'] ) ) : '';
-	if ( $test_url ) {
+	$pcpo_test_url = isset( $_POST['pcpo_test_url_value'] ) ? esc_url_raw( wp_unslash( $_POST['pcpo_test_url_value'] ) ) : '';
+	if ( $pcpo_test_url ) {
 		// Cache buster as an unknown query var — page caches don't have it
 		// cached, so they pass through to PHP.
-		$bust_url = add_query_arg( 'pcpo_nocache', wp_generate_password( 10, false ), $test_url );
+		$pcpo_bust_url = add_query_arg( 'pcpo_nocache', wp_generate_password( 10, false ), $pcpo_test_url );
 
 		// Forward the current user's auth cookies so the remote request runs
 		// as a logged-in editor (caches bypass cache for logged-in users).
-		$cookies = array();
-		foreach ( array( LOGGED_IN_COOKIE, AUTH_COOKIE, SECURE_AUTH_COOKIE ) as $cname ) {
-			if ( ! empty( $_COOKIE[ $cname ] ) ) {
-				$cookies[] = new WP_Http_Cookie(
+		$pcpo_cookies = array();
+		foreach ( array( LOGGED_IN_COOKIE, AUTH_COOKIE, SECURE_AUTH_COOKIE ) as $pcpo_cname ) {
+			if ( ! empty( $_COOKIE[ $pcpo_cname ] ) ) {
+				$pcpo_cookies[] = new WP_Http_Cookie(
 					array(
-						'name'  => $cname,
-						'value' => $_COOKIE[ $cname ],
+						'name'  => $pcpo_cname,
+						'value' => $_COOKIE[ $pcpo_cname ], // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- The admin's own auth cookie, passed through unchanged to a loopback request to this site; altering it would invalidate it.
 					)
 				);
 			}
 		}
 
-		$response = wp_remote_get(
-			$bust_url,
+		$pcpo_response = wp_remote_get(
+			$pcpo_bust_url,
 			array(
 				'timeout'     => 30,
-				'cookies'     => $cookies,
+				'cookies'     => $pcpo_cookies,
 				'redirection' => 5,
 				'user-agent'  => 'PCPO-Debug/' . PCPO_VERSION,
 				'headers'     => array( 'Cache-Control' => 'no-cache' ),
 			)
 		);
 
-		if ( is_wp_error( $response ) ) {
-			echo '<div class="notice notice-error"><p>' . esc_html( $response->get_error_message() ) . '</p></div>';
+		if ( is_wp_error( $pcpo_response ) ) {
+			echo '<div class="notice notice-error"><p>' . esc_html( $pcpo_response->get_error_message() ) . '</p></div>';
 		} else {
-			$code = (int) wp_remote_retrieve_response_code( $response );
-			$body = wp_remote_retrieve_body( $response );
-			$has_banner = false !== strpos( $body, 'pcpo-debug-banner' );
-			$has_marker = false !== strpos( $body, 'PCPO DEBUG' );
+			$pcpo_code = (int) wp_remote_retrieve_response_code( $pcpo_response );
+			$pcpo_body = wp_remote_retrieve_body( $pcpo_response );
+			$pcpo_has_banner = false !== strpos( $pcpo_body, 'pcpo-debug-banner' );
+			$pcpo_has_marker = false !== strpos( $pcpo_body, 'PCPO DEBUG' );
 			echo '<div class="notice notice-success"><p>';
 			echo esc_html(
 				sprintf(
 					/* translators: 1: URL, 2: HTTP status code */
 					__( 'Sent request to %1$s — HTTP %2$d.', 'power-custom-post-order' ),
-					$bust_url,
-					$code
+					$pcpo_bust_url,
+					$pcpo_code
 				)
 			);
 			echo ' ';
-			if ( $has_banner || $has_marker ) {
+			if ( $pcpo_has_banner || $pcpo_has_marker ) {
 				echo '<strong>' . esc_html__( 'PCPO debug output detected in the response. Capture below.', 'power-custom-post-order' ) . '</strong>';
 			} else {
 				echo '<strong>' . esc_html__( 'NO PCPO debug output in the response — the page may still be cached. Try the URL in a private window while logged in, or temporarily disable Breeze.', 'power-custom-post-order' ) . '</strong>';
@@ -78,8 +78,8 @@ if ( isset( $_POST['pcpo_test_url'] ) && check_admin_referer( 'pcpo_test_url' ) 
 	}
 }
 
-$enabled  = 'yes' === get_option( 'pcpo_debug', 'no' );
-$captures = PCPO_Debug::get_captures();
+$pcpo_enabled  = 'yes' === get_option( 'pcpo_debug', 'no' );
+$pcpo_captures = PCPO_Debug::get_captures();
 ?>
 <div class="wrap pcpo-wrap">
 	<h1 class="pcpo-page-title">
@@ -87,7 +87,7 @@ $captures = PCPO_Debug::get_captures();
 		<?php esc_html_e( 'PCPO Debug', 'power-custom-post-order' ); ?>
 	</h1>
 
-	<?php if ( ! $enabled ) : ?>
+	<?php if ( ! $pcpo_enabled ) : ?>
 		<div class="notice notice-warning">
 			<p>
 				<strong><?php esc_html_e( 'Debug mode is OFF.', 'power-custom-post-order' ); ?></strong>
@@ -112,7 +112,7 @@ $captures = PCPO_Debug::get_captures();
 				name="pcpo_test_url_value"
 				class="regular-text"
 				placeholder="<?php echo esc_attr( home_url( '/product-category/sale/' ) ); ?>"
-				value="<?php echo isset( $_POST['pcpo_test_url_value'] ) ? esc_attr( wp_unslash( $_POST['pcpo_test_url_value'] ) ) : esc_attr( home_url( '/product-category/sale/' ) ); ?>"
+				value="<?php echo isset( $_POST['pcpo_test_url_value'] ) ? esc_attr( sanitize_text_field( wp_unslash( $_POST['pcpo_test_url_value'] ) ) ) : esc_attr( home_url( '/product-category/sale/' ) ); ?>"
 				style="flex: 1 1 auto;"
 				required
 			/>
@@ -134,27 +134,27 @@ $captures = PCPO_Debug::get_captures();
 		</form>
 	</p>
 
-	<?php if ( empty( $captures ) ) : ?>
+	<?php if ( empty( $pcpo_captures ) ) : ?>
 		<div class="pcpo-card-block">
 			<p><?php esc_html_e( 'No captures yet. Use "Capture a URL right now" above, or visit a front-end page while debug is on.', 'power-custom-post-order' ); ?></p>
 		</div>
 	<?php else : ?>
-		<?php foreach ( $captures as $i => $capture ) : ?>
+		<?php foreach ( $pcpo_captures as $pcpo_i => $pcpo_capture ) : ?>
 			<div class="pcpo-card-block" style="margin-bottom: 16px;">
 				<h2 style="margin: 0 0 6px;">
-					<code style="font-size: 13px;"><?php echo esc_html( $capture['url'] ); ?></code>
+					<code style="font-size: 13px;"><?php echo esc_html( $pcpo_capture['url'] ); ?></code>
 				</h2>
 				<p style="margin: 0 0 12px; color: #6b7280;">
-					<?php echo esc_html( gmdate( 'Y-m-d H:i:s', $capture['time'] ) ); ?> UTC
+					<?php echo esc_html( gmdate( 'Y-m-d H:i:s', $pcpo_capture['time'] ) ); ?> UTC
 					&middot;
-					<?php echo (int) ( isset( $capture['events'] ) ? count( $capture['events'] ) : 0 ); ?>
+					<?php echo (int) ( isset( $pcpo_capture['events'] ) ? count( $pcpo_capture['events'] ) : 0 ); ?>
 					<?php esc_html_e( 'events captured', 'power-custom-post-order' ); ?>
 				</p>
 
-				<?php if ( ! empty( $capture['summary'] ) ) : ?>
+				<?php if ( ! empty( $pcpo_capture['summary'] ) ) : ?>
 					<h3 style="margin: 0 0 6px;"><?php esc_html_e( 'Summary', 'power-custom-post-order' ); ?></h3>
 					<pre class="pcpo-code" style="max-height: 360px; overflow: auto; white-space: pre-wrap;"><?php
-						echo esc_html( wp_json_encode( $capture['summary'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) );
+						echo esc_html( wp_json_encode( $pcpo_capture['summary'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) );
 					?></pre>
 				<?php endif; ?>
 
@@ -163,7 +163,7 @@ $captures = PCPO_Debug::get_captures();
 						<?php esc_html_e( 'Full event timeline (click to expand)', 'power-custom-post-order' ); ?>
 					</summary>
 					<pre class="pcpo-code" style="max-height: 500px; overflow: auto; white-space: pre-wrap; margin-top: 8px;"><?php
-						echo esc_html( wp_json_encode( $capture['events'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) );
+						echo esc_html( wp_json_encode( $pcpo_capture['events'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) );
 					?></pre>
 				</details>
 			</div>
