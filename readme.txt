@@ -1,5 +1,5 @@
 === Power Custom Post Order ===
-Contributors: elishvarzman
+Contributors: elis85
 Donate link: https://a-in.co.il/plugins/post-order/
 Tags: post order, sort posts, drag and drop, woocommerce sort, custom order
 Requires at least: 6.2
