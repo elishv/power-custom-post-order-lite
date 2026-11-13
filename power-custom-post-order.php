@@ -3,7 +3,7 @@
  * Plugin Name:       Power Custom Post Order
  * Plugin URI:        https://a-in.co.il/plugins/post-order/
  * Description:       Drag-and-drop custom post ordering for any post type and WooCommerce products, with per-taxonomy ordering, order variations (manual, alphabetical, price, popularity, random, etc.), sticky posts, hidden posts, order templates, CSV import/export, per-role ordering, REST API, and shortcode/template tag for manual queries. Works with every theme and Elementor.
- * Version:           1.0.16
+ * Version:           1.0.17
  * Author:            Eli Shvarzman
  * Author URI:        https://a-in.co.il/
  * License:           GPL-2.0-or-later
@@ -21,7 +21,7 @@
 defined( 'ABSPATH' ) || exit;
 
 // Plugin constants.
-define( 'PCPO_VERSION', '1.0.16' );
+define( 'PCPO_VERSION', '1.0.17' );
 define( 'PCPO_DB_VERSION', '1.0.0' );
 define( 'PCPO_FILE', __FILE__ );
 define( 'PCPO_PATH', plugin_dir_path( __FILE__ ) );

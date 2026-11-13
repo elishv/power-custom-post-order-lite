@@ -21,6 +21,11 @@ if ( isset( $_POST['pcpo_clear_debug'] ) && check_admin_referer( 'pcpo_clear_deb
 // Rocket page cache) and triggers PCPO_Debug to capture + save.
 if ( isset( $_POST['pcpo_test_url'] ) && check_admin_referer( 'pcpo_test_url' ) ) {
 	$pcpo_test_url = isset( $_POST['pcpo_test_url_value'] ) ? esc_url_raw( wp_unslash( $_POST['pcpo_test_url_value'] ) ) : '';
+	// Only this site's own URLs: the request carries the admin's auth cookies.
+	if ( $pcpo_test_url && strtolower( (string) wp_parse_url( $pcpo_test_url, PHP_URL_HOST ) ) !== strtolower( (string) wp_parse_url( home_url(), PHP_URL_HOST ) ) ) {
+		echo '<div class="notice notice-error"><p>' . esc_html__( 'Only URLs on this site can be tested.', 'power-custom-post-order' ) . '</p></div>';
+		$pcpo_test_url = '';
+	}
 	if ( $pcpo_test_url ) {
 		// Cache buster as an unknown query var — page caches don't have it
 		// cached, so they pass through to PHP.
