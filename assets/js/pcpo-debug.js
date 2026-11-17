@@ -1,5 +1,5 @@
 /**
- * Power Custom Post Order - front-end debug helper.
+ * All-IN Post Order - front-end debug helper.
  * Only enqueued when PCPO debug mode is on and the user can sort posts.
  * Reads the payload from #pcpo-debug-banner[data-pcpo-debug], logs it to the
  * console and handles the banner's close button.

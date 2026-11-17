@@ -28,13 +28,13 @@ $pcpo_context_modes = $pcpo_settings->get_order_modes();
 <div class="wrap pcpo-wrap pcpo-sort-wrap">
 	<h1 class="pcpo-page-title">
 		<span class="dashicons dashicons-sort" aria-hidden="true"></span>
-		<?php esc_html_e( 'Sort Posts', 'power-custom-post-order' ); ?>
+		<?php esc_html_e( 'Sort Posts', 'all-in-post-order' ); ?>
 	</h1>
 
-	<div class="pcpo-toolbar" role="region" aria-label="<?php esc_attr_e( 'Filters and actions', 'power-custom-post-order' ); ?>">
+	<div class="pcpo-toolbar" role="region" aria-label="<?php esc_attr_e( 'Filters and actions', 'all-in-post-order' ); ?>">
 		<div class="pcpo-toolbar__row pcpo-toolbar__filters">
 			<div class="pcpo-field">
-				<span class="pcpo-field__label"><?php esc_html_e( 'Post type', 'power-custom-post-order' ); ?></span>
+				<span class="pcpo-field__label"><?php esc_html_e( 'Post type', 'all-in-post-order' ); ?></span>
 				<select id="pcpo-post-type" class="pcpo-select">
 					<?php foreach ( $pcpo_enabled_post_types as $pcpo_pt ) :
 						$pcpo_pt_obj = get_post_type_object( $pcpo_pt );
@@ -50,26 +50,26 @@ $pcpo_context_modes = $pcpo_settings->get_order_modes();
 			</div>
 
 			<div class="pcpo-field">
-				<span class="pcpo-field__label"><?php esc_html_e( 'Taxonomy', 'power-custom-post-order' ); ?></span>
+				<span class="pcpo-field__label"><?php esc_html_e( 'Taxonomy', 'all-in-post-order' ); ?></span>
 				<select id="pcpo-taxonomy" class="pcpo-select" data-current="<?php echo esc_attr( $pcpo_current_taxonomy ); ?>">
-					<option value=""><?php esc_html_e( '— Global —', 'power-custom-post-order' ); ?></option>
+					<option value=""><?php esc_html_e( '— Global —', 'all-in-post-order' ); ?></option>
 				</select>
 			</div>
 
 			<div class="pcpo-field">
-				<span class="pcpo-field__label"><?php esc_html_e( 'Term', 'power-custom-post-order' ); ?></span>
+				<span class="pcpo-field__label"><?php esc_html_e( 'Term', 'all-in-post-order' ); ?></span>
 				<select id="pcpo-term" class="pcpo-select" data-current="<?php echo esc_attr( $pcpo_current_term ); ?>">
-					<option value="0"><?php esc_html_e( '— All terms —', 'power-custom-post-order' ); ?></option>
+					<option value="0"><?php esc_html_e( '— All terms —', 'all-in-post-order' ); ?></option>
 				</select>
 			</div>
 
 			<div class="pcpo-field pcpo-field--grow">
-				<span class="pcpo-field__label"><?php esc_html_e( 'Search', 'power-custom-post-order' ); ?></span>
-				<input type="search" id="pcpo-search" class="pcpo-input" placeholder="<?php esc_attr_e( 'Search by title…', 'power-custom-post-order' ); ?>" />
+				<span class="pcpo-field__label"><?php esc_html_e( 'Search', 'all-in-post-order' ); ?></span>
+				<input type="search" id="pcpo-search" class="pcpo-input" placeholder="<?php esc_attr_e( 'Search by title…', 'all-in-post-order' ); ?>" />
 			</div>
 
 			<div class="pcpo-field pcpo-field--narrow">
-				<span class="pcpo-field__label"><?php esc_html_e( 'Per page', 'power-custom-post-order' ); ?></span>
+				<span class="pcpo-field__label"><?php esc_html_e( 'Per page', 'all-in-post-order' ); ?></span>
 				<select id="pcpo-per-page" class="pcpo-select">
 					<?php foreach ( array( 20, 50, 100, 200 ) as $pcpo_opt ) : ?>
 						<option value="<?php echo esc_attr( (string) $pcpo_opt ); ?>" <?php selected( $pcpo_opt, $pcpo_per_page ); ?>><?php echo esc_html( (string) $pcpo_opt ); ?></option>
@@ -78,34 +78,34 @@ $pcpo_context_modes = $pcpo_settings->get_order_modes();
 			</div>
 		</div>
 
-		<div class="pcpo-toolbar__row pcpo-toolbar__chips" role="group" aria-label="<?php esc_attr_e( 'Quick filters', 'power-custom-post-order' ); ?>">
+		<div class="pcpo-toolbar__row pcpo-toolbar__chips" role="group" aria-label="<?php esc_attr_e( 'Quick filters', 'all-in-post-order' ); ?>">
 			<button type="button" class="pcpo-chip" data-filter="sticky" aria-pressed="false">
 				<span class="dashicons dashicons-sticky" aria-hidden="true"></span>
-				<?php esc_html_e( 'Sticky', 'power-custom-post-order' ); ?>
+				<?php esc_html_e( 'Sticky', 'all-in-post-order' ); ?>
 			</button>
 			<button type="button" class="pcpo-chip" data-filter="hidden" aria-pressed="false">
 				<span class="dashicons dashicons-hidden" aria-hidden="true"></span>
-				<?php esc_html_e( 'Hidden', 'power-custom-post-order' ); ?>
+				<?php esc_html_e( 'Hidden', 'all-in-post-order' ); ?>
 			</button>
 			<button type="button" class="pcpo-chip" data-filter="modified_week" aria-pressed="false">
 				<span class="dashicons dashicons-calendar-alt" aria-hidden="true"></span>
-				<?php esc_html_e( 'Modified this week', 'power-custom-post-order' ); ?>
+				<?php esc_html_e( 'Modified this week', 'all-in-post-order' ); ?>
 			</button>
 			<?php if ( class_exists( 'WooCommerce' ) ) : ?>
 				<button type="button" class="pcpo-chip pcpo-chip--wc" data-filter="instock" aria-pressed="false">
 					<span class="dashicons dashicons-yes-alt" aria-hidden="true"></span>
-					<?php esc_html_e( 'In stock', 'power-custom-post-order' ); ?>
+					<?php esc_html_e( 'In stock', 'all-in-post-order' ); ?>
 				</button>
 			<?php endif; ?>
 			<button type="button" class="pcpo-chip pcpo-chip--clear" id="pcpo-filters-clear" hidden>
-				<?php esc_html_e( 'Clear', 'power-custom-post-order' ); ?>
+				<?php esc_html_e( 'Clear', 'all-in-post-order' ); ?>
 			</button>
 		</div>
 
 		<div class="pcpo-toolbar__row pcpo-toolbar__actions">
 			<div class="pcpo-mode-block">
 				<div class="pcpo-field pcpo-field--grow">
-					<span class="pcpo-field__label"><?php esc_html_e( 'Order mode', 'power-custom-post-order' ); ?></span>
+					<span class="pcpo-field__label"><?php esc_html_e( 'Order mode', 'all-in-post-order' ); ?></span>
 					<select id="pcpo-order-mode" class="pcpo-select">
 						<?php foreach ( $pcpo_context_modes as $pcpo_slug => $pcpo_def ) :
 							if ( ! empty( $pcpo_def['requires_woocommerce'] ) && ! class_exists( 'WooCommerce' ) ) {
@@ -116,13 +116,13 @@ $pcpo_context_modes = $pcpo_settings->get_order_modes();
 						<?php endforeach; ?>
 					</select>
 				</div>
-				<button type="button" class="button button-primary pcpo-save-mode-btn" id="pcpo-save-mode"><?php esc_html_e( 'Save', 'power-custom-post-order' ); ?></button>
+				<button type="button" class="button button-primary pcpo-save-mode-btn" id="pcpo-save-mode"><?php esc_html_e( 'Save', 'all-in-post-order' ); ?></button>
 			</div>
 
-			<div class="pcpo-quick-actions" role="group" aria-label="<?php esc_attr_e( 'Bulk actions', 'power-custom-post-order' ); ?>">
-				<button type="button" class="pcpo-qa-btn" id="pcpo-action-shuffle" title="<?php esc_attr_e( 'Shuffle', 'power-custom-post-order' ); ?>">
+			<div class="pcpo-quick-actions" role="group" aria-label="<?php esc_attr_e( 'Bulk actions', 'all-in-post-order' ); ?>">
+				<button type="button" class="pcpo-qa-btn" id="pcpo-action-shuffle" title="<?php esc_attr_e( 'Shuffle', 'all-in-post-order' ); ?>">
 					<span class="dashicons dashicons-randomize" aria-hidden="true"></span>
-					<span class="pcpo-qa-btn__label"><?php esc_html_e( 'Shuffle', 'power-custom-post-order' ); ?></span>
+					<span class="pcpo-qa-btn__label"><?php esc_html_e( 'Shuffle', 'all-in-post-order' ); ?></span>
 				</button>
 				<button type="button" class="pcpo-qa-btn" id="pcpo-action-alpha-asc" title="A → Z">
 					<span class="dashicons dashicons-arrow-down-alt" aria-hidden="true"></span>
@@ -132,13 +132,13 @@ $pcpo_context_modes = $pcpo_settings->get_order_modes();
 					<span class="dashicons dashicons-arrow-up-alt" aria-hidden="true"></span>
 					<span class="pcpo-qa-btn__label">Z → A</span>
 				</button>
-				<button type="button" class="pcpo-qa-btn" id="pcpo-action-reverse" title="<?php esc_attr_e( 'Reverse', 'power-custom-post-order' ); ?>">
+				<button type="button" class="pcpo-qa-btn" id="pcpo-action-reverse" title="<?php esc_attr_e( 'Reverse', 'all-in-post-order' ); ?>">
 					<span class="dashicons dashicons-update-alt" aria-hidden="true"></span>
-					<span class="pcpo-qa-btn__label"><?php esc_html_e( 'Reverse', 'power-custom-post-order' ); ?></span>
+					<span class="pcpo-qa-btn__label"><?php esc_html_e( 'Reverse', 'all-in-post-order' ); ?></span>
 				</button>
-				<button type="button" class="pcpo-qa-btn pcpo-qa-btn--danger" id="pcpo-action-reset" title="<?php esc_attr_e( 'Reset', 'power-custom-post-order' ); ?>">
+				<button type="button" class="pcpo-qa-btn pcpo-qa-btn--danger" id="pcpo-action-reset" title="<?php esc_attr_e( 'Reset', 'all-in-post-order' ); ?>">
 					<span class="dashicons dashicons-trash" aria-hidden="true"></span>
-					<span class="pcpo-qa-btn__label"><?php esc_html_e( 'Reset', 'power-custom-post-order' ); ?></span>
+					<span class="pcpo-qa-btn__label"><?php esc_html_e( 'Reset', 'all-in-post-order' ); ?></span>
 				</button>
 			</div>
 		</div>
@@ -147,11 +147,11 @@ $pcpo_context_modes = $pcpo_settings->get_order_modes();
 	<div class="pcpo-status" id="pcpo-status" role="status" aria-live="polite"></div>
 
 	<div class="pcpo-sort-area">
-		<div class="pcpo-loading" id="pcpo-loading"><?php esc_html_e( 'Loading…', 'power-custom-post-order' ); ?></div>
+		<div class="pcpo-loading" id="pcpo-loading"><?php esc_html_e( 'Loading…', 'all-in-post-order' ); ?></div>
 		<table class="pcpo-sortable" id="pcpo-sortable-wrap" data-context-pt="<?php echo esc_attr( $pcpo_current_pt ); ?>">
 			<tbody id="pcpo-sortable"></tbody>
 		</table>
-		<div class="pcpo-empty" id="pcpo-empty" hidden><?php esc_html_e( 'No posts match the current filter.', 'power-custom-post-order' ); ?></div>
+		<div class="pcpo-empty" id="pcpo-empty" hidden><?php esc_html_e( 'No posts match the current filter.', 'all-in-post-order' ); ?></div>
 	</div>
 
 	<div class="pcpo-pagination" id="pcpo-pagination"></div>
@@ -159,18 +159,18 @@ $pcpo_context_modes = $pcpo_settings->get_order_modes();
 	<template id="pcpo-row-template">
 		<tr class="pcpo-row" data-id="{{id}}">
 			<td class="pcpo-cell pcpo-cell--handle">
-				<span class="pcpo-row__handle" aria-label="<?php esc_attr_e( 'Drag to reorder', 'power-custom-post-order' ); ?>" title="<?php esc_attr_e( 'Drag to reorder', 'power-custom-post-order' ); ?>">
+				<span class="pcpo-row__handle" aria-label="<?php esc_attr_e( 'Drag to reorder', 'all-in-post-order' ); ?>" title="<?php esc_attr_e( 'Drag to reorder', 'all-in-post-order' ); ?>">
 					<span class="dashicons dashicons-menu" aria-hidden="true"></span>
 				</span>
 			</td>
 			<td class="pcpo-cell pcpo-cell--pos">
-				<button type="button" class="pcpo-row__order" data-toggle="position" aria-label="<?php esc_attr_e( 'Move to position', 'power-custom-post-order' ); ?>" title="<?php esc_attr_e( 'Click to move to position', 'power-custom-post-order' ); ?>">{{position}}</button>
+				<button type="button" class="pcpo-row__order" data-toggle="position" aria-label="<?php esc_attr_e( 'Move to position', 'all-in-post-order' ); ?>" title="<?php esc_attr_e( 'Click to move to position', 'all-in-post-order' ); ?>">{{position}}</button>
 			</td>
 			<td class="pcpo-cell pcpo-cell--thumb">
 				<span class="pcpo-row__thumb">{{thumb}}</span>
 			</td>
 			<td class="pcpo-cell pcpo-cell--main">
-				<a class="pcpo-row__title" href="{{edit}}" target="_blank" rel="noopener" title="<?php esc_attr_e( 'Edit', 'power-custom-post-order' ); ?>">{{title}}</a>
+				<a class="pcpo-row__title" href="{{edit}}" target="_blank" rel="noopener" title="<?php esc_attr_e( 'Edit', 'all-in-post-order' ); ?>">{{title}}</a>
 				<span class="pcpo-row__meta">
 					<span class="pcpo-row__date">{{date}}</span>
 					<span class="pcpo-row__sep">·</span>
@@ -180,10 +180,10 @@ $pcpo_context_modes = $pcpo_settings->get_order_modes();
 				</span>
 			</td>
 			<td class="pcpo-cell pcpo-cell--actions">
-				<button type="button" class="pcpo-icon-btn pcpo-btn-sticky" data-toggle="sticky" aria-label="<?php esc_attr_e( 'Pin to top', 'power-custom-post-order' ); ?>" title="<?php esc_attr_e( 'Pin to top', 'power-custom-post-order' ); ?>">
+				<button type="button" class="pcpo-icon-btn pcpo-btn-sticky" data-toggle="sticky" aria-label="<?php esc_attr_e( 'Pin to top', 'all-in-post-order' ); ?>" title="<?php esc_attr_e( 'Pin to top', 'all-in-post-order' ); ?>">
 					<span class="dashicons dashicons-sticky" aria-hidden="true"></span>
 				</button>
-				<button type="button" class="pcpo-icon-btn pcpo-btn-hide" data-toggle="hidden" aria-label="<?php esc_attr_e( 'Hide in this context', 'power-custom-post-order' ); ?>" title="<?php esc_attr_e( 'Hide in this context', 'power-custom-post-order' ); ?>">
+				<button type="button" class="pcpo-icon-btn pcpo-btn-hide" data-toggle="hidden" aria-label="<?php esc_attr_e( 'Hide in this context', 'all-in-post-order' ); ?>" title="<?php esc_attr_e( 'Hide in this context', 'all-in-post-order' ); ?>">
 					<span class="dashicons dashicons-hidden" aria-hidden="true"></span>
 				</button>
 			</td>

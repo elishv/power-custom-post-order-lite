@@ -337,12 +337,12 @@ class PCPO_Plugin {
 				/* translators: %s: term name */
 				'title' => '<span class="ab-icon dashicons dashicons-sort" style="top:2px;"></span>' . sprintf(
 					/* translators: %s: category / term name */
-					__( 'Sort "%s"', 'power-custom-post-order' ),
+					__( 'Sort "%s"', 'all-in-post-order' ),
 					esc_html( $term->name )
 				),
 				'href'  => esc_url( $url ),
 				'meta'  => array(
-					'title' => __( 'Open this category in Power Custom Post Order', 'power-custom-post-order' ),
+					'title' => __( 'Open this category in All-IN Post Order', 'all-in-post-order' ),
 				),
 			)
 		);

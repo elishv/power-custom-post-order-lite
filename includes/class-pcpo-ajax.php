@@ -78,11 +78,11 @@ class PCPO_Ajax {
 	 */
 	private function verify( $required_cap = '' ) {
 		if ( ! check_ajax_referer( 'pcpo_admin_nonce', 'nonce', false ) ) {
-			wp_send_json_error( array( 'message' => __( 'Invalid security token.', 'power-custom-post-order' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'Invalid security token.', 'all-in-post-order' ) ), 403 );
 		}
 		$cap = $required_cap ? $required_cap : $this->settings->get_sortable_capability();
 		if ( ! current_user_can( $cap ) ) {
-			wp_send_json_error( array( 'message' => __( 'Insufficient permissions.', 'power-custom-post-order' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'Insufficient permissions.', 'all-in-post-order' ) ), 403 );
 		}
 	}
 
@@ -104,7 +104,7 @@ class PCPO_Ajax {
 		$filters   = isset( $_POST['filters'] ) && is_array( $_POST['filters'] ) ? array_map( 'sanitize_key', wp_unslash( $_POST['filters'] ) ) : array();
 
 		if ( ! $post_type || ! post_type_exists( $post_type ) ) {
-			wp_send_json_error( array( 'message' => __( 'Invalid post type.', 'power-custom-post-order' ) ), 400 );
+			wp_send_json_error( array( 'message' => __( 'Invalid post type.', 'all-in-post-order' ) ), 400 );
 		}
 
 		// Build WP_Query args. We rely on our own query handler to apply ordering
@@ -224,7 +224,7 @@ class PCPO_Ajax {
 		$per_page  = isset( $_POST['per_page'] ) ? absint( wp_unslash( $_POST['per_page'] ) ) : 50;
 
 		if ( ! $order ) {
-			wp_send_json_error( array( 'message' => __( 'No order provided.', 'power-custom-post-order' ) ), 400 );
+			wp_send_json_error( array( 'message' => __( 'No order provided.', 'all-in-post-order' ) ), 400 );
 		}
 
 		$offset = ( $page - 1 ) * $per_page;
@@ -244,7 +244,7 @@ class PCPO_Ajax {
 		wp_send_json_success(
 			array(
 				'updated' => $count,
-				'message' => __( 'Order saved.', 'power-custom-post-order' ),
+				'message' => __( 'Order saved.', 'all-in-post-order' ),
 			)
 		);
 	}
@@ -372,7 +372,7 @@ class PCPO_Ajax {
 		wp_send_json_success(
 			array(
 				'updated' => $count,
-				'message' => __( 'Shuffled.', 'power-custom-post-order' ),
+				'message' => __( 'Shuffled.', 'all-in-post-order' ),
 			)
 		);
 	}
@@ -405,7 +405,7 @@ class PCPO_Ajax {
 		wp_send_json_success(
 			array(
 				'updated' => $count,
-				'message' => __( 'Alphabetized.', 'power-custom-post-order' ),
+				'message' => __( 'Alphabetized.', 'all-in-post-order' ),
 			)
 		);
 	}
@@ -423,7 +423,7 @@ class PCPO_Ajax {
 		wp_send_json_success(
 			array(
 				'deleted' => $count,
-				'message' => __( 'Order reset.', 'power-custom-post-order' ),
+				'message' => __( 'Order reset.', 'all-in-post-order' ),
 			)
 		);
 	}
@@ -443,7 +443,7 @@ class PCPO_Ajax {
 		wp_send_json_success(
 			array(
 				'updated' => $count,
-				'message' => __( 'Order reversed.', 'power-custom-post-order' ),
+				'message' => __( 'Order reversed.', 'all-in-post-order' ),
 			)
 		);
 	}

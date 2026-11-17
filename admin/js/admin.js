@@ -1,5 +1,5 @@
 /*!
- * Power Custom Post Order — Admin JS
+ * All-IN Post Order — Admin JS
  * Eli Shvarzman
  *
  * Handles:

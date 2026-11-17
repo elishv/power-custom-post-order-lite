@@ -22,50 +22,50 @@ $pcpo_enabled_pts = $pcpo_settings->get_enabled_post_types();
 <div class="wrap pcpo-wrap">
 	<h1 class="pcpo-page-title">
 		<span class="dashicons dashicons-sort"></span>
-		<?php esc_html_e( 'Power Custom Post Order', 'power-custom-post-order' ); ?>
+		<?php esc_html_e( 'All-IN Post Order', 'all-in-post-order' ); ?>
 		<small class="pcpo-version">v<?php echo esc_html( PCPO_VERSION ); ?></small>
 	</h1>
 
 	<p class="pcpo-lead">
-		<?php esc_html_e( 'Drag-and-drop ordering for any post type, with per-taxonomy ordering, sticky / hidden posts, templates, CSV import-export, and a REST API. Works with every theme — including Elementor.', 'power-custom-post-order' ); ?>
+		<?php esc_html_e( 'Drag-and-drop ordering for any post type, with per-taxonomy ordering, sticky / hidden posts, templates, CSV import-export, and a REST API. Works with every theme — including Elementor.', 'all-in-post-order' ); ?>
 	</p>
 
 	<div class="pcpo-stat-grid">
 		<div class="pcpo-stat">
 			<div class="pcpo-stat__value"><?php echo esc_html( number_format_i18n( $pcpo_orders_count ) ); ?></div>
-			<div class="pcpo-stat__label"><?php esc_html_e( 'Ordered items', 'power-custom-post-order' ); ?></div>
+			<div class="pcpo-stat__label"><?php esc_html_e( 'Ordered items', 'all-in-post-order' ); ?></div>
 		</div>
 		<div class="pcpo-stat">
 			<div class="pcpo-stat__value"><?php echo esc_html( number_format_i18n( $pcpo_sticky_count ) ); ?></div>
-			<div class="pcpo-stat__label"><?php esc_html_e( 'Pinned items', 'power-custom-post-order' ); ?></div>
+			<div class="pcpo-stat__label"><?php esc_html_e( 'Pinned items', 'all-in-post-order' ); ?></div>
 		</div>
 		<div class="pcpo-stat">
 			<div class="pcpo-stat__value"><?php echo esc_html( number_format_i18n( $pcpo_hidden_count ) ); ?></div>
-			<div class="pcpo-stat__label"><?php esc_html_e( 'Hidden items', 'power-custom-post-order' ); ?></div>
+			<div class="pcpo-stat__label"><?php esc_html_e( 'Hidden items', 'all-in-post-order' ); ?></div>
 		</div>
 		<div class="pcpo-stat">
 			<div class="pcpo-stat__value"><?php echo esc_html( number_format_i18n( $pcpo_settings_count ) ); ?></div>
-			<div class="pcpo-stat__label"><?php esc_html_e( 'Context rules', 'power-custom-post-order' ); ?></div>
+			<div class="pcpo-stat__label"><?php esc_html_e( 'Context rules', 'all-in-post-order' ); ?></div>
 		</div>
 		<div class="pcpo-stat">
 			<div class="pcpo-stat__value"><?php echo esc_html( number_format_i18n( $pcpo_templates_count ) ); ?></div>
-			<div class="pcpo-stat__label"><?php esc_html_e( 'Saved templates', 'power-custom-post-order' ); ?></div>
+			<div class="pcpo-stat__label"><?php esc_html_e( 'Saved templates', 'all-in-post-order' ); ?></div>
 		</div>
 	</div>
 
 	<div class="pcpo-card-row">
 		<div class="pcpo-card-block">
-			<h2><?php esc_html_e( 'Quick start', 'power-custom-post-order' ); ?></h2>
+			<h2><?php esc_html_e( 'Quick start', 'all-in-post-order' ); ?></h2>
 			<ol class="pcpo-ol">
-				<li><?php printf( '<a href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=pcpo-settings' ) ), esc_html__( 'Choose which post types to enable', 'power-custom-post-order' ) ); ?></li>
-				<li><?php printf( '<a href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=pcpo-sort' ) ), esc_html__( 'Open the Sort Posts page and drag items into place', 'power-custom-post-order' ) ); ?></li>
-				<li><?php esc_html_e( 'Use sticky / hidden flags per term as needed', 'power-custom-post-order' ); ?></li>
-				<li><?php esc_html_e( 'Save the result as a Template to re-use across terms', 'power-custom-post-order' ); ?></li>
+				<li><?php printf( '<a href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=pcpo-settings' ) ), esc_html__( 'Choose which post types to enable', 'all-in-post-order' ) ); ?></li>
+				<li><?php printf( '<a href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=pcpo-sort' ) ), esc_html__( 'Open the Sort Posts page and drag items into place', 'all-in-post-order' ) ); ?></li>
+				<li><?php esc_html_e( 'Use sticky / hidden flags per term as needed', 'all-in-post-order' ); ?></li>
+				<li><?php esc_html_e( 'Save the result as a Template to re-use across terms', 'all-in-post-order' ); ?></li>
 			</ol>
 		</div>
 
 		<div class="pcpo-card-block">
-			<h2><?php esc_html_e( 'Enabled post types', 'power-custom-post-order' ); ?></h2>
+			<h2><?php esc_html_e( 'Enabled post types', 'all-in-post-order' ); ?></h2>
 			<ul class="pcpo-ul">
 				<?php
 				foreach ( $pcpo_enabled_pts as $pcpo_pt_slug ) :
@@ -78,7 +78,7 @@ $pcpo_enabled_pts = $pcpo_settings->get_enabled_post_types();
 						<strong><?php echo esc_html( $pcpo_pt_obj->labels->name ); ?></strong>
 						<code><?php echo esc_html( $pcpo_pt_slug ); ?></code>
 						<a href="<?php echo esc_url( add_query_arg( 'post_type', $pcpo_pt_slug, admin_url( 'admin.php?page=pcpo-sort' ) ) ); ?>">
-							<?php esc_html_e( 'Sort →', 'power-custom-post-order' ); ?>
+							<?php esc_html_e( 'Sort →', 'all-in-post-order' ); ?>
 						</a>
 					</li>
 				<?php endforeach; ?>
@@ -86,24 +86,24 @@ $pcpo_enabled_pts = $pcpo_settings->get_enabled_post_types();
 		</div>
 
 		<div class="pcpo-card-block">
-			<h2><?php esc_html_e( 'Integrations detected', 'power-custom-post-order' ); ?></h2>
+			<h2><?php esc_html_e( 'Integrations detected', 'all-in-post-order' ); ?></h2>
 			<ul class="pcpo-ul">
 				<li>
 					<?php if ( class_exists( 'WooCommerce' ) ) : ?>
-						<span class="dashicons dashicons-yes-alt pcpo-ok"></span> <?php esc_html_e( 'WooCommerce active — menu_order sync enabled', 'power-custom-post-order' ); ?>
+						<span class="dashicons dashicons-yes-alt pcpo-ok"></span> <?php esc_html_e( 'WooCommerce active — menu_order sync enabled', 'all-in-post-order' ); ?>
 					<?php else : ?>
-						<span class="dashicons dashicons-minus pcpo-muted"></span> <?php esc_html_e( 'WooCommerce not detected', 'power-custom-post-order' ); ?>
+						<span class="dashicons dashicons-minus pcpo-muted"></span> <?php esc_html_e( 'WooCommerce not detected', 'all-in-post-order' ); ?>
 					<?php endif; ?>
 				</li>
 				<li>
 					<?php if ( did_action( 'elementor/loaded' ) || class_exists( '\Elementor\Plugin' ) ) : ?>
-						<span class="dashicons dashicons-yes-alt pcpo-ok"></span> <?php esc_html_e( 'Elementor active — opt-in via Query ID "pcpo_ordering"', 'power-custom-post-order' ); ?>
+						<span class="dashicons dashicons-yes-alt pcpo-ok"></span> <?php esc_html_e( 'Elementor active — opt-in via Query ID "pcpo_ordering"', 'all-in-post-order' ); ?>
 					<?php else : ?>
-						<span class="dashicons dashicons-minus pcpo-muted"></span> <?php esc_html_e( 'Elementor not detected', 'power-custom-post-order' ); ?>
+						<span class="dashicons dashicons-minus pcpo-muted"></span> <?php esc_html_e( 'Elementor not detected', 'all-in-post-order' ); ?>
 					<?php endif; ?>
 				</li>
 				<li>
-					<span class="dashicons dashicons-yes-alt pcpo-ok"></span> <?php esc_html_e( 'REST API enabled', 'power-custom-post-order' ); ?>
+					<span class="dashicons dashicons-yes-alt pcpo-ok"></span> <?php esc_html_e( 'REST API enabled', 'all-in-post-order' ); ?>
 					<code>/wp-json/pcpo/v1/</code>
 				</li>
 			</ul>
@@ -111,8 +111,8 @@ $pcpo_enabled_pts = $pcpo_settings->get_enabled_post_types();
 	</div>
 
 	<div class="pcpo-card-block">
-		<h2><?php esc_html_e( 'For developers', 'power-custom-post-order' ); ?></h2>
-		<p><?php esc_html_e( 'Use these template tags in your theme:', 'power-custom-post-order' ); ?></p>
+		<h2><?php esc_html_e( 'For developers', 'all-in-post-order' ); ?></h2>
+		<p><?php esc_html_e( 'Use these template tags in your theme:', 'all-in-post-order' ); ?></p>
 		<pre class="pcpo-code"><code>// Get posts in custom order
 $posts = pcpo_get_posts( array(
     'post_type'  => 'product',

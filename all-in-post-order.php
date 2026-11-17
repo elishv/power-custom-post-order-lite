@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Power Custom Post Order
+ * Plugin Name:       All-IN Post Order
  * Plugin URI:        https://a-in.co.il/plugins/post-order/
  * Description:       Drag-and-drop custom post ordering for any post type and WooCommerce products, with per-taxonomy ordering, order variations (manual, alphabetical, price, popularity, random, etc.), sticky posts, hidden posts, order templates, CSV import/export, per-role ordering, REST API, and shortcode/template tag for manual queries. Works with every theme and Elementor.
  * Version:           1.0.18
@@ -8,7 +8,7 @@
  * Author URI:        https://a-in.co.il/
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       power-custom-post-order
+ * Text Domain:       all-in-post-order
  * Domain Path:       /languages
  * Requires at least: 6.2
  * Requires PHP:      7.4
@@ -28,7 +28,7 @@ define( 'PCPO_PATH', plugin_dir_path( __FILE__ ) );
 define( 'PCPO_URL', plugin_dir_url( __FILE__ ) );
 define( 'PCPO_BASENAME', plugin_basename( __FILE__ ) );
 define( 'PCPO_PREFIX', 'pcpo' );
-define( 'PCPO_TEXTDOMAIN', 'power-custom-post-order' );
+define( 'PCPO_TEXTDOMAIN', 'all-in-post-order' );
 
 /**
  * Declare HPOS (High-Performance Order Storage) compatibility.

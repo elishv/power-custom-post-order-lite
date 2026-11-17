@@ -48,7 +48,7 @@ if ( ! empty( $_POST['pcpo_import'] ) && check_admin_referer( 'pcpo_import' ) &&
 <div class="wrap pcpo-wrap">
 	<h1 class="pcpo-page-title">
 		<span class="dashicons dashicons-database-export"></span>
-		<?php esc_html_e( 'Import / Export', 'power-custom-post-order' ); ?>
+		<?php esc_html_e( 'Import / Export', 'all-in-post-order' ); ?>
 	</h1>
 
 	<?php if ( $pcpo_import_result ) : ?>
@@ -57,7 +57,7 @@ if ( ! empty( $_POST['pcpo_import'] ) && check_admin_referer( 'pcpo_import' ) &&
 				<?php
 				printf(
 					/* translators: 1: imported, 2: skipped, 3: errors */
-					esc_html__( 'Imported: %1$d, Skipped: %2$d, Errors: %3$d', 'power-custom-post-order' ),
+					esc_html__( 'Imported: %1$d, Skipped: %2$d, Errors: %3$d', 'all-in-post-order' ),
 					(int) $pcpo_import_result['imported'],
 					(int) $pcpo_import_result['skipped'],
 					(int) count( $pcpo_import_result['errors'] )
@@ -66,7 +66,7 @@ if ( ! empty( $_POST['pcpo_import'] ) && check_admin_referer( 'pcpo_import' ) &&
 			</p>
 			<?php if ( $pcpo_import_result['errors'] ) : ?>
 				<details>
-					<summary><?php esc_html_e( 'View errors', 'power-custom-post-order' ); ?></summary>
+					<summary><?php esc_html_e( 'View errors', 'all-in-post-order' ); ?></summary>
 					<ul>
 						<?php foreach ( array_slice( $pcpo_import_result['errors'], 0, 50 ) as $pcpo_err ) : ?>
 							<li><?php echo esc_html( $pcpo_err ); ?></li>
@@ -79,15 +79,15 @@ if ( ! empty( $_POST['pcpo_import'] ) && check_admin_referer( 'pcpo_import' ) &&
 
 	<div class="pcpo-card-row">
 		<div class="pcpo-card-block">
-			<h2><span class="dashicons dashicons-download"></span> <?php esc_html_e( 'Export to CSV', 'power-custom-post-order' ); ?></h2>
-			<p><?php esc_html_e( 'Download a CSV snapshot of your current ordering data. Use this for backups, migrations, or to edit in Excel/Sheets.', 'power-custom-post-order' ); ?></p>
+			<h2><span class="dashicons dashicons-download"></span> <?php esc_html_e( 'Export to CSV', 'all-in-post-order' ); ?></h2>
+			<p><?php esc_html_e( 'Download a CSV snapshot of your current ordering data. Use this for backups, migrations, or to edit in Excel/Sheets.', 'all-in-post-order' ); ?></p>
 			<form method="post">
 				<?php wp_nonce_field( 'pcpo_export' ); ?>
 				<input type="hidden" name="pcpo_export" value="1" />
 				<p>
-					<label><?php esc_html_e( 'Filter by post type', 'power-custom-post-order' ); ?>
+					<label><?php esc_html_e( 'Filter by post type', 'all-in-post-order' ); ?>
 						<select name="filter_post_type">
-							<option value=""><?php esc_html_e( '— All —', 'power-custom-post-order' ); ?></option>
+							<option value=""><?php esc_html_e( '— All —', 'all-in-post-order' ); ?></option>
 							<?php foreach ( $pcpo_enabled_post_types as $pcpo_pt ) :
 								$pcpo_pt_obj = get_post_type_object( $pcpo_pt );
 								if ( ! $pcpo_pt_obj ) {
@@ -102,19 +102,19 @@ if ( ! empty( $_POST['pcpo_import'] ) && check_admin_referer( 'pcpo_import' ) &&
 				<p>
 					<label>
 						<input type="checkbox" name="filter_taxonomy_active" value="1" />
-						<?php esc_html_e( 'Restrict to specific taxonomy', 'power-custom-post-order' ); ?>
+						<?php esc_html_e( 'Restrict to specific taxonomy', 'all-in-post-order' ); ?>
 					</label>
-					<input type="text" name="filter_taxonomy" placeholder="<?php esc_attr_e( 'e.g. product_cat (empty = global only)', 'power-custom-post-order' ); ?>" class="regular-text" />
+					<input type="text" name="filter_taxonomy" placeholder="<?php esc_attr_e( 'e.g. product_cat (empty = global only)', 'all-in-post-order' ); ?>" class="regular-text" />
 					<input type="hidden" name="filter_taxonomy_raw" value="" />
 				</p>
-				<?php submit_button( __( 'Download CSV', 'power-custom-post-order' ), 'primary' ); ?>
+				<?php submit_button( __( 'Download CSV', 'all-in-post-order' ), 'primary' ); ?>
 			</form>
 		</div>
 
 		<div class="pcpo-card-block">
-			<h2><span class="dashicons dashicons-upload"></span> <?php esc_html_e( 'Import from CSV', 'power-custom-post-order' ); ?></h2>
+			<h2><span class="dashicons dashicons-upload"></span> <?php esc_html_e( 'Import from CSV', 'all-in-post-order' ); ?></h2>
 			<p>
-				<?php esc_html_e( 'Upload a CSV with columns: post_id, post_type, taxonomy, term_id, menu_order, is_sticky, is_hidden. Only post_id and menu_order are required.', 'power-custom-post-order' ); ?>
+				<?php esc_html_e( 'Upload a CSV with columns: post_id, post_type, taxonomy, term_id, menu_order, is_sticky, is_hidden. Only post_id and menu_order are required.', 'all-in-post-order' ); ?>
 			</p>
 			<form method="post" enctype="multipart/form-data">
 				<?php wp_nonce_field( 'pcpo_import' ); ?>
@@ -125,20 +125,20 @@ if ( ! empty( $_POST['pcpo_import'] ) && check_admin_referer( 'pcpo_import' ) &&
 				<p>
 					<label>
 						<input type="checkbox" name="dry_run" value="1" />
-						<?php esc_html_e( 'Dry run (parse only, do not save)', 'power-custom-post-order' ); ?>
+						<?php esc_html_e( 'Dry run (parse only, do not save)', 'all-in-post-order' ); ?>
 					</label>
 				</p>
 				<p>
 					<label>
 						<input type="checkbox" name="update_only" value="1" />
-						<?php esc_html_e( 'Update only — skip new rows', 'power-custom-post-order' ); ?>
+						<?php esc_html_e( 'Update only — skip new rows', 'all-in-post-order' ); ?>
 					</label>
 				</p>
-				<?php submit_button( __( 'Import CSV', 'power-custom-post-order' ), 'primary' ); ?>
+				<?php submit_button( __( 'Import CSV', 'all-in-post-order' ), 'primary' ); ?>
 			</form>
 
 			<details>
-				<summary><?php esc_html_e( 'Show CSV format example', 'power-custom-post-order' ); ?></summary>
+				<summary><?php esc_html_e( 'Show CSV format example', 'all-in-post-order' ); ?></summary>
 				<pre class="pcpo-code">post_id,post_type,taxonomy,term_id,menu_order,is_sticky,is_hidden
 142,product,product_cat,18,0,1,0
 167,product,product_cat,18,1,0,0

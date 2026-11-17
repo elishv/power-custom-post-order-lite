@@ -96,7 +96,7 @@ class PCPO_Shortcode {
 
 		$query = $this->run_query( $atts );
 		if ( ! $query->have_posts() ) {
-			return '<div class="pcpo-empty">' . esc_html__( 'No posts found.', 'power-custom-post-order' ) . '</div>';
+			return '<div class="pcpo-empty">' . esc_html__( 'No posts found.', 'all-in-post-order' ) . '</div>';
 		}
 
 		$show    = array_map( 'trim', explode( ',', $atts['show'] ) );

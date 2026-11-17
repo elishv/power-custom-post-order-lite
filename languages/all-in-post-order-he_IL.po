@@ -1,0 +1,929 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: All-IN Post Order 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/all-in-post-order\n"
+"Last-Translator: Eli Shvarzman\n"
+"Language-Team: Eli Shvarzman\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-05-20 12:00+0000\n"
+"PO-Revision-Date: 2026-05-20 12:00+0000\n"
+"Language: he_IL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Plugin Name of the plugin
+#: all-in-post-order.php
+#: admin/views/dashboard.php:25
+#: includes/class-pcpo-admin.php:70
+msgid "All-IN Post Order"
+msgstr "All-IN סידור פוסטים"
+
+#: includes/class-pcpo-admin.php:71
+msgid "Post Order"
+msgstr "סידור פוסטים"
+
+#: admin/views/dashboard.php:30
+msgid "Drag-and-drop ordering for any post type, with per-taxonomy ordering, sticky / hidden posts, templates, CSV import-export, and a REST API. Works with every theme — including Elementor."
+msgstr "סידור בגרירה ושחרור לכל סוג פוסט, כולל סידור לפי טקסונומיה, פוסטים מוצמדים/מוסתרים, תבניות, ייבוא וייצוא CSV, ו-REST API. עובד עם כל תבנית — כולל Elementor."
+
+#: includes/class-pcpo-admin.php:126
+#: includes/class-pcpo-admin.php:127
+#: includes/class-pcpo-admin.php:267
+msgid "Settings"
+msgstr "הגדרות"
+
+#: admin/views/sort.php:119
+msgid "Save"
+msgstr "שמירה"
+
+#: includes/class-pcpo-admin.php:192
+msgid "Saving…"
+msgstr "שומר…"
+
+#: includes/class-pcpo-admin.php:193
+msgid "Order saved"
+msgstr "הסדר נשמר"
+
+#: admin/views/templates.php:180
+msgid "Cancel"
+msgstr "ביטול"
+
+#: admin/views/templates.php:181
+msgid "Apply"
+msgstr "החלה"
+
+#: admin/views/templates.php:155
+msgid "Delete"
+msgstr "מחיקה"
+
+#: admin/views/sort.php:173
+msgid "Edit"
+msgstr "עריכה"
+
+#: admin/views/sort.php:150
+#: includes/class-pcpo-admin.php:203
+msgid "Loading…"
+msgstr "טוען…"
+
+#: includes/class-pcpo-admin.php:194
+msgid "Something went wrong. Check the browser console."
+msgstr "אירעה שגיאה. בדוק את ה-console בדפדפן."
+
+#: includes/class-pcpo-ajax.php:85
+msgid "Insufficient permissions."
+msgstr "אין הרשאות מספיקות."
+
+#: includes/class-pcpo-ajax.php:81
+msgid "Invalid security token."
+msgstr "אסימון אבטחה לא תקין."
+
+#: includes/class-pcpo-admin.php:81
+#: includes/class-pcpo-admin.php:82
+msgid "Dashboard"
+msgstr "לוח בקרה"
+
+#: admin/views/dashboard.php:36
+msgid "Ordered items"
+msgstr "פריטים מסודרים"
+
+#: admin/views/dashboard.php:40
+msgid "Pinned items"
+msgstr "פריטים מוצמדים"
+
+#: admin/views/dashboard.php:44
+msgid "Hidden items"
+msgstr "פריטים מוסתרים"
+
+#: admin/views/dashboard.php:48
+msgid "Context rules"
+msgstr "כללי הקשר"
+
+#: admin/views/dashboard.php:52
+#: admin/views/templates.php:119
+msgid "Saved templates"
+msgstr "תבניות שמורות"
+
+#: admin/views/dashboard.php:58
+msgid "Quick start"
+msgstr "התחלה מהירה"
+
+#: admin/views/dashboard.php:60
+msgid "Choose which post types to enable"
+msgstr "בחר אילו סוגי פוסטים להפעיל"
+
+#: admin/views/dashboard.php:61
+msgid "Open the Sort Posts page and drag items into place"
+msgstr "פתח את עמוד סידור הפוסטים וגרור את הפריטים למקומם"
+
+#: admin/views/dashboard.php:62
+msgid "Use sticky / hidden flags per term as needed"
+msgstr "השתמש בהצמדה/הסתרה לפי קטגוריה כנדרש"
+
+#: admin/views/dashboard.php:63
+msgid "Save the result as a Template to re-use across terms"
+msgstr "שמור את התוצאה כתבנית לשימוש חוזר בקטגוריות נוספות"
+
+#: admin/views/dashboard.php:68
+#: admin/views/settings.php:29
+msgid "Enabled post types"
+msgstr "סוגי פוסטים פעילים"
+
+#: admin/views/dashboard.php:81
+msgid "Sort →"
+msgstr "סידור ←"
+
+#: admin/views/dashboard.php:89
+msgid "Integrations detected"
+msgstr "אינטגרציות שזוהו"
+
+#: admin/views/dashboard.php:93
+msgid "WooCommerce active — menu_order sync enabled"
+msgstr "WooCommerce פעיל — סנכרון menu_order מופעל"
+
+#: admin/views/dashboard.php:95
+msgid "WooCommerce not detected"
+msgstr "WooCommerce לא זוהה"
+
+#: admin/views/dashboard.php:100
+msgid "Elementor active — opt-in via Query ID \"pcpo_ordering\""
+msgstr "Elementor פעיל — הצטרפות באמצעות Query ID \"pcpo_ordering\""
+
+#: admin/views/dashboard.php:102
+msgid "Elementor not detected"
+msgstr "Elementor לא זוהה"
+
+#: admin/views/dashboard.php:106
+msgid "REST API enabled"
+msgstr "REST API פעיל"
+
+#: admin/views/dashboard.php:114
+msgid "For developers"
+msgstr "למפתחים"
+
+#: admin/views/dashboard.php:115
+msgid "Use these template tags in your theme:"
+msgstr "השתמש בפונקציות הבאות בתבנית שלך:"
+
+#: admin/views/sort.php:31
+#: includes/class-pcpo-admin.php:90
+#: includes/class-pcpo-admin.php:91
+msgid "Sort Posts"
+msgstr "סידור פוסטים"
+
+#: admin/views/bulk.php:29
+#: admin/views/sort.php:37
+#: admin/views/templates.php:85
+#: admin/views/templates.php:127
+msgid "Post type"
+msgstr "סוג פוסט"
+
+#: admin/views/bulk.php:42
+#: admin/views/sort.php:53
+#: admin/views/templates.php:170
+msgid "Taxonomy"
+msgstr "טקסונומיה"
+
+#: admin/views/bulk.php:48
+#: admin/views/sort.php:60
+msgid "Term"
+msgstr "קטגוריה/תגית"
+
+#: admin/views/sort.php:67
+msgid "Search"
+msgstr "חיפוש"
+
+#: admin/views/sort.php:68
+msgid "Search by title…"
+msgstr "חיפוש לפי כותרת…"
+
+#: admin/views/sort.php:72
+msgid "Per page"
+msgstr "לעמוד"
+
+#: admin/views/bulk.php:58
+#: admin/views/sort.php:123
+#: admin/views/sort.php:125
+msgid "Shuffle"
+msgstr "ערבוב"
+
+#: admin/views/bulk.php:75
+#: admin/views/sort.php:135
+#: admin/views/sort.php:137
+msgid "Reverse"
+msgstr "היפוך"
+
+#: admin/views/bulk.php:78
+#: admin/views/sort.php:139
+#: admin/views/sort.php:141
+msgid "Reset"
+msgstr "איפוס"
+
+#: admin/views/sort.php:162
+msgid "Drag to reorder"
+msgstr "גרור לסידור"
+
+#: admin/views/sort.php:183
+msgid "Pin to top"
+msgstr "הצמד למעלה"
+
+#: admin/views/sort.php:186
+msgid "Hide in this context"
+msgstr "הסתר בהקשר זה"
+
+#: admin/views/sort.php:167
+#: includes/class-pcpo-admin.php:204
+msgid "Move to position"
+msgstr "העברה למיקום"
+
+#: includes/class-pcpo-admin.php:198
+msgid "Pinned"
+msgstr "מוצמד"
+
+#: admin/views/sort.php:88
+#: includes/class-pcpo-admin.php:199
+msgid "Hidden"
+msgstr "מוסתר"
+
+#: includes/class-pcpo-admin.php:200
+msgid "Moved to top"
+msgstr "הועבר למעלה"
+
+#: includes/class-pcpo-admin.php:201
+msgid "Moved to bottom"
+msgstr "הועבר לתחתית"
+
+#: includes/class-pcpo-admin.php:202
+msgid "No posts match your filters."
+msgstr "אין פוסטים שתואמים את הסינון."
+
+#: admin/views/sort.php:154
+msgid "No posts match the current filter."
+msgstr "אין פוסטים שתואמים את הסינון."
+
+#: admin/views/templates.php:88
+msgid "— Select —"
+msgstr "— בחר —"
+
+#: admin/views/bulk.php:50
+#: admin/views/importexport.php:90
+msgid "— All —"
+msgstr "— הכל —"
+
+#: includes/class-pcpo-admin.php:195
+msgid "Reset order for this context? This will remove your manual ordering and revert to default."
+msgstr "לאפס את הסדר עבור הקשר זה? פעולה זו תסיר את הסידור הידני ותחזיר לברירת המחדל."
+
+#: includes/class-pcpo-admin.php:196
+msgid "Shuffle ALL items in this context randomly?"
+msgstr "לערבב את כל הפריטים בהקשר זה באקראי?"
+
+#: includes/class-pcpo-admin.php:197
+msgid "Re-order alphabetically? Your current manual order will be overwritten."
+msgstr "לסדר לפי האלפבית? הסדר הידני הנוכחי יידרס."
+
+#: admin/views/bulk.php:18
+#: includes/class-pcpo-admin.php:99
+#: includes/class-pcpo-admin.php:100
+msgid "Bulk Actions"
+msgstr "פעולות מרובות"
+
+#: admin/views/bulk.php:22
+msgid "Apply an action across all posts in a given context. Useful for one-off reorganization or seasonal resets."
+msgstr "החל פעולה על כל הפוסטים בהקשר נתון. שימושי לסידור מחדש חד-פעמי או איפוס עונתי."
+
+#: admin/views/bulk.php:26
+msgid "Choose context"
+msgstr "בחירת הקשר"
+
+#: admin/views/bulk.php:59
+msgid "Randomly reorder all posts in the selected context. Saved as a manual order."
+msgstr "ערבב באקראי את כל הפוסטים בהקשר הנבחר. נשמר כסדר ידני."
+
+#: admin/views/bulk.php:60
+msgid "Shuffle now"
+msgstr "ערבב עכשיו"
+
+#: admin/views/bulk.php:63
+#: admin/views/bulk.php:65
+msgid "Alphabetize A → Z"
+msgstr "סידור אלפביתי א → ת"
+
+#: admin/views/bulk.php:64
+msgid "Sort by title in ascending order, then save as the manual order."
+msgstr "מיון לפי כותרת בסדר עולה, ושמירה כסדר ידני."
+
+#: admin/views/bulk.php:68
+#: admin/views/bulk.php:70
+msgid "Alphabetize Z → A"
+msgstr "סידור אלפביתי ת → א"
+
+#: admin/views/bulk.php:69
+msgid "Sort by title in descending order, then save as the manual order."
+msgstr "מיון לפי כותרת בסדר יורד, ושמירה כסדר ידני."
+
+#: admin/views/bulk.php:73
+msgid "Reverse order"
+msgstr "היפוך סדר"
+
+#: admin/views/bulk.php:74
+msgid "Flip the current manual order end-to-end."
+msgstr "היפוך הסדר הידני הנוכחי מקצה לקצה."
+
+#: admin/views/bulk.php:79
+msgid "Delete all stored ordering data for this context. Posts will fall back to the default WordPress ordering."
+msgstr "מחק את כל נתוני הסידור עבור הקשר זה. הפוסטים יחזרו לסדר ברירת המחדל של וורדפרס."
+
+#: admin/views/bulk.php:80
+msgid "Reset this context"
+msgstr "אפס הקשר זה"
+
+#: admin/views/templates.php:62
+#: includes/class-pcpo-admin.php:108
+msgid "Order Templates"
+msgstr "תבניות סידור"
+
+#: includes/class-pcpo-admin.php:109
+msgid "Templates"
+msgstr "תבניות"
+
+#: admin/views/templates.php:66
+msgid "Save the current order in a context as a reusable template, then apply it to other terms with one click."
+msgstr "שמור את הסדר הנוכחי כתבנית לשימוש חוזר, ולאחר מכן החל אותו על קטגוריות אחרות בלחיצה אחת."
+
+#: admin/views/templates.php:71
+msgid "Create new template"
+msgstr "יצירת תבנית חדשה"
+
+#: admin/views/templates.php:77
+msgid "Template name"
+msgstr "שם תבנית"
+
+#: admin/views/templates.php:81
+msgid "Description"
+msgstr "תיאור"
+
+#: admin/views/templates.php:101
+msgid "Snapshot from taxonomy"
+msgstr "צילום מצב מטקסונומיה"
+
+#: admin/views/templates.php:107
+#: admin/views/templates.php:175
+msgid "Term ID"
+msgstr "מזהה קטגוריה"
+
+#: admin/views/templates.php:103
+msgid "Empty = global"
+msgstr "ריק = גלובלי"
+
+#: admin/views/templates.php:110
+msgid "0 = global / no term context."
+msgstr "0 = גלובלי / ללא הקשר קטגוריה."
+
+#: admin/views/templates.php:114
+msgid "Create template"
+msgstr "צור תבנית"
+
+#: admin/views/templates.php:45
+msgid "Template created."
+msgstr "התבנית נוצרה."
+
+#: admin/views/templates.php:54
+msgid "Template deleted."
+msgstr "התבנית נמחקה."
+
+#: includes/class-pcpo-rest-api.php:408
+msgid "Template not found"
+msgstr "התבנית לא נמצאה"
+
+#: admin/views/templates.php:151
+msgid "Delete this template?"
+msgstr "למחוק את התבנית הזו?"
+
+#: admin/views/templates.php:149
+msgid "Apply…"
+msgstr "החלה…"
+
+#: admin/views/templates.php:168
+msgid "Apply template to context"
+msgstr "החל תבנית על הקשר"
+
+#: admin/views/templates.php:121
+msgid "No templates yet."
+msgstr "אין תבניות עדיין."
+
+#: admin/views/templates.php:126
+msgid "Name"
+msgstr "שם"
+
+#: admin/views/templates.php:128
+msgid "Items"
+msgstr "פריטים"
+
+#: admin/views/templates.php:129
+msgid "Created"
+msgstr "נוצר"
+
+#: admin/views/templates.php:130
+msgid "Actions"
+msgstr "פעולות"
+
+#: admin/views/importexport.php:51
+#: includes/class-pcpo-admin.php:117
+#: includes/class-pcpo-admin.php:118
+msgid "Import / Export"
+msgstr "ייבוא / ייצוא"
+
+#: admin/views/importexport.php:82
+msgid "Export to CSV"
+msgstr "ייצוא ל-CSV"
+
+#: admin/views/importexport.php:83
+msgid "Download a CSV snapshot of your current ordering data. Use this for backups, migrations, or to edit in Excel/Sheets."
+msgstr "הורד קובץ CSV של נתוני הסידור הנוכחיים. שימושי לגיבויים, מעברים, או עריכה ב-Excel/Sheets."
+
+#: admin/views/importexport.php:88
+msgid "Filter by post type"
+msgstr "סינון לפי סוג פוסט"
+
+#: admin/views/importexport.php:105
+msgid "Restrict to specific taxonomy"
+msgstr "הגבל לטקסונומיה ספציפית"
+
+#: admin/views/importexport.php:107
+msgid "e.g. product_cat (empty = global only)"
+msgstr "לדוגמה: product_cat (ריק = גלובלי בלבד)"
+
+#: admin/views/importexport.php:110
+msgid "Download CSV"
+msgstr "הורד CSV"
+
+#: admin/views/importexport.php:115
+msgid "Import from CSV"
+msgstr "ייבוא מ-CSV"
+
+#: admin/views/importexport.php:117
+msgid "Upload a CSV with columns: post_id, post_type, taxonomy, term_id, menu_order, is_sticky, is_hidden. Only post_id and menu_order are required."
+msgstr "העלה CSV עם העמודות: post_id, post_type, taxonomy, term_id, menu_order, is_sticky, is_hidden. רק post_id ו-menu_order חובה."
+
+#: admin/views/importexport.php:128
+msgid "Dry run (parse only, do not save)"
+msgstr "הרצה יבשה (פירוק בלבד, ללא שמירה)"
+
+#: admin/views/importexport.php:134
+msgid "Update only — skip new rows"
+msgstr "עדכון בלבד — דלג על שורות חדשות"
+
+#: admin/views/importexport.php:137
+msgid "Import CSV"
+msgstr "ייבוא CSV"
+
+#: admin/views/importexport.php:141
+msgid "Show CSV format example"
+msgstr "הצג דוגמת פורמט CSV"
+
+#: includes/class-pcpo-csv-handler.php:118
+msgid "Empty file."
+msgstr "קובץ ריק."
+
+#. translators: %s: CSV column name
+#: includes/class-pcpo-csv-handler.php:134
+#, php-format
+msgid "Missing required column: %s"
+msgstr "חסרה עמודת חובה: %s"
+
+#. translators: %d: CSV line number
+#: includes/class-pcpo-csv-handler.php:160
+#, php-format
+msgid "Line %d: missing post_id"
+msgstr "שורה %d: חסר post_id"
+
+#. translators: 1: CSV line number, 2: post ID
+#: includes/class-pcpo-csv-handler.php:166
+#, php-format
+msgid "Line %1$d: post ID %2$d not found"
+msgstr "שורה %1$d: post ID %2$d לא נמצא"
+
+#. translators: %d: CSV line number
+#: includes/class-pcpo-csv-handler.php:198
+#, php-format
+msgid "Line %d: DB error"
+msgstr "שורה %d: שגיאת DB"
+
+#: admin/views/importexport.php:69
+msgid "View errors"
+msgstr "הצגת שגיאות"
+
+#: admin/views/settings.php:20
+msgid "All-IN Post Order — Settings"
+msgstr "All-IN סידור פוסטים — הגדרות"
+
+#: admin/views/settings.php:26
+msgid "Scope"
+msgstr "היקף"
+
+#: admin/views/settings.php:42
+msgid "Behavior"
+msgstr "התנהגות"
+
+#: admin/views/settings.php:108
+msgid "Permissions"
+msgstr "הרשאות"
+
+#: admin/views/settings.php:146
+msgid "UI"
+msgstr "ממשק"
+
+#: admin/views/settings.php:37
+msgid "Only enabled post types will be affected by PCPO ordering."
+msgstr "רק סוגי פוסטים מופעלים יושפעו מהסידור של PCPO."
+
+#: admin/views/settings.php:45
+msgid "Override explicit orderby"
+msgstr "דרוס orderby מפורש"
+
+#: admin/views/settings.php:48
+msgid "No — respect the widget / theme"
+msgstr "לא — כבד את הוויג'ט / תבנית"
+
+#: admin/views/settings.php:49
+msgid "Yes — override and apply PCPO ordering"
+msgstr "כן — דרוס והחל את הסידור של PCPO"
+
+#: admin/views/settings.php:51
+msgid "When an Elementor / theme query already sets orderby (e.g. \"by date\"), should PCPO still apply?"
+msgstr "כאשר שאילתת Elementor / תבנית כבר מגדירה orderby (לדוגמה \"לפי תאריך\"), האם PCPO צריך לחול בכל זאת?"
+
+#: admin/views/settings.php:55
+msgid "Multi-term strategy"
+msgstr "אסטרטגיית ריבוי קטגוריות"
+
+#: admin/views/settings.php:58
+msgid "Primary term (Yoast / RankMath / WC) with fallback to global"
+msgstr "קטגוריה ראשית (Yoast / RankMath / WC) עם נפילה לגלובלי"
+
+#: admin/views/settings.php:59
+msgid "Always use the global order"
+msgstr "השתמש תמיד בסדר הגלובלי"
+
+#: admin/views/settings.php:60
+msgid "Use the first term in the query"
+msgstr "השתמש בקטגוריה הראשונה בשאילתה"
+
+#: admin/views/settings.php:62
+msgid "When a query targets multiple terms, which ordering wins?"
+msgstr "כאשר שאילתה כוללת מספר קטגוריות, איזה סדר ינצח?"
+
+#: admin/views/settings.php:66
+msgid "Sync to WooCommerce menu_order"
+msgstr "סנכרון ל-WooCommerce menu_order"
+
+#: admin/views/settings.php:69
+msgid "Yes (recommended) — keep wp_posts.menu_order in sync with global product order"
+msgstr "כן (מומלץ) — שמור על wp_posts.menu_order מסונכרן עם הסדר הגלובלי של מוצרים"
+
+#: admin/views/settings.php:70
+msgid "No — only our own table"
+msgstr "לא — רק הטבלה שלנו"
+
+#: admin/views/settings.php:72
+msgid "Recommended ON for WooCommerce so reports, exports and other plugins see your custom order."
+msgstr "מומלץ דלוק עבור WooCommerce כדי שדוחות, ייצוא ותוספים אחרים יראו את הסדר המותאם שלך."
+
+#: admin/views/settings.php:98
+msgid "Random seed"
+msgstr "Random seed"
+
+#: admin/views/settings.php:101
+msgid "Per day (cache-friendly)"
+msgstr "לפי יום (ידידותי למטמון)"
+
+#: admin/views/settings.php:102
+msgid "Per user per day"
+msgstr "לפי משתמש ביום"
+
+#: admin/views/settings.php:111
+msgid "Admin capability"
+msgstr "הרשאת מנהל"
+
+#: admin/views/settings.php:114
+msgid "Required to access plugin settings, bulk actions, and templates."
+msgstr "נדרש לגישה להגדרות התוסף, פעולות מרובות ותבניות."
+
+#: admin/views/settings.php:118
+msgid "Sort capability"
+msgstr "הרשאת סידור"
+
+#: admin/views/settings.php:121
+msgid "Required to reorder posts via drag-and-drop."
+msgstr "נדרש לסידור פוסטים בגרירה ושחרור."
+
+#: admin/views/settings.php:125
+msgid "Role-based ordering"
+msgstr "סידור לפי תפקיד"
+
+#: admin/views/settings.php:128
+msgid "Enabled — different roles can see different orders"
+msgstr "פעיל — תפקידים שונים יכולים לראות סדרים שונים"
+
+#: admin/views/settings.php:129
+msgid "Disabled"
+msgstr "כבוי"
+
+#: admin/views/settings.php:132
+msgid "Configure per-context role overrides on the Sort page. Logged-out users always see the default order mode."
+msgstr "הגדר עקיפות לפי תפקיד עבור הקשר ספציפי בעמוד הסידור. משתמשים שאינם מחוברים תמיד יראו את מצב הסידור ברירת המחדל."
+
+#: admin/views/settings.php:135
+msgid "Available roles"
+msgstr "תפקידים זמינים"
+
+#: admin/views/settings.php:149
+msgid "Sort page — items per page"
+msgstr "עמוד סידור — פריטים בעמוד"
+
+#: includes/class-pcpo-settings.php:30
+msgid "Manual (drag & drop)"
+msgstr "ידני (גרירה ושחרור)"
+
+#: includes/class-pcpo-settings.php:34
+msgid "Inherit from parent / global"
+msgstr "ירש מהורה / גלובלי"
+
+#: includes/class-pcpo-settings.php:38
+msgid "Default WordPress menu order"
+msgstr "סדר ברירת מחדל של וורדפרס"
+
+#: includes/class-pcpo-settings.php:42
+msgid "Title A → Z"
+msgstr "כותרת א → ת"
+
+#: includes/class-pcpo-settings.php:47
+msgid "Title Z → A"
+msgstr "כותרת ת → א"
+
+#: includes/class-pcpo-settings.php:52
+msgid "Date — newest first"
+msgstr "תאריך — חדש קודם"
+
+#: includes/class-pcpo-settings.php:57
+msgid "Date — oldest first"
+msgstr "תאריך — ישן קודם"
+
+#: includes/class-pcpo-settings.php:62
+msgid "Last modified — newest first"
+msgstr "עודכן לאחרונה — חדש קודם"
+
+#: includes/class-pcpo-settings.php:67
+msgid "Random (with daily seed)"
+msgstr "אקראי (עם seed יומי)"
+
+#: includes/class-pcpo-settings.php:72
+msgid "Price low → high"
+msgstr "מחיר נמוך → גבוה"
+
+#: includes/class-pcpo-settings.php:78
+msgid "Price high → low"
+msgstr "מחיר גבוה → נמוך"
+
+#: includes/class-pcpo-settings.php:84
+msgid "Popularity (total sales)"
+msgstr "פופולריות (סך מכירות)"
+
+#: includes/class-pcpo-settings.php:90
+msgid "Average rating"
+msgstr "דירוג ממוצע"
+
+#: includes/class-pcpo-settings.php:96
+msgid "Stock status (in stock first)"
+msgstr "סטטוס מלאי (זמין במלאי קודם)"
+
+#: includes/class-pcpo-shortcode.php:99
+msgid "No posts found."
+msgstr "לא נמצאו פוסטים."
+
+#: includes/class-pcpo-rest-api.php:271
+msgid "post_id is required"
+msgstr "post_id הוא שדה חובה"
+
+#: includes/class-pcpo-ajax.php:227
+msgid "No order provided."
+msgstr "לא סופק סדר."
+
+#: includes/class-pcpo-ajax.php:247
+msgid "Order saved."
+msgstr "הסדר נשמר."
+
+#: includes/class-pcpo-ajax.php:426
+msgid "Order reset."
+msgstr "הסדר אופס."
+
+#: includes/class-pcpo-ajax.php:446
+msgid "Order reversed."
+msgstr "הסדר הפוך."
+
+#: includes/class-pcpo-ajax.php:375
+msgid "Shuffled."
+msgstr "עורבב."
+
+#: includes/class-pcpo-ajax.php:408
+msgid "Alphabetized."
+msgstr "סודר אלפביתית."
+
+#: includes/class-pcpo-ajax.php:107
+msgid "Invalid post type."
+msgstr "סוג פוסט לא חוקי."
+
+#. translators: 1: imported, 2: skipped, 3: errors
+#: admin/views/importexport.php:60
+#, php-format
+msgid "Imported: %1$d, Skipped: %2$d, Errors: %3$d"
+msgstr "יובא: %1$d, דולג: %2$d, שגיאות: %3$d"
+
+#. Plugin URI of the plugin
+#: all-in-post-order.php
+msgid "https://a-in.co.il/plugins/post-order/"
+msgstr ""
+
+#. Description of the plugin
+#: all-in-post-order.php
+msgid "Drag-and-drop custom post ordering for any post type and WooCommerce products, with per-taxonomy ordering, order variations (manual, alphabetical, price, popularity, random, etc.), sticky posts, hidden posts, order templates, CSV import/export, per-role ordering, REST API, and shortcode/template tag for manual queries. Works with every theme and Elementor."
+msgstr ""
+
+#. Author of the plugin
+#: all-in-post-order.php
+msgid "Eli Shvarzman"
+msgstr ""
+
+#. Author URI of the plugin
+#: all-in-post-order.php
+msgid "https://a-in.co.il/"
+msgstr ""
+
+#: admin/views/bulk.php:44
+#: admin/views/sort.php:55
+msgid "— Global —"
+msgstr ""
+
+#: admin/views/debug.php:16
+msgid "Cleared."
+msgstr ""
+
+#: admin/views/debug.php:26
+msgid "Only URLs on this site can be tested."
+msgstr ""
+
+#. translators: 1: URL, 2: HTTP status code
+#: admin/views/debug.php:70
+#, php-format
+msgid "Sent request to %1$s — HTTP %2$d."
+msgstr ""
+
+#: admin/views/debug.php:77
+msgid "PCPO debug output detected in the response. Capture below."
+msgstr ""
+
+#: admin/views/debug.php:79
+msgid "NO PCPO debug output in the response — the page may still be cached. Try the URL in a private window while logged in, or temporarily disable Breeze."
+msgstr ""
+
+#: admin/views/debug.php:92
+msgid "PCPO Debug"
+msgstr ""
+
+#: admin/views/debug.php:98
+msgid "Debug mode is OFF."
+msgstr ""
+
+#. translators: %s: link to settings
+#: admin/views/debug.php:102
+#, php-format
+msgid "Turn it on under %s, then use the \"Test URL\" form below or visit a page directly. Remember to turn it off again on production."
+msgstr ""
+
+#: admin/views/debug.php:103
+msgid "Settings → Debug mode"
+msgstr ""
+
+#: admin/views/debug.php:111
+msgid "Capture a URL right now"
+msgstr ""
+
+#: admin/views/debug.php:112
+msgid "Sends a fresh authenticated request to the URL with a cache-buster, which forces page caches (Breeze, WP Rocket) to pass through to PHP. The resulting PCPO debug capture appears below."
+msgstr ""
+
+#: admin/views/debug.php:125
+msgid "Capture now"
+msgstr ""
+
+#: admin/views/debug.php:132
+msgid "Refresh"
+msgstr ""
+
+#: admin/views/debug.php:137
+msgid "Clear all captures"
+msgstr ""
+
+#: admin/views/debug.php:144
+msgid "No captures yet. Use \"Capture a URL right now\" above, or visit a front-end page while debug is on."
+msgstr ""
+
+#: admin/views/debug.php:156
+msgid "events captured"
+msgstr ""
+
+#: admin/views/debug.php:160
+msgid "Summary"
+msgstr ""
+
+#: admin/views/debug.php:168
+msgid "Full event timeline (click to expand)"
+msgstr ""
+
+#: admin/views/settings.php:76
+msgid "Debug mode"
+msgstr ""
+
+#: admin/views/settings.php:79
+msgid "Off"
+msgstr ""
+
+#: admin/views/settings.php:80
+msgid "On — record every query decision and dump as HTML comment in the front-end footer"
+msgstr ""
+
+#: admin/views/settings.php:82
+msgid "When on, PCPO records every query it sees (marked or skipped, with reason), the ORDER BY before and after rewriting, and the final SQL of marked queries. View by visiting any front-end page as a logged-in editor and inspecting the page source (Ctrl-U) — search for \"PCPO DEBUG\". When WP_DEBUG and PCPO_DEBUG are both on in wp-config.php, the same data is also written to the PHP error log so it survives page caches. Turn OFF on production once diagnosis is done."
+msgstr ""
+
+#: admin/views/settings.php:87
+msgid "WPML — sync order across languages"
+msgstr ""
+
+#: admin/views/settings.php:90
+msgid "Yes (recommended) — mirror manual order, sticky and hidden flags onto translated posts / terms"
+msgstr ""
+
+#: admin/views/settings.php:91
+msgid "No — order is stored against the translated post ID only (front-end may diverge between languages)"
+msgstr ""
+
+#: admin/views/settings.php:93
+msgid "WPML stores translations as separate posts. Without sync, an order set on the Hebrew product will not apply when a visitor switches to English. With sync on, every write is mirrored onto each sibling translation in the matching language's term."
+msgstr ""
+
+#: admin/views/sort.php:34
+msgid "Filters and actions"
+msgstr ""
+
+#: admin/views/sort.php:62
+msgid "— All terms —"
+msgstr ""
+
+#: admin/views/sort.php:81
+msgid "Quick filters"
+msgstr ""
+
+#: admin/views/sort.php:84
+msgid "Sticky"
+msgstr ""
+
+#: admin/views/sort.php:92
+msgid "Modified this week"
+msgstr ""
+
+#: admin/views/sort.php:97
+msgid "In stock"
+msgstr ""
+
+#: admin/views/sort.php:101
+msgid "Clear"
+msgstr ""
+
+#: admin/views/sort.php:108
+msgid "Order mode"
+msgstr ""
+
+#: admin/views/sort.php:122
+msgid "Bulk actions"
+msgstr ""
+
+#: admin/views/sort.php:167
+msgid "Click to move to position"
+msgstr ""
+
+#: includes/class-pcpo-admin.php:135
+#: includes/class-pcpo-admin.php:136
+msgid "Debug"
+msgstr ""
+
+#. translators: %s: category / term name
+#: includes/class-pcpo-plugin.php:340
+#, php-format
+msgid "Sort \"%s\""
+msgstr ""
+
+#: includes/class-pcpo-plugin.php:345
+msgid "Open this category in All-IN Post Order"
+msgstr ""
