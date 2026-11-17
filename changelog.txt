@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.0.18 — 2026-11-17 =
+* Changed: no inline scripts or event handlers (debug helper and template delete confirmation are enqueued JavaScript). Debug payload URL sanitized.
+
 = 1.0.17 — 2026-11-13 =
 * **Security:** the Debug page's "Test URL" check only accepts URLs on this site, because the test request carries the administrator's login cookies.
 

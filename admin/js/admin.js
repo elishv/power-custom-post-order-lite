@@ -649,3 +649,10 @@
 		initTemplatesPage();
 	});
 }(jQuery));
+
+// Confirm before submitting forms marked with data-pcpo-confirm (no inline onsubmit).
+jQuery( function ( $ ) {
+	$( document ).on( 'submit', 'form.pcpo-confirm-submit', function () {
+		return window.confirm( String( $( this ).data( 'pcpo-confirm' ) || '' ) );
+	} );
+} );

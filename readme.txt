@@ -5,7 +5,7 @@ Tags: post order, sort posts, drag and drop, woocommerce sort, custom order
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.17
+Stable tag: 1.0.18
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -74,6 +74,10 @@ Yes — ships with Hebrew translation (he_IL) and a dedicated RTL stylesheet.
 
 == Changelog ==
 
+= 1.0.18 — 2026-11-17 =
+* **Changed:** no inline scripts or event handlers. The front-end debug console output and banner close button run from the enqueued `assets/js/pcpo-debug.js`; the template delete confirmation is handled in `admin/js/admin.js`.
+* **Changed:** the debug payload URL is sanitized.
+
 = 1.0.17 — 2026-11-13 =
 * **Security:** the Debug page's "Test URL" check only accepts URLs on this site, because the test request carries the administrator's login cookies.
 
@@ -90,6 +94,9 @@ Yes — ships with Hebrew translation (he_IL) and a dedicated RTL stylesheet.
 Older versions: see changelog.txt.
 
 == Upgrade Notice ==
+
+= 1.0.18 =
+No inline scripts: debug and admin confirmations now use enqueued JavaScript.
 
 = 1.0.17 =
 Security: the Debug page only tests URLs on your own site.

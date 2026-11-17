@@ -148,7 +148,7 @@ if ( ! empty( $_POST['pcpo_delete_template'] ) && check_admin_referer( 'pcpo_del
 									<button type="button" class="button pcpo-apply-template" data-id="<?php echo esc_attr( (string) $pcpo_t->id ); ?>">
 										<?php esc_html_e( 'Apply…', 'power-custom-post-order' ); ?>
 									</button>
-									<form method="post" style="display:inline" onsubmit="return confirm('<?php echo esc_js( __( 'Delete this template?', 'power-custom-post-order' ) ); ?>');">
+									<form method="post" style="display:inline" class="pcpo-confirm-submit" data-pcpo-confirm="<?php echo esc_attr__( 'Delete this template?', 'power-custom-post-order' ); ?>">
 										<?php wp_nonce_field( 'pcpo_delete_template' ); ?>
 										<input type="hidden" name="pcpo_delete_template" value="1" />
 										<input type="hidden" name="template_id" value="<?php echo esc_attr( (string) $pcpo_t->id ); ?>" />

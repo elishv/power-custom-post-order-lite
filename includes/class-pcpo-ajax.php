@@ -132,7 +132,7 @@ class PCPO_Ajax {
 
 		// Restrict to the term if provided.
 		if ( $taxonomy && $term_id ) {
-			$args['tax_query'] = array(
+			$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Scoping the query to a term is the feature itself; bounded, paginated query.
 				array(
 					'taxonomy' => $taxonomy,
 					'field'    => 'term_id',
@@ -169,7 +169,7 @@ class PCPO_Ajax {
 			}
 
 			if ( ! empty( $filters['instock'] ) && class_exists( 'WooCommerce' ) && 'product' === $post_type ) {
-				$args['meta_query']   = isset( $args['meta_query'] ) ? $args['meta_query'] : array();
+				$args['meta_query']   = isset( $args['meta_query'] ) ? $args['meta_query'] : array(); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Needed to find the plugin's own flagged items; bounded query.
 				$args['meta_query'][] = array(
 					'key'     => '_stock_status',
 					'value'   => 'instock',
@@ -331,7 +331,7 @@ class PCPO_Ajax {
 			),
 		);
 		if ( $taxonomy && $term_id ) {
-			$args['tax_query'] = array(
+			$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Scoping the query to a term is the feature itself; bounded, paginated query.
 				array(
 					'taxonomy' => $taxonomy,
 					'field'    => 'term_id',
@@ -568,7 +568,7 @@ class PCPO_Ajax {
 			'pcpo_skip'      => true,
 		);
 		if ( $taxonomy && $term_id ) {
-			$args['tax_query'] = array(
+			$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Scoping the query to a term is the feature itself; bounded, paginated query.
 				array(
 					'taxonomy' => $taxonomy,
 					'field'    => 'term_id',
