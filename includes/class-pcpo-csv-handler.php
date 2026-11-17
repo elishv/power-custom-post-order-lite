@@ -115,7 +115,7 @@ class PCPO_CSV_Handler {
 			return array(
 				'imported' => 0,
 				'skipped'  => 0,
-				'errors'   => array( __( 'Empty file.', 'power-custom-post-order' ) ),
+				'errors'   => array( __( 'Empty file.', 'all-in-post-order' ) ),
 			);
 		}
 
@@ -131,7 +131,7 @@ class PCPO_CSV_Handler {
 					'imported' => 0,
 					'skipped'  => 0,
 					/* translators: %s: CSV column name */
-					'errors'   => array( sprintf( __( 'Missing required column: %s', 'power-custom-post-order' ), $col ) ),
+					'errors'   => array( sprintf( __( 'Missing required column: %s', 'all-in-post-order' ), $col ) ),
 				);
 			}
 		}
@@ -157,13 +157,13 @@ class PCPO_CSV_Handler {
 			if ( ! $post_id ) {
 				++$skipped;
 				/* translators: %d: CSV line number */
-				$errors[] = sprintf( __( 'Line %d: missing post_id', 'power-custom-post-order' ), $line_num + 2 );
+				$errors[] = sprintf( __( 'Line %d: missing post_id', 'all-in-post-order' ), $line_num + 2 );
 				continue;
 			}
 			if ( ! get_post( $post_id ) ) {
 				++$skipped;
 				/* translators: 1: CSV line number, 2: post ID */
-				$errors[] = sprintf( __( 'Line %1$d: post ID %2$d not found', 'power-custom-post-order' ), $line_num + 2, $post_id );
+				$errors[] = sprintf( __( 'Line %1$d: post ID %2$d not found', 'all-in-post-order' ), $line_num + 2, $post_id );
 				continue;
 			}
 			if ( $options['update_only'] ) {
@@ -195,7 +195,7 @@ class PCPO_CSV_Handler {
 			} else {
 				++$skipped;
 				/* translators: %d: CSV line number */
-				$errors[] = sprintf( __( 'Line %d: DB error', 'power-custom-post-order' ), $line_num + 2 );
+				$errors[] = sprintf( __( 'Line %d: DB error', 'all-in-post-order' ), $line_num + 2 );
 			}
 		}
 

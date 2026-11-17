@@ -72,7 +72,7 @@ class PCPO_WooCommerce {
 		}
 		// Use $wpdb directly to avoid triggering save_post → infinite loop with capture below.
 		global $wpdb;
-		$wpdb->update(
+		$wpdb->update( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- menu_order is written directly so save_post is not re-triggered (would loop); clean_post_cache() follows.
 			$wpdb->posts,
 			array( 'menu_order' => (int) $menu_order ),
 			array( 'ID' => $post_id ),

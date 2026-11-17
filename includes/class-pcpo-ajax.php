@@ -78,11 +78,11 @@ class PCPO_Ajax {
 	 */
 	private function verify( $required_cap = '' ) {
 		if ( ! check_ajax_referer( 'pcpo_admin_nonce', 'nonce', false ) ) {
-			wp_send_json_error( array( 'message' => __( 'Invalid security token.', 'power-custom-post-order' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'Invalid security token.', 'all-in-post-order' ) ), 403 );
 		}
 		$cap = $required_cap ? $required_cap : $this->settings->get_sortable_capability();
 		if ( ! current_user_can( $cap ) ) {
-			wp_send_json_error( array( 'message' => __( 'Insufficient permissions.', 'power-custom-post-order' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'Insufficient permissions.', 'all-in-post-order' ) ), 403 );
 		}
 	}
 
@@ -104,7 +104,7 @@ class PCPO_Ajax {
 		$filters   = isset( $_POST['filters'] ) && is_array( $_POST['filters'] ) ? array_map( 'sanitize_key', wp_unslash( $_POST['filters'] ) ) : array();
 
 		if ( ! $post_type || ! post_type_exists( $post_type ) ) {
-			wp_send_json_error( array( 'message' => __( 'Invalid post type.', 'power-custom-post-order' ) ), 400 );
+			wp_send_json_error( array( 'message' => __( 'Invalid post type.', 'all-in-post-order' ) ), 400 );
 		}
 
 		// Build WP_Query args. We rely on our own query handler to apply ordering
@@ -132,7 +132,7 @@ class PCPO_Ajax {
 
 		// Restrict to the term if provided.
 		if ( $taxonomy && $term_id ) {
-			$args['tax_query'] = array(
+			$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Scoping the query to a term is the feature itself; bounded, paginated query.
 				array(
 					'taxonomy' => $taxonomy,
 					'field'    => 'term_id',
@@ -169,7 +169,7 @@ class PCPO_Ajax {
 			}
 
 			if ( ! empty( $filters['instock'] ) && class_exists( 'WooCommerce' ) && 'product' === $post_type ) {
-				$args['meta_query']   = isset( $args['meta_query'] ) ? $args['meta_query'] : array();
+				$args['meta_query']   = isset( $args['meta_query'] ) ? $args['meta_query'] : array(); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Needed to find the plugin's own flagged items; bounded query.
 				$args['meta_query'][] = array(
 					'key'     => '_stock_status',
 					'value'   => 'instock',
@@ -224,7 +224,7 @@ class PCPO_Ajax {
 		$per_page  = isset( $_POST['per_page'] ) ? absint( wp_unslash( $_POST['per_page'] ) ) : 50;
 
 		if ( ! $order ) {
-			wp_send_json_error( array( 'message' => __( 'No order provided.', 'power-custom-post-order' ) ), 400 );
+			wp_send_json_error( array( 'message' => __( 'No order provided.', 'all-in-post-order' ) ), 400 );
 		}
 
 		$offset = ( $page - 1 ) * $per_page;
@@ -244,7 +244,7 @@ class PCPO_Ajax {
 		wp_send_json_success(
 			array(
 				'updated' => $count,
-				'message' => __( 'Order saved.', 'power-custom-post-order' ),
+				'message' => __( 'Order saved.', 'all-in-post-order' ),
 			)
 		);
 	}
@@ -331,7 +331,7 @@ class PCPO_Ajax {
 			),
 		);
 		if ( $taxonomy && $term_id ) {
-			$args['tax_query'] = array(
+			$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Scoping the query to a term is the feature itself; bounded, paginated query.
 				array(
 					'taxonomy' => $taxonomy,
 					'field'    => 'term_id',
@@ -372,7 +372,7 @@ class PCPO_Ajax {
 		wp_send_json_success(
 			array(
 				'updated' => $count,
-				'message' => __( 'Shuffled.', 'power-custom-post-order' ),
+				'message' => __( 'Shuffled.', 'all-in-post-order' ),
 			)
 		);
 	}
@@ -405,7 +405,7 @@ class PCPO_Ajax {
 		wp_send_json_success(
 			array(
 				'updated' => $count,
-				'message' => __( 'Alphabetized.', 'power-custom-post-order' ),
+				'message' => __( 'Alphabetized.', 'all-in-post-order' ),
 			)
 		);
 	}
@@ -423,7 +423,7 @@ class PCPO_Ajax {
 		wp_send_json_success(
 			array(
 				'deleted' => $count,
-				'message' => __( 'Order reset.', 'power-custom-post-order' ),
+				'message' => __( 'Order reset.', 'all-in-post-order' ),
 			)
 		);
 	}
@@ -443,7 +443,7 @@ class PCPO_Ajax {
 		wp_send_json_success(
 			array(
 				'updated' => $count,
-				'message' => __( 'Order reversed.', 'power-custom-post-order' ),
+				'message' => __( 'Order reversed.', 'all-in-post-order' ),
 			)
 		);
 	}
@@ -568,7 +568,7 @@ class PCPO_Ajax {
 			'pcpo_skip'      => true,
 		);
 		if ( $taxonomy && $term_id ) {
-			$args['tax_query'] = array(
+			$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Scoping the query to a term is the feature itself; bounded, paginated query.
 				array(
 					'taxonomy' => $taxonomy,
 					'field'    => 'term_id',

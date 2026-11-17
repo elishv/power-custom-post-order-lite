@@ -67,8 +67,8 @@ class PCPO_Admin {
 		$cap = $this->settings->get_admin_capability();
 
 		add_menu_page(
-			__( 'Power Custom Post Order', 'power-custom-post-order' ),
-			__( 'Post Order', 'power-custom-post-order' ),
+			__( 'All-IN Post Order', 'all-in-post-order' ),
+			__( 'Post Order', 'all-in-post-order' ),
 			$cap,
 			self::MENU_SLUG,
 			array( $this, 'render_dashboard' ),
@@ -78,8 +78,8 @@ class PCPO_Admin {
 
 		add_submenu_page(
 			self::MENU_SLUG,
-			__( 'Dashboard', 'power-custom-post-order' ),
-			__( 'Dashboard', 'power-custom-post-order' ),
+			__( 'Dashboard', 'all-in-post-order' ),
+			__( 'Dashboard', 'all-in-post-order' ),
 			$cap,
 			self::MENU_SLUG,
 			array( $this, 'render_dashboard' )
@@ -87,8 +87,8 @@ class PCPO_Admin {
 
 		add_submenu_page(
 			self::MENU_SLUG,
-			__( 'Sort Posts', 'power-custom-post-order' ),
-			__( 'Sort Posts', 'power-custom-post-order' ),
+			__( 'Sort Posts', 'all-in-post-order' ),
+			__( 'Sort Posts', 'all-in-post-order' ),
 			$this->settings->get_sortable_capability(),
 			'pcpo-sort',
 			array( $this, 'render_sort_page' )
@@ -96,8 +96,8 @@ class PCPO_Admin {
 
 		add_submenu_page(
 			self::MENU_SLUG,
-			__( 'Bulk Actions', 'power-custom-post-order' ),
-			__( 'Bulk Actions', 'power-custom-post-order' ),
+			__( 'Bulk Actions', 'all-in-post-order' ),
+			__( 'Bulk Actions', 'all-in-post-order' ),
 			$cap,
 			'pcpo-bulk',
 			array( $this, 'render_bulk_page' )
@@ -105,8 +105,8 @@ class PCPO_Admin {
 
 		add_submenu_page(
 			self::MENU_SLUG,
-			__( 'Order Templates', 'power-custom-post-order' ),
-			__( 'Templates', 'power-custom-post-order' ),
+			__( 'Order Templates', 'all-in-post-order' ),
+			__( 'Templates', 'all-in-post-order' ),
 			$cap,
 			'pcpo-templates',
 			array( $this, 'render_templates_page' )
@@ -114,8 +114,8 @@ class PCPO_Admin {
 
 		add_submenu_page(
 			self::MENU_SLUG,
-			__( 'Import / Export', 'power-custom-post-order' ),
-			__( 'Import / Export', 'power-custom-post-order' ),
+			__( 'Import / Export', 'all-in-post-order' ),
+			__( 'Import / Export', 'all-in-post-order' ),
 			$cap,
 			'pcpo-importexport',
 			array( $this, 'render_importexport_page' )
@@ -123,8 +123,8 @@ class PCPO_Admin {
 
 		add_submenu_page(
 			self::MENU_SLUG,
-			__( 'Settings', 'power-custom-post-order' ),
-			__( 'Settings', 'power-custom-post-order' ),
+			__( 'Settings', 'all-in-post-order' ),
+			__( 'Settings', 'all-in-post-order' ),
 			$cap,
 			'pcpo-settings',
 			array( $this, 'render_settings_page' )
@@ -132,8 +132,8 @@ class PCPO_Admin {
 
 		add_submenu_page(
 			self::MENU_SLUG,
-			__( 'Debug', 'power-custom-post-order' ),
-			__( 'Debug', 'power-custom-post-order' ),
+			__( 'Debug', 'all-in-post-order' ),
+			__( 'Debug', 'all-in-post-order' ),
 			$cap,
 			'pcpo-debug',
 			array( $this, 'render_debug_page' )
@@ -189,19 +189,19 @@ class PCPO_Admin {
 				'restNonce' => wp_create_nonce( 'wp_rest' ),
 				'isRtl'   => is_rtl(),
 				'i18n'    => array(
-					'saving'      => __( 'Saving…', 'power-custom-post-order' ),
-					'saved'       => __( 'Order saved', 'power-custom-post-order' ),
-					'error'       => __( 'Something went wrong. Check the browser console.', 'power-custom-post-order' ),
-					'confirmReset' => __( 'Reset order for this context? This will remove your manual ordering and revert to default.', 'power-custom-post-order' ),
-					'confirmShuffle' => __( 'Shuffle ALL items in this context randomly?', 'power-custom-post-order' ),
-					'confirmAlphabetize' => __( 'Re-order alphabetically? Your current manual order will be overwritten.', 'power-custom-post-order' ),
-					'pinned'      => __( 'Pinned', 'power-custom-post-order' ),
-					'hidden'      => __( 'Hidden', 'power-custom-post-order' ),
-					'movedToTop'  => __( 'Moved to top', 'power-custom-post-order' ),
-					'movedToBottom' => __( 'Moved to bottom', 'power-custom-post-order' ),
-					'noResults'   => __( 'No posts match your filters.', 'power-custom-post-order' ),
-					'loading'     => __( 'Loading…', 'power-custom-post-order' ),
-					'moveToPosition' => __( 'Move to position', 'power-custom-post-order' ),
+					'saving'      => __( 'Saving…', 'all-in-post-order' ),
+					'saved'       => __( 'Order saved', 'all-in-post-order' ),
+					'error'       => __( 'Something went wrong. Check the browser console.', 'all-in-post-order' ),
+					'confirmReset' => __( 'Reset order for this context? This will remove your manual ordering and revert to default.', 'all-in-post-order' ),
+					'confirmShuffle' => __( 'Shuffle ALL items in this context randomly?', 'all-in-post-order' ),
+					'confirmAlphabetize' => __( 'Re-order alphabetically? Your current manual order will be overwritten.', 'all-in-post-order' ),
+					'pinned'      => __( 'Pinned', 'all-in-post-order' ),
+					'hidden'      => __( 'Hidden', 'all-in-post-order' ),
+					'movedToTop'  => __( 'Moved to top', 'all-in-post-order' ),
+					'movedToBottom' => __( 'Moved to bottom', 'all-in-post-order' ),
+					'noResults'   => __( 'No posts match your filters.', 'all-in-post-order' ),
+					'loading'     => __( 'Loading…', 'all-in-post-order' ),
+					'moveToPosition' => __( 'Move to position', 'all-in-post-order' ),
 				),
 			)
 		);
@@ -264,7 +264,7 @@ class PCPO_Admin {
 	 * @return array
 	 */
 	public function plugin_action_links( $links ) {
-		$settings = '<a href="' . esc_url( admin_url( 'admin.php?page=pcpo-settings' ) ) . '">' . esc_html__( 'Settings', 'power-custom-post-order' ) . '</a>';
+		$settings = '<a href="' . esc_url( admin_url( 'admin.php?page=pcpo-settings' ) ) . '">' . esc_html__( 'Settings', 'all-in-post-order' ) . '</a>';
 		array_unshift( $links, $settings );
 		return $links;
 	}

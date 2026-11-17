@@ -96,7 +96,7 @@ class PCPO_Shortcode {
 
 		$query = $this->run_query( $atts );
 		if ( ! $query->have_posts() ) {
-			return '<div class="pcpo-empty">' . esc_html__( 'No posts found.', 'power-custom-post-order' ) . '</div>';
+			return '<div class="pcpo-empty">' . esc_html__( 'No posts found.', 'all-in-post-order' ) . '</div>';
 		}
 
 		$show    = array_map( 'trim', explode( ',', $atts['show'] ) );
@@ -236,7 +236,7 @@ class PCPO_Shortcode {
 			),
 		);
 		if ( $taxonomy && $term_id ) {
-			$args['tax_query'] = array(
+			$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Scoping the query to a term is the feature itself; bounded, paginated query.
 				array(
 					'taxonomy' => $taxonomy,
 					'field'    => 'term_id',

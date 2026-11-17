@@ -1,11 +1,11 @@
-=== Power Custom Post Order ===
+=== All-IN Post Order ===
 Contributors: elis85
 Donate link: https://a-in.co.il/plugins/post-order/
 Tags: post order, sort posts, drag and drop, woocommerce sort, custom order
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.17
+Stable tag: 1.0.18
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ Drag-and-drop ordering for any post type, per category or taxonomy term, with st
 
 == Description ==
 
-Power Custom Post Order replaces WordPress's default ordering with a context-aware system: drag posts, pages, products or any custom post type into place, and set a different order for every category or taxonomy term. It works with themes and builders that use standard WordPress queries, including Elementor, and syncs with WooCommerce's native `menu_order`.
+All-IN Post Order replaces WordPress's default ordering with a context-aware system: drag posts, pages, products or any custom post type into place, and set a different order for every category or taxonomy term. It works with themes and builders that use standard WordPress queries, including Elementor, and syncs with WooCommerce's native `menu_order`.
 
 It orders posts *within* a term. It does not reorder the terms themselves.
 
@@ -36,7 +36,7 @@ This plugin is complete on its own: no licence key, no locked features. Premium 
 
 == Installation ==
 
-1. Upload the `power-custom-post-order` folder to `wp-content/plugins/` (or upload the ZIP via WP admin → Plugins → Add New → Upload).
+1. Upload the `all-in-post-order` folder to `wp-content/plugins/` (or upload the ZIP via WP admin → Plugins → Add New → Upload).
 2. Activate.
 3. Visit **Post Order → Settings** and confirm which post types should be managed.
 4. Visit **Post Order → Sort Posts** to start ordering.
@@ -74,6 +74,11 @@ Yes — ships with Hebrew translation (he_IL) and a dedicated RTL stylesheet.
 
 == Changelog ==
 
+= 1.0.18 — 2026-11-17 =
+* **Changed:** renamed to All-IN Post Order (slug and text domain `all-in-post-order`). Settings, option names and database tables are unchanged.
+* **Changed:** no inline scripts or event handlers. The front-end debug console output and banner close button run from the enqueued `assets/js/pcpo-debug.js`; the template delete confirmation is handled in `admin/js/admin.js`.
+* **Changed:** the debug payload URL is sanitized.
+
 = 1.0.17 — 2026-11-13 =
 * **Security:** the Debug page's "Test URL" check only accepts URLs on this site, because the test request carries the administrator's login cookies.
 
@@ -90,6 +95,9 @@ Yes — ships with Hebrew translation (he_IL) and a dedicated RTL stylesheet.
 Older versions: see changelog.txt.
 
 == Upgrade Notice ==
+
+= 1.0.18 =
+No inline scripts: debug and admin confirmations now use enqueued JavaScript.
 
 = 1.0.17 =
 Security: the Debug page only tests URLs on your own site.

@@ -118,7 +118,7 @@ class PCPO_Database {
 			$now
 		);
 
-		$result = $wpdb->query( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		$result = $wpdb->query( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- The plugin's own order/settings/templates tables (no WordPress API); queries are prepared and the order cache is invalidated on every write.
 		if ( false === $result ) {
 			PCPO_Debug::log( '[PCPO][DB] upsert_order failed: ' . $wpdb->last_error . ' :: data=' . wp_json_encode( $data ) );
 			return false;
@@ -181,7 +181,7 @@ class PCPO_Database {
 	 */
 	public function get_order( $post_id, $taxonomy = '', $term_id = 0 ) {
 		global $wpdb;
-		return $wpdb->get_row(
+		return $wpdb->get_row( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- The plugin's own order/settings/templates tables (no WordPress API); queries are prepared and the order cache is invalidated on every write.
 			$wpdb->prepare(
 				"SELECT * FROM %i WHERE post_id = %d AND taxonomy = %s AND term_id = %d LIMIT 1",
 				$this->orders_table,
@@ -288,7 +288,7 @@ class PCPO_Database {
 	 */
 	public function delete_order( $post_id, $taxonomy = '', $term_id = 0 ) {
 		global $wpdb;
-		$deleted = $wpdb->delete(
+		$deleted = $wpdb->delete( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- The plugin's own order/settings/templates tables (no WordPress API); queries are prepared and the order cache is invalidated on every write.
 			$this->orders_table,
 			array(
 				'post_id'  => absint( $post_id ),
@@ -312,7 +312,7 @@ class PCPO_Database {
 	 */
 	public function delete_orders_for_post( $post_id ) {
 		global $wpdb;
-		return (int) $wpdb->delete(
+		return (int) $wpdb->delete( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- The plugin's own order/settings/templates tables (no WordPress API); queries are prepared and the order cache is invalidated on every write.
 			$this->orders_table,
 			array( 'post_id' => absint( $post_id ) ),
 			array( '%d' )
@@ -338,7 +338,7 @@ class PCPO_Database {
 			$where['post_type'] = sanitize_key( $post_type );
 			$format[]           = '%s';
 		}
-		$deleted = $wpdb->delete( $this->orders_table, $where, $format );
+		$deleted = $wpdb->delete( $this->orders_table, $where, $format ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- The plugin's own order/settings/templates tables (no WordPress API); queries are prepared and the order cache is invalidated on every write.
 		$this->invalidate_term_cache( $taxonomy, $term_id );
 
 		do_action( 'pcpo_after_reset_context', sanitize_key( $taxonomy ), absint( $term_id ), sanitize_key( $post_type ) );
@@ -359,7 +359,7 @@ class PCPO_Database {
 	 */
 	public function get_context_settings( $context_type, $context_value ) {
 		global $wpdb;
-		return $wpdb->get_row(
+		return $wpdb->get_row( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- The plugin's own order/settings/templates tables (no WordPress API); queries are prepared and the order cache is invalidated on every write.
 			$wpdb->prepare(
 				"SELECT * FROM %i WHERE context_type = %s AND context_value = %s LIMIT 1",
 				$this->settings_table,
@@ -410,7 +410,7 @@ class PCPO_Database {
 			$role_overrides,
 			current_time( 'mysql' )
 		);
-		return $wpdb->query( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		return $wpdb->query( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- The plugin's own order/settings/templates tables (no WordPress API); queries are prepared and the order cache is invalidated on every write.
 	}
 
 	/**
@@ -422,7 +422,7 @@ class PCPO_Database {
 	 */
 	public function delete_context_settings( $context_type, $context_value ) {
 		global $wpdb;
-		return (int) $wpdb->delete(
+		return (int) $wpdb->delete( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- The plugin's own order/settings/templates tables (no WordPress API); queries are prepared and the order cache is invalidated on every write.
 			$this->settings_table,
 			array(
 				'context_type'  => sanitize_key( $context_type ),
@@ -452,7 +452,7 @@ class PCPO_Database {
 		);
 		$args     = wp_parse_args( $args, $defaults );
 
-		$result = $wpdb->insert(
+		$result = $wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- The plugin's own order/settings/templates tables (no WordPress API); queries are prepared and the order cache is invalidated on every write.
 			$this->templates_table,
 			array(
 				'name'        => sanitize_text_field( $args['name'] ),
@@ -475,7 +475,7 @@ class PCPO_Database {
 	 */
 	public function get_template( $template_id ) {
 		global $wpdb;
-		return $wpdb->get_row(
+		return $wpdb->get_row( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- The plugin's own order/settings/templates tables (no WordPress API); queries are prepared and the order cache is invalidated on every write.
 			$wpdb->prepare( "SELECT * FROM %i WHERE id = %d", $this->templates_table, absint( $template_id ) )
 		);
 	}
@@ -489,7 +489,7 @@ class PCPO_Database {
 	public function list_templates( $post_type = '' ) {
 		global $wpdb;
 		if ( $post_type ) {
-			return $wpdb->get_results(
+			return $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- The plugin's own order/settings/templates tables (no WordPress API); queries are prepared and the order cache is invalidated on every write.
 				$wpdb->prepare(
 					"SELECT * FROM %i WHERE post_type = %s ORDER BY name ASC",
 					$this->templates_table,
@@ -497,7 +497,7 @@ class PCPO_Database {
 				)
 			);
 		}
-		return $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %i ORDER BY name ASC', $this->templates_table ) );
+		return $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %i ORDER BY name ASC', $this->templates_table ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- The plugin's own order/settings/templates tables (no WordPress API); queries are prepared and the order cache is invalidated on every write.
 	}
 
 	/**
@@ -508,7 +508,7 @@ class PCPO_Database {
 	 */
 	public function delete_template( $template_id ) {
 		global $wpdb;
-		return (int) $wpdb->delete(
+		return (int) $wpdb->delete( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- The plugin's own order/settings/templates tables (no WordPress API); queries are prepared and the order cache is invalidated on every write.
 			$this->templates_table,
 			array( 'id' => absint( $template_id ) ),
 			array( '%d' )

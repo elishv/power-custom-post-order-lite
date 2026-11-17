@@ -165,6 +165,20 @@ class PCPO_Debug {
 	 *  - console.log() the full JSON so it's accessible in DevTools.
 	 *  - HTML comment as a fallback for View Source.
 	 */
+	public static function enqueue_assets() {
+		if ( ! self::is_enabled() || is_admin() || ! is_user_logged_in() ) {
+			return;
+		}
+		if ( ! current_user_can( PCPO_Plugin::instance()->settings->get_sortable_capability() ) ) {
+			return;
+		}
+		wp_enqueue_script( 'pcpo-debug', PCPO_URL . 'assets/js/pcpo-debug.js', array(), PCPO_VERSION, true );
+	}
+
+	/**
+	 * Print the captured records in the page footer (see enqueue_assets()
+	 * for the script that reads them).
+	 */
 	public static function render_footer() {
 		if ( self::$rendered ) {
 			return;
@@ -188,7 +202,7 @@ class PCPO_Debug {
 		$summary = self::build_summary();
 		$payload = array(
 			'version' => PCPO_VERSION,
-			'url'     => isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '', // phpcs:ignore
+			'url'     => isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '',
 			'summary' => $summary,
 			'events'  => self::$records,
 		);
@@ -209,15 +223,16 @@ class PCPO_Debug {
 		echo $comment_json; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo "\n     ==================================================================== -->\n";
 
-		// 2) console.log so the editor sees it in DevTools immediately.
-		$script_json = wp_json_encode( $payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
-		echo '<script>(function(){try{var d=' . $script_json . ';' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON safely encoded.
-			. 'console.groupCollapsed("%cPCPO DEBUG%c v" + d.version + "  •  " + (d.summary.queries_marked||0) + " marked, " + (d.summary.queries_skipped||0) + " skipped  •  " + d.events.length + " events", "background:#6c41dc;color:#fff;padding:2px 6px;border-radius:3px;font-weight:700", "");'
-			. 'console.log("URL:", d.url);'
-			. 'console.log("Summary:", d.summary);'
-			. 'console.log("Events:", d.events);'
-			. 'console.log("Admin page:", ' . wp_json_encode( $debug_url ) . ');'
-			. 'console.groupEnd();}catch(e){console.error("PCPO DEBUG render error", e);}})();</script>' . "\n";
+		// 2) The full payload rides on the banner as a data attribute. The
+		//    enqueued assets/js/pcpo-debug.js logs it to the DevTools console
+		//    and wires the close button (no inline script or event handler).
+		$script_json = wp_json_encode(
+			array(
+				'payload'  => $payload,
+				'debugUrl' => $debug_url,
+			),
+			JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+		);
 
 		// 3) Fixed visible banner — impossible to miss, only for editors.
 		$banner_text = sprintf(
@@ -227,11 +242,11 @@ class PCPO_Debug {
 			$skipped_count,
 			$event_count
 		);
-		echo '<div id="pcpo-debug-banner" style="position:fixed !important;bottom:0 !important;right:0 !important;z-index:2147483647 !important;background:#6c41dc !important;color:#fff !important;padding:8px 14px !important;font:600 12px/1.2 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif !important;border-radius:6px 0 0 0 !important;box-shadow:0 -2px 12px rgba(0,0,0,0.2) !important;direction:ltr !important;">'
+		echo '<div id="pcpo-debug-banner" data-pcpo-debug="' . esc_attr( (string) $script_json ) . '" style="position:fixed !important;bottom:0 !important;right:0 !important;z-index:2147483647 !important;background:#6c41dc !important;color:#fff !important;padding:8px 14px !important;font:600 12px/1.2 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif !important;border-radius:6px 0 0 0 !important;box-shadow:0 -2px 12px rgba(0,0,0,0.2) !important;direction:ltr !important;">'
 			. esc_html( $banner_text )
 			. ' &nbsp;'
 			. '<a href="' . esc_url( $debug_url ) . '" target="_blank" style="color:#fff !important;text-decoration:underline !important;">Open Debug page</a>'
-			. ' &nbsp; <span style="opacity:.7;cursor:pointer;" onclick="this.parentNode.style.display=\'none\'">×</span>'
+			. ' &nbsp; <span class="pcpo-debug-close" role="button" tabindex="0" style="opacity:.7;cursor:pointer;">×</span>'
 			. '</div>' . "\n";
 	}
 

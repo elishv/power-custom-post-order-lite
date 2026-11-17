@@ -112,6 +112,7 @@ class PCPO_Plugin {
 		// Debug — render captured records as an HTML comment in the page
 		// footer (and on shutdown as a fallback for pages that don't fire
 		// wp_footer). PCPO_Debug::is_enabled() is a no-op when off.
+		add_action( 'wp_enqueue_scripts', array( 'PCPO_Debug', 'enqueue_assets' ) );
 		add_action( 'wp_footer', array( 'PCPO_Debug', 'render_footer' ), PHP_INT_MAX );
 		add_action( 'shutdown', array( 'PCPO_Debug', 'render_footer' ), PHP_INT_MAX );
 
@@ -144,7 +145,7 @@ class PCPO_Plugin {
 	 * Load plugin translations.
 	 */
 	public function load_textdomain() {
-		load_plugin_textdomain(
+		load_plugin_textdomain( // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- Loads the bundled translations shipped in /languages until WordPress.org language packs exist.
 			PCPO_TEXTDOMAIN,
 			false,
 			dirname( PCPO_BASENAME ) . '/languages'
@@ -336,12 +337,12 @@ class PCPO_Plugin {
 				/* translators: %s: term name */
 				'title' => '<span class="ab-icon dashicons dashicons-sort" style="top:2px;"></span>' . sprintf(
 					/* translators: %s: category / term name */
-					__( 'Sort "%s"', 'power-custom-post-order' ),
+					__( 'Sort "%s"', 'all-in-post-order' ),
 					esc_html( $term->name )
 				),
 				'href'  => esc_url( $url ),
 				'meta'  => array(
-					'title' => __( 'Open this category in Power Custom Post Order', 'power-custom-post-order' ),
+					'title' => __( 'Open this category in All-IN Post Order', 'all-in-post-order' ),
 				),
 			)
 		);

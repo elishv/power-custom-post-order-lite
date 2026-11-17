@@ -27,73 +27,73 @@ class PCPO_Settings {
 	public function get_order_modes() {
 		$modes = array(
 			'manual'        => array(
-				'label'   => __( 'Manual (drag & drop)', 'power-custom-post-order' ),
+				'label'   => __( 'Manual (drag & drop)', 'all-in-post-order' ),
 				'orderby' => null, // Handled specially via our JOIN.
 			),
 			'inherit'       => array(
-				'label'   => __( 'Inherit from parent / global', 'power-custom-post-order' ),
+				'label'   => __( 'Inherit from parent / global', 'all-in-post-order' ),
 				'orderby' => null,
 			),
 			'menu_order'    => array(
-				'label'   => __( 'Default WordPress menu order', 'power-custom-post-order' ),
+				'label'   => __( 'Default WordPress menu order', 'all-in-post-order' ),
 				'orderby' => 'menu_order',
 			),
 			'title_asc'     => array(
-				'label'     => __( 'Title A → Z', 'power-custom-post-order' ),
+				'label'     => __( 'Title A → Z', 'all-in-post-order' ),
 				'orderby'   => 'post_title',
 				'direction' => 'ASC',
 			),
 			'title_desc'    => array(
-				'label'     => __( 'Title Z → A', 'power-custom-post-order' ),
+				'label'     => __( 'Title Z → A', 'all-in-post-order' ),
 				'orderby'   => 'post_title',
 				'direction' => 'DESC',
 			),
 			'date_desc'     => array(
-				'label'     => __( 'Date — newest first', 'power-custom-post-order' ),
+				'label'     => __( 'Date — newest first', 'all-in-post-order' ),
 				'orderby'   => 'post_date',
 				'direction' => 'DESC',
 			),
 			'date_asc'      => array(
-				'label'     => __( 'Date — oldest first', 'power-custom-post-order' ),
+				'label'     => __( 'Date — oldest first', 'all-in-post-order' ),
 				'orderby'   => 'post_date',
 				'direction' => 'ASC',
 			),
 			'modified_desc' => array(
-				'label'     => __( 'Last modified — newest first', 'power-custom-post-order' ),
+				'label'     => __( 'Last modified — newest first', 'all-in-post-order' ),
 				'orderby'   => 'post_modified',
 				'direction' => 'DESC',
 			),
 			'random'        => array(
-				'label'   => __( 'Random (with daily seed)', 'power-custom-post-order' ),
+				'label'   => __( 'Random (with daily seed)', 'all-in-post-order' ),
 				'orderby' => 'random',
 			),
 			// WooCommerce-only modes.
 			'price_asc'     => array(
-				'label'                => __( 'Price low → high', 'power-custom-post-order' ),
+				'label'                => __( 'Price low → high', 'all-in-post-order' ),
 				'orderby'              => 'meta:_price',
 				'direction'            => 'ASC',
 				'requires_woocommerce' => true,
 			),
 			'price_desc'    => array(
-				'label'                => __( 'Price high → low', 'power-custom-post-order' ),
+				'label'                => __( 'Price high → low', 'all-in-post-order' ),
 				'orderby'              => 'meta:_price',
 				'direction'            => 'DESC',
 				'requires_woocommerce' => true,
 			),
 			'popularity'    => array(
-				'label'                => __( 'Popularity (total sales)', 'power-custom-post-order' ),
+				'label'                => __( 'Popularity (total sales)', 'all-in-post-order' ),
 				'orderby'              => 'meta:total_sales',
 				'direction'            => 'DESC',
 				'requires_woocommerce' => true,
 			),
 			'rating'        => array(
-				'label'                => __( 'Average rating', 'power-custom-post-order' ),
+				'label'                => __( 'Average rating', 'all-in-post-order' ),
 				'orderby'              => 'meta:_wc_average_rating',
 				'direction'            => 'DESC',
 				'requires_woocommerce' => true,
 			),
 			'stock_status'  => array(
-				'label'                => __( 'Stock status (in stock first)', 'power-custom-post-order' ),
+				'label'                => __( 'Stock status (in stock first)', 'all-in-post-order' ),
 				'orderby'              => 'meta:_stock_status',
 				'direction'            => 'ASC',
 				'requires_woocommerce' => true,

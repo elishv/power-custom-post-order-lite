@@ -74,7 +74,7 @@ if ( ! function_exists( 'pcpo_get_posts' ) ) :
 			),
 		);
 		if ( $taxonomy && $term_id ) {
-			$wp_args['tax_query'] = array(
+			$wp_args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Scoping the query to a term is the feature itself; bounded, paginated query.
 				array(
 					'taxonomy' => $taxonomy,
 					'field'    => 'term_id',
@@ -142,7 +142,7 @@ if ( ! function_exists( 'pcpo_the_query' ) ) :
 			),
 		);
 		if ( $taxonomy && $term_id ) {
-			$wp_args['tax_query'] = array(
+			$wp_args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Scoping the query to a term is the feature itself; bounded, paginated query.
 				array(
 					'taxonomy' => $taxonomy,
 					'field'    => 'term_id',

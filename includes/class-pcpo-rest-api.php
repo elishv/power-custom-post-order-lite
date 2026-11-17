@@ -268,7 +268,7 @@ class PCPO_REST_API {
 			'is_hidden'  => $request->get_param( 'is_hidden' ) ? 1 : 0,
 		);
 		if ( ! $data['post_id'] ) {
-			return new WP_Error( 'pcpo_missing_post_id', __( 'post_id is required', 'power-custom-post-order' ), array( 'status' => 400 ) );
+			return new WP_Error( 'pcpo_missing_post_id', __( 'post_id is required', 'all-in-post-order' ), array( 'status' => 400 ) );
 		}
 		$id = $this->db->upsert_order( $data );
 		return rest_ensure_response( array( 'id' => $id, 'data' => $data ) );
@@ -405,7 +405,7 @@ class PCPO_REST_API {
 		$term_id     = absint( $request->get_param( 'term_id' ) );
 		$template    = $this->db->get_template( $template_id );
 		if ( ! $template ) {
-			return new WP_Error( 'pcpo_not_found', __( 'Template not found', 'power-custom-post-order' ), array( 'status' => 404 ) );
+			return new WP_Error( 'pcpo_not_found', __( 'Template not found', 'all-in-post-order' ), array( 'status' => 404 ) );
 		}
 		$ids   = json_decode( $template->order_data, true );
 		$ids   = is_array( $ids ) ? array_map( 'absint', $ids ) : array();
@@ -485,7 +485,7 @@ class PCPO_REST_API {
 			),
 		);
 		if ( $taxonomy && $term_id ) {
-			$args['tax_query'] = array(
+			$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Scoping the query to a term is the feature itself; bounded, paginated query.
 				array(
 					'taxonomy' => $taxonomy,
 					'field'    => 'term_id',

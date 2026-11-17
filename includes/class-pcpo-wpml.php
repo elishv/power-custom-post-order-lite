@@ -266,7 +266,7 @@ class PCPO_WPML {
 		$table = $wpdb->prefix . 'icl_translations';
 
 		if ( 0 === strpos( $element_type, 'post_' ) ) {
-			$trid = $wpdb->get_var(
+			$trid = $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read-only lookup in WPML's icl_translations / term_taxonomy tables; WPML has no public API for this mapping. Prepared.
 				$wpdb->prepare(
 					"SELECT trid FROM %i WHERE element_type = %s AND element_id = %d LIMIT 1",
 					$table,
@@ -276,7 +276,7 @@ class PCPO_WPML {
 			);
 		} elseif ( 0 === strpos( $element_type, 'tax_' ) ) {
 			// For taxes, icl_translations stores term_taxonomy_id, not term_id.
-			$ttid = (int) $wpdb->get_var(
+			$ttid = (int) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read-only lookup in WPML's icl_translations / term_taxonomy tables; WPML has no public API for this mapping. Prepared.
 				$wpdb->prepare(
 					"SELECT term_taxonomy_id FROM {$wpdb->term_taxonomy} WHERE term_id = %d LIMIT 1",
 					$element_id
@@ -285,7 +285,7 @@ class PCPO_WPML {
 			if ( ! $ttid ) {
 				return array();
 			}
-			$trid = $wpdb->get_var(
+			$trid = $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read-only lookup in WPML's icl_translations / term_taxonomy tables; WPML has no public API for this mapping. Prepared.
 				$wpdb->prepare(
 					"SELECT trid FROM %i WHERE element_type = %s AND element_id = %d LIMIT 1",
 					$table,
@@ -301,7 +301,7 @@ class PCPO_WPML {
 			return array();
 		}
 
-		$rows = $wpdb->get_results(
+		$rows = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read-only lookup in WPML's icl_translations / term_taxonomy tables; WPML has no public API for this mapping. Prepared.
 			$wpdb->prepare(
 				"SELECT language_code, element_id FROM %i WHERE trid = %d AND element_type = %s",
 				$table,
@@ -315,7 +315,7 @@ class PCPO_WPML {
 			$id = (int) $row->element_id;
 			if ( 0 === strpos( $element_type, 'tax_' ) ) {
 				// Convert term_taxonomy_id back to term_id for tax rows.
-				$id = (int) $wpdb->get_var(
+				$id = (int) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read-only lookup in WPML's icl_translations / term_taxonomy tables; WPML has no public API for this mapping. Prepared.
 					$wpdb->prepare(
 						"SELECT term_id FROM {$wpdb->term_taxonomy} WHERE term_taxonomy_id = %d LIMIT 1",
 						$id
@@ -341,7 +341,7 @@ class PCPO_WPML {
 		$table = $wpdb->prefix . 'icl_translations';
 
 		if ( 0 === strpos( $element_type, 'tax_' ) ) {
-			$element_id = (int) $wpdb->get_var(
+			$element_id = (int) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read-only lookup in WPML's icl_translations / term_taxonomy tables; WPML has no public API for this mapping. Prepared.
 				$wpdb->prepare(
 					"SELECT term_taxonomy_id FROM {$wpdb->term_taxonomy} WHERE term_id = %d LIMIT 1",
 					$element_id
@@ -352,7 +352,7 @@ class PCPO_WPML {
 			}
 		}
 
-		return (string) $wpdb->get_var(
+		return (string) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Read-only lookup in WPML's icl_translations / term_taxonomy tables; WPML has no public API for this mapping. Prepared.
 			$wpdb->prepare(
 				"SELECT language_code FROM %i WHERE element_type = %s AND element_id = %d LIMIT 1",
 				$table,

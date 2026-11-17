@@ -105,7 +105,7 @@ class PCPO_Query_Handler {
 				'raw_orderby'      => '' === $raw_orderby ? '(empty)' : $raw_orderby,
 				'queryvars_orderby' => $query->get( 'orderby' ),
 				'shopper_orderby'  => isset( $_GET['orderby'] ) ? wp_unslash( $_GET['orderby'] ) : '(not set)', // phpcs:ignore
-				'tax_query'        => $query->get( 'tax_query' ),
+				'tax_query'        => $query->get( 'tax_query' ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- Scoping the query to a term is the feature itself; bounded, paginated query.
 			)
 		);
 
